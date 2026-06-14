@@ -1,0 +1,237 @@
+{
+  "version": "1.0",
+  "blocks": [
+    {
+      "type": "text",
+      "whenToUse": "Narrative explanation, analysis, or framing. Supports a light markdown subset in content: \"- \" bullet lines and **bold** (bold is automatically rendered as a highlighted accent by the component). Great for analyst commentary as bullet points.",
+      "spec": [
+        "{ \"type\": \"text\", \"id\": \"...\", \"content\": \"- **Data Center** at **$47.5B** is ~**78%** of total\\n- **Gaming** recovered to **$10.4B** (+14% YoY)\" }"
+      ],
+      "example": {
+        "type": "text",
+        "content": "Correlation measures how two assets move together."
+      }
+    },
+    {
+      "type": "kpi_row",
+      "whenToUse": "A row of key metrics / headline numbers the user should see at a glance.",
+      "spec": [
+        "{ \"type\": \"kpi_row\", \"id\": \"...\", \"items\": [ { \"label\": \"...\", \"value\": \"...\", \"tone\": \"positive|neutral|negative\" }, ... ] }"
+      ],
+      "example": {
+        "type": "kpi_row",
+        "items": [
+          {
+            "label": "Return",
+            "value": "8.2%",
+            "tone": "positive"
+          }
+        ]
+      }
+    },
+    {
+      "type": "chart",
+      "whenToUse": "Trends, comparisons, correlation matrices, or composition. Pick the kind that fits the data.",
+      "kinds": [
+        "line",
+        "bar",
+        "hbar",
+        "area",
+        "scatter",
+        "stacked",
+        "combo",
+        "heatmap",
+        "pie",
+        "donut",
+        "funnel",
+        "gauge",
+        "radar",
+        "candlestick",
+        "waterfall",
+        "treemap",
+        "sunburst",
+        "sankey",
+        "graph",
+        "flow",
+        "boxplot",
+        "bubble",
+        "histogram",
+        "timeseries",
+        "rose",
+        "polar",
+        "parallel",
+        "themeriver",
+        "tree",
+        "mindmap",
+        "org",
+        "scatter3d",
+        "bar3d",
+        "line3d"
+      ],
+      "spec": [
+        "Pick \"kind\" to fit the data; ONLY these kinds render:",
+        "UNITS — NEVER drop the unit. When values carry a currency/unit, set \"value_prefix\" and/or \"value_suffix\" on the chart so every label and tooltip shows it. Money in trillions: \"value_prefix\":\"$\",\"value_suffix\":\"T\" (so 3.35 shows as $3.35T). Percentages: \"value_suffix\":\"%\". Billions: \"value_suffix\":\"B\". Keep the raw numbers in \"values\"/\"items\" plain (e.g. 3.35, not \"$3.35T\") — the unit lives ONLY in value_prefix/value_suffix.",
+        "- line | bar | hbar | area | stacked | combo (CATEGORICAL x-axis) -> you MUST give \"x_categories\" (the real labels) and each series as PLAIN NUMBERS aligned to them. NEVER use bare 0,1,2 as x.",
+        "  { \"type\": \"chart\", \"title\": \"...\", \"chart\": { \"kind\": \"bar\", \"x_label\": \"Segment\", \"y_label\": \"USD B\", \"value_prefix\": \"$\", \"value_suffix\": \"B\", \"x_categories\": [\"Data Center\", \"Gaming\", \"Auto\"], \"series\": [ { \"name\": \"FY2024\", \"values\": [47.5, 10.4, 1.1] }, { \"name\": \"FY2023\", \"values\": [15.0, 9.1, 0.9] } ] } }",
+        "  (note the value_prefix \"$\" + value_suffix \"B\" — labels render as $47.5B. Always add the unit this way when the data has one.)",
+        "  (values[i] pairs with x_categories[i]; one series per group, e.g. one per year. For combo, add \"kind\":\"bar\"|\"line\" per series.)",
+        "  Do NOT include any \"color\" or styling field. Emit data only (name + values) — all colors, palette, and styling are applied automatically by the component. Styling is never your concern.",
+        "- scatter (numeric x vs y / correlation) -> series with [x, y] pairs (no x_categories).",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"scatter\", \"series\": [ { \"name\": \"...\", \"values\": [ [x, y], ... ] } ] } }",
+        "- heatmap (correlation matrix, confusion matrix, any grid of values) -> labels + a 2D \"matrix\" (rows = y_labels, cols = x_labels):",
+        "  { \"type\": \"chart\", \"title\": \"...\", \"chart\": { \"kind\": \"heatmap\", \"x_labels\": [\"A\",\"B\"], \"y_labels\": [\"A\",\"B\"], \"matrix\": [ [1, 0.3], [0.3, 1] ] } }",
+        "- pie | donut | treemap | sunburst (composition / share / hierarchy) -> use \"items\":",
+        "  { \"type\": \"chart\", \"title\": \"...\", \"chart\": { \"kind\": \"treemap\", \"value_prefix\": \"$\", \"value_suffix\": \"T\", \"items\": [ { \"label\": \"Apple\", \"value\": 3.35 }, { \"label\": \"Microsoft\", \"value\": 3.30 } ] } }  (renders tiles as \"Apple $3.35T\")",
+        "- waterfall (P&L bridge / cash-flow walk / variance) -> use \"items\" where each value is the DELTA (+/-):",
+        "  { \"type\": \"chart\", \"title\": \"...\", \"chart\": { \"kind\": \"waterfall\", \"items\": [ { \"label\": \"Start\", \"value\": 100 }, { \"label\": \"Sales\", \"value\": 30 }, { \"label\": \"Costs\", \"value\": -20 } ] } }",
+        "- candlestick (OHLC price) -> \"x_categories\" (dates) + \"candles\" of [open, close, low, high]:",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"candlestick\", \"x_categories\": [\"2024-01\",\"2024-02\"], \"candles\": [ [120,135,118,138], [135,130,128,140] ] } }",
+        "- boxplot (distribution / quartiles) -> \"x_categories\" + \"boxes\" of [min, q1, median, q3, max]:",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"boxplot\", \"x_categories\": [\"Fund A\",\"Fund B\"], \"boxes\": [ [-5,2,6,9,15], [-2,3,5,8,12] ] } }",
+        "- bubble (x vs y with size) -> series with [x, y, size] triples:",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"bubble\", \"x_label\": \"Risk\", \"y_label\": \"Return\", \"series\": [ { \"name\": \"Funds\", \"values\": [ [8,12,500], [14,18,1200] ] } ] } }",
+        "- sankey | graph (flows / network) -> \"nodes\" + \"links\":",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"sankey\", \"nodes\": [ {\"name\":\"Revenue\"}, {\"name\":\"COGS\"}, {\"name\":\"Gross Profit\"} ], \"links\": [ {\"source\":\"Revenue\",\"target\":\"COGS\",\"value\":40}, {\"source\":\"Revenue\",\"target\":\"Gross Profit\",\"value\":60} ] } }",
+        "- flow (a process / decision flowchart, laid out left-to-right with arrows) -> \"nodes\" + directed \"links\". Optionally give each node a \"level\" (0,1,2…) to force its column, and each link a \"label\" (e.g. \"Yes\"/\"No\"):",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"flow\", \"nodes\": [ {\"name\":\"Start\"}, {\"name\":\"Review\"}, {\"name\":\"Approve\"}, {\"name\":\"Reject\"} ], \"links\": [ {\"source\":\"Start\",\"target\":\"Review\"}, {\"source\":\"Review\",\"target\":\"Approve\",\"label\":\"Yes\"}, {\"source\":\"Review\",\"target\":\"Reject\",\"label\":\"No\"} ] } }",
+        "- histogram (frequency) -> like bar: \"x_categories\" (bins) + one series of counts.",
+        "- timeseries (interactive time trend with zoom/pan) -> like line: \"x_categories\" (dates) + series of numbers. Best for many points over time.",
+        "- rose (nightingale / 'pizza' chart — share with variable-radius slices) -> use \"items\": [ { \"label\", \"value\" } ].",
+        "- polar (categorical bars around a circle) -> \"x_categories\" + series of numbers (like bar).",
+        "- parallel (compare items across many dimensions) -> \"x_categories\" = dimension names; one series per item with \"values\" aligned to them.",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"parallel\", \"x_categories\": [\"P/E\",\"Margin\",\"Growth\"], \"series\": [ { \"name\": \"AAPL\", \"values\": [28, 25, 8] }, { \"name\": \"MSFT\", \"values\": [34, 42, 14] } ] } }",
+        "- themeriver (streamgraph of categories over time; keep to a handful of time points) -> \"x_categories\" (time) + one series per category with \"values\" aligned to them.",
+        "- tree | mindmap | org (hierarchy / mind map / org chart) -> a single \"root\" node with nested \"children\":",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"tree\", \"root\": { \"name\": \"Apple\", \"children\": [ { \"name\": \"Products\", \"children\": [ {\"name\":\"iPhone\"}, {\"name\":\"Mac\"} ] }, { \"name\": \"Services\" } ] } } }",
+        "  (use \"mindmap\" for a radial layout, \"org\" for top-down. Keep to a readable number of nodes.)",
+        "- scatter3d | bar3d | line3d (THREE numeric axes; keep to a handful of points) -> series with [x, y, z] triples:",
+        "  { \"type\": \"chart\", \"chart\": { \"kind\": \"scatter3d\", \"x_label\": \"Risk\", \"y_label\": \"Return\", \"series\": [ { \"name\": \"Funds\", \"values\": [ [8,12,500], [14,18,1200] ] } ] } }",
+        "For a correlation matrix you MUST use kind \"heatmap\" with \"matrix\" (never a line/bar series)."
+      ],
+      "example": {
+        "type": "chart",
+        "title": "Correlation",
+        "chart": {
+          "kind": "heatmap",
+          "x_labels": [
+            "A",
+            "B"
+          ],
+          "y_labels": [
+            "A",
+            "B"
+          ],
+          "matrix": [
+            [
+              1,
+              0.3
+            ],
+            [
+              0.3,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "type": "table",
+      "whenToUse": "Tabular breakdown or side-by-side comparison of rows and columns.",
+      "spec": [
+        "{ \"type\": \"table\", \"id\": \"...\", \"title\": \"...\", \"columns\": [ ... ], \"rows\": [ [ ... ], ... ] }"
+      ],
+      "example": {
+        "type": "table",
+        "columns": [
+          "Option",
+          "Cost"
+        ],
+        "rows": [
+          [
+            "A",
+            10
+          ],
+          [
+            "B",
+            20
+          ]
+        ]
+      }
+    },
+    {
+      "type": "action_row",
+      "whenToUse": "Buttons to RE-VISUALIZE the SAME data already shown as a different supported chart kind. Each button's label is sent back as the next prompt.",
+      "spec": [
+        "{ \"type\": \"action_row\", \"buttons\": [ { \"label\": \"Show as <supported chart kind>\", \"intent\": \"...\" }, ... ] }",
+        "VISUALS ONLY — buttons MUST only offer to redraw the data ALREADY shown using a different supported chart kind (e.g. \"Show as bar chart\", \"View as treemap\", \"Show as pie\", \"View as horizontal bars\", \"Show as line trend\").",
+        "NEVER propose actions that require data you may not have: no new tickers/companies, no new time periods, no \"compare X vs Y\", no growth/peers/forecasts, no \"explain ...\". Only chart-type changes of the current data."
+      ],
+      "example": {
+        "type": "action_row",
+        "buttons": [
+          {
+            "label": "Show as treemap",
+            "intent": "view_treemap"
+          },
+          {
+            "label": "View as horizontal bars",
+            "intent": "view_hbar"
+          }
+        ]
+      }
+    },
+    {
+      "type": "image",
+      "whenToUse": "Photo, diagram, illustration, or icon via an https URL or data URI.",
+      "spec": [
+        "{ \"type\": \"image\", \"id\": \"...\", \"title\": \"...\", \"src\": \"https://... OR data:image/png;base64,...\", \"alt\": \"accessible description\", \"caption\": \"optional caption\", \"fit\": \"contain|cover\" }"
+      ],
+      "example": {
+        "type": "image",
+        "src": "https://...",
+        "alt": "diagram"
+      }
+    },
+    {
+      "type": "stat_card",
+      "whenToUse": "Prominent headline metric cards — a few key figures shown large (label + value + optional subtext + tone).",
+      "spec": [
+        "{ \"type\": \"stat_card\", \"items\": [ { \"label\": \"...\", \"value\": \"...\", \"subtext\": \"optional\", \"tone\": \"success|warning|danger|info|default\" }, ... ] }"
+      ],
+      "example": {
+        "type": "stat_card",
+        "items": [
+          { "label": "FY2023 Revenue", "value": "$383.3B", "subtext": "down 3% YoY", "tone": "warning" }
+        ]
+      }
+    },
+    {
+      "type": "progress",
+      "whenToUse": "Percentage / progress bars (value vs max) — margins, allocations, % of target.",
+      "spec": [
+        "{ \"type\": \"progress\", \"items\": [ { \"label\": \"...\", \"value\": 44.1, \"max\": 100, \"tone\": \"default|success|warning|danger|info\" }, ... ] }",
+        "\"tone\" is SEMANTIC meaning only (good/at-risk/bad) — NEVER a color. The component owns all colors."
+      ],
+      "example": {
+        "type": "progress",
+        "items": [
+          { "label": "Gross margin", "value": 44.1, "max": 100, "tone": "success" }
+        ]
+      }
+    },
+    {
+      "type": "badge_row",
+      "whenToUse": "A row of small status pills (label + tone) — flags, statuses, tags.",
+      "spec": [
+        "{ \"type\": \"badge_row\", \"items\": [ { \"label\": \"...\", \"tone\": \"default|success|warning|danger|info\" }, ... ] }"
+      ],
+      "example": {
+        "type": "badge_row",
+        "items": [
+          { "label": "Profitable", "tone": "success" },
+          { "label": "Revenue down", "tone": "danger" }
+        ]
+      }
+    }
+  ]
+}

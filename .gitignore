@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environments / secrets — never commit real env files (only the .example templates)
+.env
+.env.*
+!.env.example
+.venv
+env/
+venv/
+
+# Node
+node_modules/
+*.log
+
+# Local databases (regenerate empty on first run)
+*.sqlite3
+*.sqlite
+
+# Testing
+htmlcov/
+.tox/
+.pytest_cache/
+.coverage
+
+# IDEs
+.vscode/
+.idea/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# adaptiveui.sqlite3 is tracked for GitHub (demo_vivek). Do not push that branch to
+# Hugging Face origin — their hook rejects binary sqlite in git.
+
+# Binary vector store (regenerable; never commit)
+rag_finance/chroma_db/

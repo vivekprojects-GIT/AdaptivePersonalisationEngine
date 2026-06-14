@@ -1,0 +1,8 @@
+# APE — allow crawlers on the public marketing site, keep the app private.
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /login
+
+# Replace your-domain.com with the production domain before launch.
+Sitemap: https://your-domain.com/sitemap.xml

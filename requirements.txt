@@ -1,0 +1,9 @@
+numpy
+python-dotenv
+anthropic
+fastapi
+uvicorn[standard]
+SQLAlchemy
+PyJWT
+bcrypt
+chromadb>=1.0
