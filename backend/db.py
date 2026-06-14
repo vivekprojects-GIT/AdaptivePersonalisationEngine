@@ -66,7 +66,7 @@ def _read_primitives_json() -> dict:
         }
       }
     """
-    path = getattr(config, "PRIMITIVES_JSON_PATH", str(config.HERE.parent / "user_primitives.json"))
+    path = getattr(config, "PRIMITIVES_JSON_PATH", str(config.HERE.parent / "data" / "user_primitives.json"))
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -80,7 +80,7 @@ def _read_primitives_json() -> dict:
 
 
 def _atomic_write_primitives_json(data: dict) -> None:
-    path = getattr(config, "PRIMITIVES_JSON_PATH", str(config.HERE.parent / "user_primitives.json"))
+    path = getattr(config, "PRIMITIVES_JSON_PATH", str(config.HERE.parent / "data" / "user_primitives.json"))
     tmp = f"{path}.tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)

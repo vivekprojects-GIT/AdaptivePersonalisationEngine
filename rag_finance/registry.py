@@ -1,4 +1,4 @@
-"""Single source of truth loader — reads frontend-vue/src/widget-registry.json so the
+"""Single source of truth loader — reads frontend/src/widget-registry.json so the
 synthesizer prompt and the validator both derive the allowed block types + chart kinds
 from the SAME file the renderer uses. Define a component once → all three stay in sync.
 """
@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-_PATH = Path(__file__).resolve().parent.parent / "frontend-vue" / "src" / "widget-registry.json"
+_PATH = Path(__file__).resolve().parent.parent / "frontend" / "src" / "widget-registry.json"
 
 
 def _load() -> dict:

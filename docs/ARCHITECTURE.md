@@ -10,7 +10,7 @@ natural style, plus an optional `<WIDGET>` JSON generated from the component reg
 
 ---
 
-## The single source of truth: `frontend-vue/src/widget-registry.json`
+## The single source of truth: `frontend/src/widget-registry.json`
 
 One JSON catalog of everything the app can render. It is read in **three** places so they
 can never drift:
@@ -19,7 +19,7 @@ can never drift:
 |-----|--------|---------|
 | **GENERATE** | `backend/combined_prompt.py → build_json_widget_rule()` | turns the registry into the prompt "menu" sent to the LLM |
 | **VALIDATE** | `rag_finance/registry.py → allowed_types() / allowed_chart_kinds()` | drops anything off-menu in the LLM's output |
-| **RENDER** | `frontend-vue/src/lib/widgetRegistry.ts (COMPONENTS map)` + `lib/echartsOption.ts` | maps each block `type`/chart `kind` to a Vue component / ECharts option |
+| **RENDER** | `frontend/src/lib/widgetRegistry.ts (COMPONENTS map)` + `lib/echartsOption.ts` | maps each block `type`/chart `kind` to a Vue component / ECharts option |
 
 ### Block types (9)
 `text, kpi_row, chart, table, action_row, image, stat_card, progress, badge_row`

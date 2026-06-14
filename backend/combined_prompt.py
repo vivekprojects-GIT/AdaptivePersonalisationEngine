@@ -147,11 +147,11 @@ def _load_registry() -> dict[str, Any]:
     global _REGISTRY_CACHE
     if _REGISTRY_CACHE is None:
         try:
-            _REGISTRY_CACHE = json.loads(Path(__file__).resolve().parent.parent / "frontend-vue" / "src" / "widget-registry.json")  # type: ignore[arg-type]
+            _REGISTRY_CACHE = json.loads(Path(__file__).resolve().parent.parent / "frontend" / "src" / "widget-registry.json")  # type: ignore[arg-type]
         except Exception:
             try:
                 _REGISTRY_CACHE = json.loads(
-                    (Path(__file__).resolve().parent.parent / "frontend-vue" / "src" / "widget-registry.json").read_text(encoding="utf-8")
+                    (Path(__file__).resolve().parent.parent / "frontend" / "src" / "widget-registry.json").read_text(encoding="utf-8")
                 )
             except Exception:
                 _REGISTRY_CACHE = {}
@@ -379,11 +379,11 @@ _FALLBACK_BLOCKS = """  - text:
 
 
 # ── Registry-driven prompt vocabulary ───────────────────────────────────────
-# Single source of truth: frontend-vue/src/widget-registry.json. The SAME file
+# Single source of truth: frontend/src/widget-registry.json. The SAME file
 # the Vue renderer uses to resolve block types is read here to generate the
 # "supported block types" section of the prompt — so GENERATE and RENDER can
 # never drift. Falls back to the static _JSON_WIDGET_RULE if the file is absent.
-_REGISTRY_JSON_PATH = Path(__file__).resolve().parent.parent / "frontend-vue" / "src" / "widget-registry.json"
+_REGISTRY_JSON_PATH = Path(__file__).resolve().parent.parent / "frontend" / "src" / "widget-registry.json"
 
 _JSON_RULE_PREAMBLE = """WIDGET JSON SCHEMA MODE (WIDGET_MODE=json):
 - WIDGET WARRANT (DEFAULT TO AN EMPTY WIDGET — visuals are opt-in, not automatic):

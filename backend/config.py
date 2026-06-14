@@ -79,11 +79,11 @@ ANTHROPIC_PROMPT_CACHE = _flag("ANTHROPIC_PROMPT_CACHE", "1")
 # Paths: HERE = backend/, parent = vivek/ (project root).
 HERE = Path(__file__).resolve().parent
 # Frontend entry point served at GET / — the Vite production build.
-INDEX_HTML = HERE.parent / "frontend-vue" / "dist" / "index.html"
+INDEX_HTML = HERE.parent / "frontend" / "dist" / "index.html"
 
 # Skills document — high-level chart/widget guidance injected into LLM prompts.
 # Override with SKILLS_PATH env var if needed.
-SKILLS_PATH = Path(os.getenv("SKILLS_PATH", str(HERE.parent / "skills.md")))
+SKILLS_PATH = Path(os.getenv("SKILLS_PATH", str(HERE.parent / "data" / "skills.md")))
 SKILLS_CONTENT = SKILLS_PATH.read_text(encoding="utf-8") if SKILLS_PATH.exists() else ""
 
 # -----------------------------------------------------------------------------
@@ -137,4 +137,4 @@ ADMIN_CONFIGURED = bool(ADMIN_USERNAMES or ADMIN_EMAILS or ADMIN_USER_IDS)
 DB_PATH = os.getenv("DB_PATH", str(HERE.parent / "adaptiveui.sqlite3"))
 
 # JSON persistence for user primitives (when DB/SQL is not desired).
-PRIMITIVES_JSON_PATH = os.getenv("PRIMITIVES_JSON_PATH", str(HERE.parent / "user_primitives.json"))
+PRIMITIVES_JSON_PATH = os.getenv("PRIMITIVES_JSON_PATH", str(HERE.parent / "data" / "user_primitives.json"))

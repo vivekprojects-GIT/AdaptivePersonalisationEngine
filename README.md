@@ -9,34 +9,37 @@ Widgets are built **only from the app's own UI components** (a registry), as JSO
 LLM-generated HTML, no iframe, no external chart libraries**. Charts render with bundled
 ECharts.
 
-> **Architecture:** see [`ARCHITECTURE.md`](./ARCHITECTURE.md) for the full registry →
+> **Architecture:** see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) for the full registry →
 > prompt-menu → synthesizer → validate → components pipeline.
 
 ## Project structure
 
 ```
-vivek/
-├── frontend-vue/                 # Vue 3 + Vite + TypeScript SPA (the live UI)
-│   ├── src/
-│   │   ├── widget-registry.json  # SINGLE SOURCE: block types + 33 chart kinds + data shapes
-│   │   ├── lib/widgetRegistry.ts # type → Vue component map (RENDER)
-│   │   ├── lib/echartsOption.ts  # shared ECharts option builder (live render + HTML export)
-│   │   ├── lib/exportWidgetHtml.ts # deterministic widget → standalone interactive HTML
-│   │   ├── components/WidgetRegistryRenderer.vue  # parses widget JSON → <component :is>
-│   │   ├── components/WidgetSchemaChart.vue       # ECharts chart component
-│   │   └── components/widgets/*.vue               # TextBlock, KpiRow, ChartBlock, ...
-│   └── dist/                     # built SPA (served by the backend in prod)
-├── backend/
+ape/
+├── app.py                        # entry point (Hugging Face Spaces runs this)
+├── Dockerfile  requirements.txt
+├── .env.example                  # template (copy to .env; .env is gitignored)
+├── backend/                      # FastAPI app
 │   ├── config.py                 # env, LLM modes, paths
 │   ├── server.py                 # FastAPI: auth, /api/chat[_stream], serves SPA
 │   ├── llm.py                    # Anthropic + OpenAI-compatible calls
 │   ├── engine.py                 # in-memory per-user conversation state
 │   ├── combined_prompt.py        # builds the combined prompt; registry → menu; validation
-│   ├── db.py / auth.py
-├── app.py                        # entry point
-├── requirements.txt
-├── .env.example                  # template (copy to .env; .env is gitignored)
-└── ARCHITECTURE.md
+│   └── db.py / auth.py
+├── rag_finance/                  # optional RAG module (registry-driven)
+├── frontend/                     # Vue 3 + Vite + TypeScript SPA (the live UI)
+│   ├── src/
+│   │   ├── widget-registry.json  # SINGLE SOURCE: block types + 33 chart kinds + data shapes
+│   │   ├── lib/widgetRegistry.ts # type → Vue component map (RENDER)
+│   │   ├── components/WidgetRegistryRenderer.vue  # parses widget JSON → <component :is>
+│   │   └── components/widgets/*.vue               # TextBlock, KpiRow, ChartBlock, ...
+│   └── dist/                     # built SPA (served by the backend in prod)
+├── data/                         # runtime data + seeds
+│   ├── skills.md                 # chart/widget guidance injected into prompts
+│   └── user_primitives.json      # admin primitives store
+└── docs/
+    ├── ARCHITECTURE.md
+    └── APE_v2_End_to_End.docx
 ```
 
 ## What it shows
