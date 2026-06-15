@@ -323,8 +323,14 @@ def _on_startup():
 # Static / SPA
 # ---------------------------------------------------------------------------
 
-@app.get("/", response_class=HTMLResponse)
-def index() -> HTMLResponse:
+@app.get("/")
+def index():
+    # API-only when the frontend build isn't present (it's deployed separately).
+    if not config.INDEX_HTML.exists():
+        return JSONResponse({
+            "service": "APE backend", "status": "ok", "mode": "api-only",
+            "note": "The web app is hosted separately; call the /api/* endpoints.",
+        })
     html = config.INDEX_HTML.read_bytes()
     return HTMLResponse(content=html, media_type="text/html; charset=utf-8")
 
@@ -1162,6 +1168,11 @@ def spa_fallback(full_path: str):
         if candidate.is_file() and dist in candidate.parents:
             from fastapi.responses import FileResponse
             return FileResponse(str(candidate))
+    if not config.INDEX_HTML.exists():
+        return JSONResponse({
+            "service": "APE backend", "status": "ok", "mode": "api-only",
+            "note": "The web app is hosted separately; call the /api/* endpoints.",
+        })
     html = config.INDEX_HTML.read_bytes()
     return HTMLResponse(content=html, media_type="text/html; charset=utf-8")
 
