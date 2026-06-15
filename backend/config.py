@@ -50,6 +50,9 @@ COMBINED_MAX_TOKENS = int(os.getenv("COMBINED_MAX_TOKENS", "6000"))
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "https://api.groq.com/openai/v1")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "llama-3.1-8b-instant")
+# Reasoning effort for reasoning-capable OpenAI-compat models (e.g. Groq gpt-oss):
+# "low" | "medium" | "high". Blank = omit (sent only for models that support it).
+OPENAI_REASONING_EFFORT = os.getenv("OPENAI_REASONING_EFFORT", "").strip().lower()
 
 # Anthropic Claude API
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")

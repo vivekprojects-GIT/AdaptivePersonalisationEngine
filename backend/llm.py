@@ -140,6 +140,8 @@ def call_openai_compat(
         "temperature": temperature,
         "max_tokens": max_tokens,
     }
+    if getattr(config, "OPENAI_REASONING_EFFORT", ""):
+        payload["reasoning_effort"] = config.OPENAI_REASONING_EFFORT
     headers = {"Authorization": f"Bearer {config.OPENAI_API_KEY}"}
     data = _post_json_url(f"{config.OPENAI_BASE_URL}/chat/completions", payload, headers=headers, timeout=timeout)
     text = (((data.get("choices") or [{}])[0].get("message") or {}).get("content") or "").strip()
@@ -172,11 +174,16 @@ def stream_openai_compat(
         "max_tokens": max_tokens,
         "stream": True,
     }
+    if getattr(config, "OPENAI_REASONING_EFFORT", ""):
+        payload["reasoning_effort"] = config.OPENAI_REASONING_EFFORT
     data = json.dumps(payload).encode("utf-8")
     req = urllib.request.Request(f"{config.OPENAI_BASE_URL}/chat/completions", data=data, method="POST")
     req.add_header("Content-Type", "application/json")
     req.add_header("Authorization", f"Bearer {config.OPENAI_API_KEY}")
     req.add_header("Accept", "text/event-stream")
+    # Groq sits behind Cloudflare, which 403s (error 1010) the default
+    # Python-urllib User-Agent. A normal UA is required for the stream to open.
+    req.add_header("User-Agent", "Mozilla/5.0")
 
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         for raw in resp:

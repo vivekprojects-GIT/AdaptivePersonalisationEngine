@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button.vue'
 import VizChart from '@/components/viz/VizChart.vue'
 import TechGlyph from '@/components/viz/TechGlyph.vue'
 import CountUp from '@/components/viz/CountUp.vue'
-import FormatMorph from '@/components/viz/FormatMorph.vue'
+import MorphingAnswer from '@/components/viz/MorphingAnswer.vue'
 import NeuralBrain from '@/components/viz/NeuralBrain.vue'
 import ArchFlow from '@/components/viz/ArchFlow.vue'
 import ApePlayground from '@/components/viz/ApePlayground.vue'
@@ -42,6 +42,9 @@ const activeSection = ref('')
 
 /* Scroll progress hairline + scrollspy (one rAF-throttled handler). */
 const scrollProgress = ref(0)
+// True while the dark neuron hero sits behind the nav → nav goes transparent +
+// light text; flips to solid light glass once you scroll past the hero.
+const navOverHero = ref(true)
 let progressRaf = 0
 function onScroll() {
   if (progressRaf) return
@@ -57,6 +60,8 @@ function onScroll() {
       if (el && el.getBoundingClientRect().top <= 140) current = a.id
     }
     activeSection.value = current
+    const hero = document.getElementById('home')
+    navOverHero.value = hero ? hero.getBoundingClientRect().bottom > 52 : false
   })
 }
 
@@ -373,6 +378,7 @@ const integrations = [
 <template>
   <div class="min-h-screen text-foreground relative">
 
+
     <!-- Skip link, first tab stop for keyboard users -->
     <a
       href="#content"
@@ -434,58 +440,54 @@ const integrations = [
     <!-- ================= HERO ================= -->
     <section
       id="home"
-      class="relative overflow-hidden bg-dotgrid scroll-mt-16"
+      class="relative overflow-hidden scroll-mt-16"
     >
-      <div class="relative max-w-6xl mx-auto px-4 lg:px-6 pt-16 lg:pt-24 pb-16 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
-        <!-- copy -->
-        <div class="space-y-7">
+      <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
           <div class="hero-late eyebrow" style="--d: 0.05s">
-            the response-format layer
-            <span v-if="heroStats && heroStats.total_turns > 0" class="eyebrow-chip"><CountUp :end="heroStats.total_turns" /> learned</span>
-            <span v-else class="eyebrow-chip">live</span>
-          </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-[56px] font-semibold tracking-[-0.03em] leading-[1.08]">
-            <span class="hero-word" style="--d: 0.1s">Answers</span>
-            <span class="hero-word" style="--d: 0.2s">that</span><br />
-            <!-- gradient applied PER word: bg-clip-text can't paint through transformed children -->
-            <span class="hero-word" style="--d: 0.32s">take</span>
-            <span class="hero-word" style="--d: 0.42s">your</span>
-            <span class="hero-word hl-accent" style="--d: 0.52s">shape</span>
-          </h1>
-          <p class="hero-late text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl" style="--d: 0.65s">
-            One user needs the side-by-side table; another wants the two-line verdict. APE learns
-            which one each person is and answers in that shape. It is the response-format layer that
-            sits on top of your memory, RAG, or agents, the one thing they don’t do.
-          </p>
-          <div class="hero-late flex flex-wrap items-center gap-3" style="--d: 0.8s">
-            <Button v-magnet :to="loggedIn ? '/app/chat' : '/login?mode=register'" class="btn-shine h-12 px-7 text-sm gap-2 shadow-md shadow-black/10">
-              <ChatBubbleLeftRightIcon class="h-4 w-4" />
-              {{ loggedIn ? 'Open the app' : 'Get started, it’s free' }}
-            </Button>
-            <Button to="/about" variant="outline" class="h-12 px-7 text-sm gap-2">
-              <InformationCircleIcon class="h-4 w-4" />
-              How it works
-            </Button>
-          </div>
-          <div class="hero-late flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground pt-1" style="--d: 0.95s">
-            <span>real-time memory</span>
-            <span class="text-muted-foreground/40">·</span>
-            <span>~<CountUp :end="3" suffix=" ms" /> decisions</span>
-            <span class="text-muted-foreground/40">·</span>
-            <span><CountUp :end="18" /> formats</span>
-            <span class="text-muted-foreground/40">·</span>
-            <span>governed visuals</span>
-          </div>
+          personalized answer formats
+          <span v-if="heroStats && heroStats.total_turns > 0" class="eyebrow-chip"><CountUp :end="heroStats.total_turns" /> learned</span>
+          <span v-else class="eyebrow-chip">live</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-[52px] xl:text-[60px] font-semibold tracking-[-0.035em] leading-[1.06]">
+          <span class="hero-word" style="--d: 0.1s">Your</span>
+          <span class="hero-word" style="--d: 0.2s">AI,</span><br />
+          <span class="hero-word" style="--d: 0.32s">in</span>
+          <span class="hero-word" style="--d: 0.42s">every</span>
+          <span class="hero-word" style="--d: 0.5s">user’s</span>
+          <span class="hero-word hl-accent" style="--d: 0.58s">format</span>
+        </h1>
+        <p class="hero-late text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl" style="--d: 0.65s">
+          Most AI gives every user the same answer. APE learns who wants a table, who wants a
+          two-line verdict, who needs a chart, then reshapes every reply to fit them. Drop it on
+          top of any LLM, RAG, or agent.
+        </p>
+        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-3" style="--d: 0.8s">
+          <Button v-magnet :to="loggedIn ? '/app/chat' : '/login?mode=register'" class="btn-shine h-12 px-7 text-sm gap-2 shadow-md shadow-black/10">
+            <ChatBubbleLeftRightIcon class="h-4 w-4" />
+            {{ loggedIn ? 'Open the app' : 'Get started, it’s free' }}
+          </Button>
+          <Button to="/about" variant="outline" class="h-12 px-7 text-sm gap-2">
+            <InformationCircleIcon class="h-4 w-4" />
+            How it works
+          </Button>
+        </div>
+        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs text-muted-foreground" style="--d: 0.95s">
+          <span>real-time memory</span>
+          <span class="text-muted-foreground/40">·</span>
+          <span>~<CountUp :end="3" suffix=" ms" /> decisions</span>
+          <span class="text-muted-foreground/40">·</span>
+          <span><CountUp :end="18" /> formats</span>
+          <span class="text-muted-foreground/40">·</span>
+          <span>governed visuals</span>
         </div>
 
-        <!-- one clean product visual: the adaptive answer card -->
-        <div class="hero-late flex justify-center lg:justify-end" style="--d: 0.55s">
-          <div class="relative w-full max-w-sm">
-            <div class="rounded-2xl border bg-card glass-panel shadow-xl shadow-black/5 overflow-hidden">
-              <FormatMorph />
-            </div>
-            <div class="core-badge">live memory</div>
-          </div>
+        </div>
+
+        <!-- RIGHT: the product mockup -->
+        <div class="hero-late relative w-full max-w-lg mx-auto lg:ml-auto" style="--d: 0.55s">
+          <MorphingAnswer />
+          <div class="core-badge">live memory</div>
         </div>
       </div>
 
@@ -494,8 +496,8 @@ const integrations = [
         <div class="max-w-6xl mx-auto px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
           <span class="eyebrow">
             <span class="relative flex h-1.5 w-1.5">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-500 opacity-70" />
-              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-teal-500" />
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-70" />
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400" />
             </span>
             the engine at work
           </span>
@@ -514,6 +516,31 @@ const integrations = [
               {{ f }}
             </span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS, 3 STEPS ================= -->
+    <section class="relative max-w-6xl mx-auto px-5 lg:px-8 py-16 lg:py-20 scroll-mt-16">
+      <div v-reveal class="text-center mb-10">
+        <span class="eyebrow">how it works</span>
+        <h2 class="text-3xl lg:text-4xl font-semibold tracking-[-0.02em] mt-3">Three steps, no setup</h2>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <div v-reveal="0" class="rise-in rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <span class="step-num">1</span>
+          <h3 class="text-lg font-semibold mt-4">A user asks</h3>
+          <p class="text-sm text-muted-foreground mt-1.5 leading-relaxed">Someone asks your AI a question, exactly like they do now.</p>
+        </div>
+        <div v-reveal="90" class="rise-in rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <span class="step-num">2</span>
+          <h3 class="text-lg font-semibold mt-4">APE picks the format</h3>
+          <p class="text-sm text-muted-foreground mt-1.5 leading-relaxed">It looks at what that person liked before and picks the best shape for them, like a table, a chart, or a two line verdict.</p>
+        </div>
+        <div v-reveal="180" class="rise-in rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+          <span class="step-num">3</span>
+          <h3 class="text-lg font-semibold mt-4">They get it their way</h3>
+          <p class="text-sm text-muted-foreground mt-1.5 leading-relaxed">The same answer arrives in the format that person actually wants, and it gets sharper every reply.</p>
         </div>
       </div>
     </section>
@@ -913,8 +940,7 @@ const integrations = [
 
     <!-- ================= THE BRAIN / PERSONALISATION MAP ================= -->
     <section id="brain" class="relative overflow-hidden scroll-mt-16">
-      <div class="orb orb-violet orb-float-a h-96 w-96 -left-32 top-24" />
-      <div class="max-w-6xl mx-auto px-4 lg:px-6 py-24">
+      <div class="relative z-10 max-w-6xl mx-auto px-4 lg:px-6 py-24">
         <div v-reveal class="text-center space-y-3 mb-12">
           <span class="ape-chip ape-chip-strategy">inside the memory</span>
           <h2 class="text-4xl lg:text-5xl font-semibold tracking-[-0.03em]">
@@ -1292,8 +1318,7 @@ const integrations = [
 
     <!-- ================= THE LOOP ================= -->
     <section id="loop" class="relative overflow-hidden scroll-mt-20">
-      <div class="orb orb-cyan orb-float-b h-72 w-72 -left-20 top-10" />
-      <div class="max-w-6xl mx-auto px-4 lg:px-6 py-24">
+      <div class="relative z-10 max-w-6xl mx-auto px-4 lg:px-6 py-24">
         <div v-reveal class="text-center space-y-3 mb-10">
           <h2 class="text-4xl lg:text-5xl font-semibold tracking-[-0.03em]">A loop, not a setting</h2>
           <p class="text-sm text-muted-foreground max-w-2xl mx-auto">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 import Button from '@/components/ui/Button.vue'
 import VizChart from '@/components/viz/VizChart.vue'
 import FormatMorph from '@/components/viz/FormatMorph.vue'
@@ -35,6 +36,16 @@ onMounted(() => {
   reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 })
 
+// Standalone /about gets its own header (back + brand + CTA). At /app/about the
+// AppShell already provides navigation, so the header is hidden there.
+const route = useRoute()
+const router = useRouter()
+const isStandalone = computed(() => !route.path.startsWith('/app'))
+function goBack() {
+  if (window.history.length > 1) router.back()
+  else router.push('/')
+}
+
 const stats = [
   { end: 3, prefix: '~', suffix: ' ms', label: 'format decision', sub: '100–1000× faster than the LLM call it precedes' },
   { end: 18, label: 'response formats', sub: 'tables, summaries, checklists, one-liners…' },
@@ -59,7 +70,38 @@ const steps = [
 </script>
 
 <template>
-  <div class="w-full px-4 lg:px-6 pb-20">
+  <div>
+
+    <!-- Standalone header — back, brand, CTA. Hidden inside the app shell. -->
+    <header v-if="isStandalone" class="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto flex items-center justify-between gap-3 px-4 lg:px-6 h-14">
+        <div class="flex items-center gap-2 sm:gap-4">
+          <button
+            type="button"
+            @click="goBack"
+            class="inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm text-foreground/80 hover:bg-muted/60 transition cursor-pointer"
+          >
+            <svg viewBox="0 0 20 20" fill="none" class="h-4 w-4"><path d="M12.5 15l-5-5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            Back
+          </button>
+          <RouterLink to="/" class="flex items-center gap-2" aria-label="APE home">
+            <svg viewBox="0 0 24 24" class="h-7 w-7">
+              <rect width="24" height="24" rx="6" fill="#15150f" />
+              <rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#f4f4ec" opacity="0.85" />
+              <rect x="6" y="11" width="12" height="2.2" rx="1.1" fill="#14b8a6" />
+              <rect x="6" y="15" width="9" height="2.2" rx="1.1" fill="#f4f4ec" opacity="0.85" />
+            </svg>
+            <span class="text-sm font-semibold tracking-tight">APE</span>
+          </RouterLink>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <RouterLink to="/" class="hidden sm:inline-flex text-sm text-muted-foreground hover:text-foreground px-3 py-1.5 transition">Home</RouterLink>
+          <Button to="/app/chat" class="h-9 px-4 text-sm">Get started</Button>
+        </div>
+      </div>
+    </header>
+
+    <div class="w-full px-4 lg:px-6 pb-20">
 
     <!-- ================= HERO ================= -->
     <section
@@ -310,5 +352,6 @@ const steps = [
       </div>
     </section>
 
+    </div>
   </div>
 </template>

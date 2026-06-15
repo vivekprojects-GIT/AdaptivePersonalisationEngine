@@ -13,21 +13,21 @@
   --card-foreground: #1c1c17;
   --popover: #ffffff;
   --popover-foreground: #1c1c17;
-  --primary: #0f766e;
+  --primary: #a16207;
   --primary-foreground: #ffffff;
   --secondary: #f2f2ea;
   --secondary-foreground: #1c1c17;
   --muted: #f2f2ea;
   --muted-foreground: #57574e;
-  --accent: #0f766e;
+  --accent: #a16207;
   --accent-foreground: #ffffff;
   --destructive: #e11d48;
   --destructive-foreground: #ffffff;
   --border: rgba(28, 28, 23, 0.1);
   --input: rgba(28, 28, 23, 0.16);
-  --ring: #0d9488;
-  --cta: #0d9488;
-  --cta-foreground: #ffffff;
+  --ring: #eab308;
+  --cta: #facc15;
+  --cta-foreground: #1c1c17;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -53,10 +53,10 @@
   --success: #16a34a;
   --warning: #d97706;
   --error: #e11d48;
-  --info: #0f766e;
-  --accent-primary: #0f766e;
-  --accent-secondary: #0d9488;
-  --accent-tertiary: #14b8a6;
+  --info: #a16207;
+  --accent-primary: #a16207;
+  --accent-secondary: #eab308;
+  --accent-tertiary: #eab308;
   --text-primary: #18181b;
   --text-secondary: #52525b;
   --text-tertiary: #71717a;
@@ -74,29 +74,29 @@
   --card-foreground: #f4f4ec;
   --popover: #181811;
   --popover-foreground: #fafaf2;
-  --primary: #14b8a6;
+  --primary: #eab308;
   --primary-foreground: #14140c;
   --secondary: #1f1f17;
   --secondary-foreground: #f4f4ec;
   --muted: #191912;
   --muted-foreground: #a3a399;
-  --accent: #14b8a6;
+  --accent: #eab308;
   --accent-foreground: #14140c;
   --destructive: #fb7185;
   --destructive-foreground: #0c0c09;
   --border: rgba(255, 255, 250, 0.08);
   --input: rgba(255, 255, 250, 0.12);
-  --ring: #14b8a6;
-  --cta: #0d9488;
-  --cta-foreground: #ffffff;
+  --ring: #eab308;
+  --cta: #facc15;
+  --cta-foreground: #1c1c17;
   --sidebar: #0e0e0a;
   --sidebar-foreground: #f4f4ec;
-  --sidebar-primary: #14b8a6;
+  --sidebar-primary: #eab308;
   --sidebar-primary-foreground: #14140c;
   --sidebar-accent: #1f1f17;
   --sidebar-accent-foreground: #f4f4ec;
   --sidebar-border: rgba(255, 255, 250, 0.07);
-  --sidebar-ring: #14b8a6;
+  --sidebar-ring: #eab308;
   --glass-bg: rgba(20, 20, 24, 0.55);
   --glass-bg-strong: rgba(20, 20, 24, 0.72);
   --glass-border: rgba(255, 255, 255, 0.08);
@@ -304,6 +304,20 @@
 
 /* Ramp-style eyebrow: tiny uppercase letterspaced label + optional live
    value chip ("US CORPORATE PAYMENTS PROCESSED BY RAMP: 0.73%"). */
+/* Smooth route transitions (fade + slight rise) between pages. */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 280ms ease, transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.page-enter-from { opacity: 0; transform: translateY(12px); }
+.page-leave-to { opacity: 0; transform: translateY(-12px); }
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .page-leave-active { transition: none; }
+  .page-enter-from,
+  .page-leave-to { transform: none; opacity: 1; }
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -312,7 +326,25 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted-foreground);
+  color: var(--primary);
+}
+/* Yellow step number badge with ink digit. */
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: var(--cta);
+  color: #1c1c17;
+  font-weight: 700;
+  font-size: 18px;
+}
+/* Brand light-section heading accent words in teal (echoes the hero "shape"),
+   so light sections read as part of the product, not a generic template. */
+section:not(.dark) h2 .text-muted-foreground {
+  color: var(--primary);
 }
 .eyebrow-chip {
   letter-spacing: 0.02em;
@@ -457,8 +489,8 @@
    over near-black read as muddy brown — never use status colors ambiently.) */
 .orb-cyan    { background: color-mix(in oklab, #5eead4 50%, transparent); }
 .orb-violet  { background: color-mix(in oklab, var(--primary) 45%, transparent); }
-.orb-emerald { background: color-mix(in oklab, #14b8a6 35%, transparent); }
-.orb-amber   { background: color-mix(in oklab, #14b8a6 45%, transparent); }
+.orb-emerald { background: color-mix(in oklab, #eab308 35%, transparent); }
+.orb-amber   { background: color-mix(in oklab, #eab308 45%, transparent); }
 
 @keyframes orbFloatA {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
@@ -536,7 +568,7 @@
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    color-mix(in oklab, #14b8a6 34%, transparent) 90deg,
+    color-mix(in oklab, #eab308 34%, transparent) 90deg,
     transparent 180deg,
     color-mix(in oklab, #2dd4bf 22%, transparent) 270deg,
     transparent 360deg
@@ -676,7 +708,7 @@
 /* Accent highlighter — the one word that carries the brand color, white on teal. */
 .hl-accent {
   background: var(--cta);
-  color: #ffffff;
+  color: #1c1c17;
   padding: 0 0.18em;
   border-radius: 0.14em;
   box-decoration-break: clone;
@@ -718,7 +750,7 @@
 }
 .orbit-ring-2 {
   inset: 16%;
-  border-color: color-mix(in oklab, #0f766e 24%, transparent);
+  border-color: color-mix(in oklab, #a16207 24%, transparent);
   animation: orbitSpin2 26s linear infinite reverse;
 }
 .orbit-ring-2::before {
@@ -739,8 +771,8 @@
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background: #0f766e;
-  box-shadow: 0 0 10px 2px color-mix(in oklab, #0f766e 55%, transparent);
+  background: #a16207;
+  box-shadow: 0 0 10px 2px color-mix(in oklab, #a16207 55%, transparent);
 }
 .orbit-ring-2::after {
   background: color-mix(in oklab, var(--primary) 85%, white);
@@ -854,7 +886,7 @@
 .hero-sun {
   box-shadow:
     0 0 0 1px color-mix(in oklab, #2dd4bf 45%, transparent),
-    0 0 70px -8px color-mix(in oklab, #14b8a6 45%, transparent),
+    0 0 70px -8px color-mix(in oklab, #eab308 45%, transparent),
     0 30px 60px -24px rgb(28 28 23 / 0.35);
 }
 
@@ -872,8 +904,8 @@
   letter-spacing: 0.02em;
   padding: 5px 11px;
   border-radius: 9999px;
-  color: #ffffff;
-  border: 1px solid rgb(255 255 255 / 0.2);
+  color: #1c1c17;
+  border: 1px solid rgb(28 28 23 / 0.18);
   background: var(--cta);
   animation: corePulse 3.6s ease-in-out infinite;
 }
@@ -890,16 +922,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in oklab, #14b8a6 55%, transparent);
+  border: 1px solid color-mix(in oklab, #eab308 55%, transparent);
   background: radial-gradient(circle at 35% 30%,
-    color-mix(in oklab, #14b8a6 50%, var(--card)),
+    color-mix(in oklab, #eab308 50%, var(--card)),
     color-mix(in oklab, #2dd4bf 16%, var(--card)) 70%);
   animation: corePulse 3.6s ease-in-out infinite;
   pointer-events: none;
 }
 @keyframes corePulse {
-  0%, 100% { box-shadow: 0 0 24px 0 color-mix(in oklab, #14b8a6 40%, transparent); }
-  50%      { box-shadow: 0 0 42px 8px color-mix(in oklab, #14b8a6 55%, transparent); }
+  0%, 100% { box-shadow: 0 0 24px 0 color-mix(in oklab, #eab308 40%, transparent); }
+  50%      { box-shadow: 0 0 42px 8px color-mix(in oklab, #eab308 55%, transparent); }
 }
 
 /* Camera-dolly entrance for the whole hero composition: it settles into
@@ -984,7 +1016,7 @@
   height: 600px;
   border-radius: 9999px;
   pointer-events: none;
-  background: radial-gradient(circle, color-mix(in oklab, #14b8a6 10%, transparent), transparent 62%);
+  background: radial-gradient(circle, color-mix(in oklab, #eab308 10%, transparent), transparent 62%);
   mix-blend-mode: screen;
   opacity: 0;
   transition: opacity 500ms ease;
@@ -998,6 +1030,43 @@
     transparent 1px
   );
   background-size: 26px 26px;
+}
+
+/* Full-bleed hero: the 3D neuron brain is the background. Deep ink-teal so the
+   additive glow of the neurons reads against it. */
+.neuron-hero {
+  background:
+    radial-gradient(70% 90% at 78% 30%, rgba(20, 184, 166, 0.18), transparent 65%),
+    linear-gradient(180deg, #06120f 0%, #050d0b 60%, #040a09 100%);
+}
+/* Darken the left so the headline stays readable over the neurons; let the
+   right side stay open so the brain glows behind the answer card. */
+.hero-scrim {
+  background: linear-gradient(
+    100deg,
+    #050d0b 0%,
+    rgba(5, 13, 11, 0.72) 34%,
+    rgba(5, 13, 11, 0.30) 62%,
+    rgba(5, 13, 11, 0) 100%
+  );
+}
+/* Centered hero veil: darkest down the middle (behind the headline + card),
+   fading out to the edges so the neurons glow around the centered content. */
+.hero-scrim-center {
+  background:
+    radial-gradient(62% 78% at 50% 44%, rgba(5, 13, 11, 0.86) 0%, rgba(5, 13, 11, 0.5) 46%, rgba(5, 13, 11, 0) 78%),
+    linear-gradient(180deg, rgba(5, 13, 11, 0.4) 0%, transparent 18%, transparent 82%, rgba(5, 13, 11, 0.55) 100%);
+}
+/* Uniform-ish veil for centered dark sections so neurons glow but centered
+   text/cards stay readable, with a touch more darkening top & bottom. */
+.section-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 13, 11, 0.72) 0%,
+    rgba(5, 13, 11, 0.5) 26%,
+    rgba(5, 13, 11, 0.5) 74%,
+    rgba(5, 13, 11, 0.72) 100%
+  );
 }
 
 /* Infinite horizontal marquee (content duplicated once in markup). */
