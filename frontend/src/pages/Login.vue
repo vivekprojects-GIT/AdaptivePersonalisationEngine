@@ -56,7 +56,7 @@ async function onGoogleCredential(resp: { credential?: string }) {
     if (!res.ok || !data?.access_token) throw new Error(data?.detail || 'Google sign-in failed')
     setAccessToken(data.access_token)
     showToast({ title: 'Signed in', message: 'Welcome!' })
-    router.push(redirectTarget)
+    enterApp()
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Google sign-in failed'
   } finally {
@@ -104,6 +104,13 @@ const authSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters.'),
 })
 
+// Cosmic warp-in: play a brief portal animation, then navigate into the app.
+const warping = ref(false)
+function enterApp() {
+  warping.value = true
+  window.setTimeout(() => router.push(redirectTarget), 850)
+}
+
 async function onSubmit() {
   error.value = null
   loading.value = true
@@ -134,7 +141,7 @@ async function onSubmit() {
     setAccessToken(data.access_token)
     showToast({ title: mode.value === 'register' ? 'Account created' : 'Signed in', message: 'Welcome!' })
 
-    router.push(redirectTarget)
+    enterApp()
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Request failed'
   } finally {
@@ -204,10 +211,20 @@ async function resetPasswordSubmit() {
 </script>
 
 <template>
+  <!-- cosmic warp-in transition on successful sign-in -->
+  <Transition name="warp">
+    <div v-if="warping" class="warp" aria-hidden="true">
+      <div class="warp-core"></div>
+      <div class="warp-ring"></div>
+      <div class="warp-ring r2"></div>
+      <p class="warp-label">Entering APE</p>
+    </div>
+  </Transition>
+
   <div class="min-h-screen w-full relative overflow-hidden flex items-center justify-center px-5 py-10 bg-background bg-dotgrid">
     <!-- soft brand glows behind the card -->
-    <div class="pointer-events-none absolute -top-32 -left-24 h-96 w-96 rounded-full blur-[120px] opacity-50" style="background: radial-gradient(circle, #14b8a6, transparent 70%)" />
-    <div class="pointer-events-none absolute -bottom-40 -right-16 h-[30rem] w-[30rem] rounded-full blur-[130px] opacity-40" style="background: radial-gradient(circle, #5eead4, transparent 70%)" />
+    <div class="pointer-events-none absolute -top-32 -left-24 h-96 w-96 rounded-full blur-[120px] opacity-50" style="background: radial-gradient(circle, #8b5cf6, transparent 70%)" />
+    <div class="pointer-events-none absolute -bottom-40 -right-16 h-[30rem] w-[30rem] rounded-full blur-[130px] opacity-40" style="background: radial-gradient(circle, #22d3ee, transparent 70%)" />
     <div class="relative z-10 w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
       <!-- Left: Auth -->
       <div class="mx-auto w-full max-w-md">
@@ -216,8 +233,8 @@ async function resetPasswordSubmit() {
             <div class="flex items-center gap-3">
               <svg viewBox="0 0 100 100" class="h-10 w-10" aria-hidden="true">
                 <rect x="2" y="2" width="96" height="96" rx="27" fill="#15140d" />
-                <rect x="26" y="31" width="48" height="9" rx="4" fill="#f4f4ec" />
-                <rect x="26" y="46" width="48" height="9" rx="4" fill="#14b8a6" />
+                <rect x="26" y="31" width="48" height="9" rx="4" fill="#eceef6" />
+                <rect x="26" y="46" width="48" height="9" rx="4" fill="#4f7fe0" />
                 <rect x="26" y="61" width="32" height="9" rx="4" fill="#6b6b5e" />
               </svg>
               <div>
@@ -320,7 +337,7 @@ async function resetPasswordSubmit() {
 
           <div class="relative h-full p-12 flex flex-col">
             <div class="flex items-center gap-2 text-white/90">
-              <div class="h-3 w-3 rounded-full bg-[#14b8a6]" />
+              <div class="h-3 w-3 rounded-full bg-[#4f7fe0]" />
               <div class="text-sm">Adaptive analytics</div>
             </div>
 
@@ -436,4 +453,53 @@ async function resetPasswordSubmit() {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Cosmic warp-in: a violet portal core expands to fill the screen as we
+   navigate into the (cosmic) app — feels like warping through. */
+.warp {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(120% 120% at 50% 50%, #1a1838 0%, #0a0b16 60%, #07070f 100%);
+}
+.warp-core {
+  position: absolute; width: 14px; height: 14px; border-radius: 999px;
+  background: #c4b5fd;
+  box-shadow: 0 0 40px 14px rgba(139, 92, 246, 0.9), 0 0 120px 40px rgba(139, 92, 246, 0.5);
+  animation: warpCore 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.warp-ring {
+  position: absolute; width: 60px; height: 60px; border-radius: 999px;
+  border: 1.5px solid rgba(168, 139, 250, 0.7);
+  animation: warpRing 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.warp-ring.r2 { animation-delay: 0.12s; border-color: rgba(34, 211, 238, 0.6); }
+.warp-label {
+  position: absolute; bottom: 33%;
+  font: 600 12px/1 'JetBrains Mono', monospace; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(232, 233, 245, 0.85);
+  animation: warpLabel 0.85s ease forwards;
+}
+@keyframes warpCore {
+  0% { transform: scale(0.4); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: scale(95); opacity: 1; }
+}
+@keyframes warpRing {
+  0% { transform: scale(0.2); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: scale(14); opacity: 0; }
+}
+@keyframes warpLabel {
+  0%, 18% { opacity: 0; letter-spacing: 0.5em; }
+  50% { opacity: 1; letter-spacing: 0.3em; }
+  100% { opacity: 0; }
+}
+.warp-enter-active { transition: opacity 0.18s ease; }
+.warp-enter-from { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .warp-core, .warp-ring, .warp-label { animation: none; }
+  .warp-core { transform: scale(95); }
+}
+</style>
 

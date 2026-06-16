@@ -118,14 +118,14 @@ async function runQuery() {
       <div
         class="rounded-xl border px-4 py-3 flex items-center gap-3"
         :class="result.verification.grounded
-          ? 'border-emerald-500/40 bg-emerald-500/5'
-          : 'border-amber-500/40 bg-amber-500/5'"
+          ? 'border-violet-500/40 bg-violet-500/5'
+          : 'border-violet-500/40 bg-violet-500/5'"
       >
         <span
           class="text-xs font-semibold px-2 py-1 rounded-full"
           :class="result.verification.grounded
-            ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
-            : 'bg-amber-500/15 text-amber-700 dark:text-amber-300'"
+            ? 'bg-violet-500/15 text-violet-700 dark:text-violet-300'
+            : 'bg-violet-500/15 text-violet-700 dark:text-violet-300'"
         >
           {{ result.verification.grounded ? '✓ ANSWER-CONSISTENT' : '⚠ PARTIAL' }}
         </span>
@@ -191,7 +191,7 @@ async function runQuery() {
             <tbody>
               <tr v-for="(c, i) in result.verification.checks" :key="i" class="border-t border-border/60">
                 <td class="px-3 py-1.5">
-                  <span :class="c.ok ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'">
+                  <span :class="c.ok ? 'text-violet-600 dark:text-violet-400' : 'text-red-600 dark:text-red-400'">
                     {{ c.ok ? '✓' : '✗' }}
                   </span>
                 </td>

@@ -387,14 +387,14 @@ function flyReward(fromEl: HTMLElement, direction: 'up' | 'down') {
         { transform: `translate(calc(-50% + ${dx * 0.4}px), calc(-50% + ${dy * 0.4 - 40}px) ) scale(1.15)`, opacity: 1, offset: 0.45 },
         { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.35)`, opacity: 0.1 },
       ],
-      { duration: 750, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+      { duration: 750, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' },
     )
     .onfinish = () => {
       chip.remove()
       // absorb pulse on the target
       ;(target as HTMLElement).animate(
         [{ transform: 'scale(1)' }, { transform: 'scale(1.35)' }, { transform: 'scale(1)' }],
-        { duration: 360, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+        { duration: 360, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' },
       )
     }
 }
@@ -897,7 +897,7 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
           <span
             class="h-2 w-2 rounded-full shrink-0"
             :class="{
-              'bg-emerald-500': healthOk === true,
+              'bg-violet-500': healthOk === true,
               'bg-red-500': healthOk === false,
               'bg-cyan-500 animate-pulse': healthOk === null,
             }"
@@ -980,7 +980,7 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
             <div class="relative mb-5">
               <div class="orb orb-cyan orb-float-a h-28 w-28 -top-6 -left-8 opacity-40" />
               <div class="orb orb-violet orb-float-b h-28 w-28 -bottom-6 -right-8 opacity-40" />
-              <div class="relative h-16 w-16 rounded-2xl bg-gradient-to-br from-teal-500/20 to-teal-500/12 border border-primary/30 flex items-center justify-center">
+              <div class="relative h-16 w-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/12 border border-primary/30 flex items-center justify-center">
                 <BoltIcon class="h-7 w-7 text-primary" />
               </div>
             </div>

@@ -13,7 +13,7 @@ export const vMagnet: Directive<HTMLElement> = {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     if (window.matchMedia('(pointer: coarse)').matches) return
 
-    el.style.transition = 'transform 280ms cubic-bezier(0.22, 1, 0.36, 1)'
+    el.style.transition = 'transform 280ms cubic-bezier(0.16, 1, 0.3, 1)'
     el.style.willChange = 'transform'
 
     const move = (e: PointerEvent) => {

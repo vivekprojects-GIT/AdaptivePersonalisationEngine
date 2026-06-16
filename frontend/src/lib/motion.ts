@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 
-export const MOTION_EASE = [0.22, 1, 0.36, 1] as const
+export const MOTION_EASE = [0.16, 1, 0.3, 1] as const
 export const MOTION_FAST = { duration: 0.2, easing: MOTION_EASE }
 export const MOTION_BASE = { duration: 0.32, easing: MOTION_EASE }
 export const MOTION_SLOW = { duration: 0.42, easing: MOTION_EASE }

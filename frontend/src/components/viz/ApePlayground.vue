@@ -87,12 +87,12 @@ const methodMeta: Record<string, { label: string; cls: string; note: string }> =
   },
   learned: {
     label: 'exploiting · learned',
-    cls: 'border-teal-400/30 bg-teal-400/10 text-primary',
+    cls: 'border-violet-400/30 bg-violet-400/10 text-primary',
     note: 'Enough evidence: the strongest memory wins this pick.',
   },
   fallback: {
     label: 'degraded · fallback',
-    cls: 'border-amber-400/30 bg-amber-400/10 text-amber-300',
+    cls: 'border-violet-400/30 bg-violet-400/10 text-violet-300',
     note: 'The engine degraded gracefully and a neutral format was served.',
   },
 }
@@ -138,8 +138,8 @@ onMounted(() => loadStats())
       <div class="flex flex-wrap items-center gap-x-10 gap-y-4 justify-between">
         <div class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-60" />
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-violet-400" />
           </span>
           live from the engine
         </div>
@@ -184,7 +184,7 @@ onMounted(() => loadStats())
             :key="i"
             type="button"
             class="rounded-full border px-3.5 py-2.5 sm:px-3 sm:py-1.5 text-[12px] transition-all cursor-pointer"
-            :class="intent === i ? 'border-teal-400/40 bg-teal-500/15 text-foreground' : 'text-muted-foreground hover:text-foreground hover:border-border'"
+            :class="intent === i ? 'border-violet-400/40 bg-violet-500/15 text-foreground' : 'text-muted-foreground hover:text-foreground hover:border-border'"
             :aria-pressed="intent === i"
             @click="pickIntent(i)"
           >
@@ -199,7 +199,7 @@ onMounted(() => loadStats())
           {{ picks === 0 ? 'Run a live selection' : 'Run it again' }}
         </Button>
 
-        <div v-if="offline" class="rounded-xl border border-amber-400/25 bg-amber-400/5 p-4 text-[12.5px] text-muted-foreground">
+        <div v-if="offline" class="rounded-xl border border-violet-400/25 bg-violet-400/5 p-4 text-[12.5px] text-muted-foreground">
           The live engine isn’t reachable right now, that’s the point of the design: chat keeps working on a neutral
           format and learning resumes when APE returns.
         </div>
@@ -218,14 +218,14 @@ onMounted(() => loadStats())
           <p v-if="result.selection_method && methodMeta[result.selection_method]" class="text-[12px] text-muted-foreground">
             {{ methodMeta[result.selection_method].note }}
           </p>
-          <p v-if="formatDesc[result.strategy]" class="text-[12.5px] text-muted-foreground leading-relaxed border-l-2 border-teal-400/30 pl-3">
+          <p v-if="formatDesc[result.strategy]" class="text-[12.5px] text-muted-foreground leading-relaxed border-l-2 border-violet-400/30 pl-3">
             {{ formatDesc[result.strategy] }}
           </p>
           <div class="flex items-center gap-2 pt-1">
             <span class="text-[12px] text-muted-foreground mr-1">3 · Reward it, watch the next pick:</span>
             <button
               type="button"
-              class="h-11 w-11 sm:h-8 sm:w-8 shrink-0 rounded-lg border flex items-center justify-center text-muted-foreground hover:text-emerald-400 hover:border-emerald-400/40 transition-colors cursor-pointer"
+              class="h-11 w-11 sm:h-8 sm:w-8 shrink-0 rounded-lg border flex items-center justify-center text-muted-foreground hover:text-violet-400 hover:border-violet-400/40 transition-colors cursor-pointer"
               aria-label="Reward this format (+1) and run the next selection"
               :disabled="loading"
               @click="run('thumbs_up')"
@@ -271,7 +271,7 @@ onMounted(() => loadStats())
             v-for="a in arms"
             :key="a.strategy"
             class="rounded-xl border p-3 transition-all duration-300"
-            :class="result && a.strategy === result.strategy ? 'border-teal-400/40 bg-teal-500/[0.07]' : 'bg-background/30'"
+            :class="result && a.strategy === result.strategy ? 'border-violet-400/40 bg-violet-500/[0.07]' : 'bg-background/30'"
           >
             <div class="flex items-center justify-between gap-2 mb-1.5">
               <div class="text-[12.5px] font-medium capitalize truncate">{{ pretty(a.strategy) }}</div>
@@ -284,7 +284,7 @@ onMounted(() => loadStats())
             <div class="h-1.5 rounded-full bg-border/50 overflow-hidden">
               <div
                 class="h-full rounded-full transition-all duration-700 ease-out"
-                :class="a.confidence >= 900 ? 'bg-gradient-to-r from-zinc-400/60 to-zinc-300/40 pg-cold' : 'bg-gradient-to-r from-teal-500 to-teal-400'"
+                :class="a.confidence >= 900 ? 'bg-gradient-to-r from-zinc-400/60 to-zinc-300/40 pg-cold' : 'bg-gradient-to-r from-violet-500 to-violet-400'"
                 :style="{ width: barWidth(a) + '%' }"
               />
             </div>
@@ -299,7 +299,7 @@ onMounted(() => loadStats())
 </template>
 
 <style scoped>
-.pg-arm-move { transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1); }
+.pg-arm-move { transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1); }
 .pg-cold { animation: pgPulse 2.2s ease-in-out infinite; }
 @keyframes pgPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
 @media (prefers-reduced-motion: reduce) {

@@ -17,7 +17,11 @@ const router = createRouter({
   // Landing page scrolls; app pages manage their own scroll containers.
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) return savedPosition
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+    // #home is the top hero — scroll to the very top so the sticky header
+    // never clips it (Vue Router ignores the section's CSS scroll-margin).
+    if (to.hash && to.hash !== '#home') {
+      return { el: to.hash, top: 80, behavior: 'smooth' } // offset clears the sticky header
+    }
     return { top: 0 }
   },
   routes: [

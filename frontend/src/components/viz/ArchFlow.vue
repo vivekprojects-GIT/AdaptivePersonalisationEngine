@@ -83,8 +83,8 @@ function edgeState(e: { a: string; b: string }) {
     <svg viewBox="0 0 1000 460" class="w-full h-auto" role="img" aria-label="Architecture: user to agent orchestrator, APE format decision, synthesizer LLM and governed renderer, with RAG retriever, vector store and tool queues">
       <defs>
         <radialGradient id="af-glow" cx="50%" cy="50%" r="60%">
-          <stop offset="0%" stop-color="#0d9488" stop-opacity="0.22" />
-          <stop offset="100%" stop-color="#0d9488" stop-opacity="0" />
+          <stop offset="0%" stop-color="#3b63c4" stop-opacity="0.22" />
+          <stop offset="100%" stop-color="#3b63c4" stop-opacity="0" />
         </radialGradient>
       </defs>
 

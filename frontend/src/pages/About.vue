@@ -87,9 +87,9 @@ const steps = [
           <RouterLink to="/" class="flex items-center gap-2" aria-label="APE home">
             <svg viewBox="0 0 24 24" class="h-7 w-7">
               <rect width="24" height="24" rx="6" fill="#15150f" />
-              <rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#f4f4ec" opacity="0.85" />
-              <rect x="6" y="11" width="12" height="2.2" rx="1.1" fill="#14b8a6" />
-              <rect x="6" y="15" width="9" height="2.2" rx="1.1" fill="#f4f4ec" opacity="0.85" />
+              <rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#eceef6" opacity="0.85" />
+              <rect x="6" y="11" width="12" height="2.2" rx="1.1" fill="#4f7fe0" />
+              <rect x="6" y="15" width="9" height="2.2" rx="1.1" fill="#eceef6" opacity="0.85" />
             </svg>
             <span class="text-sm font-semibold tracking-tight">APE</span>
           </RouterLink>
@@ -202,8 +202,8 @@ const steps = [
         </div>
         <!-- REWARD with reaction visual -->
         <div class="rounded-2xl border bg-card/70 glass-panel p-6 tilt-3d tilt-hover space-y-4">
-          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-teal-600 dark:text-teal-300">
-            <span class="h-7 w-7 rounded-lg bg-teal-500/12 border border-teal-500/30 inline-flex items-center justify-center">R</span>
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-violet-600 dark:text-violet-300">
+            <span class="h-7 w-7 rounded-lg bg-violet-500/12 border border-violet-500/30 inline-flex items-center justify-center">R</span>
             Reward
           </div>
           <h3 class="font-semibold">Learn from the reaction, on the next turn</h3>
@@ -293,10 +293,10 @@ const steps = [
           next pick = proven results + a measured dose of curiosity
           <div class="mt-1 text-[11px]">
             <span class="text-primary">lean on what works</span> +
-            <span class="text-teal-600 dark:text-teal-300"> keep testing what might</span>
+            <span class="text-violet-600 dark:text-violet-300"> keep testing what might</span>
           </div>
         </div>
-        <div class="h-28 text-teal-600 dark:text-teal-300"><VizChart kind="bars" /></div>
+        <div class="h-28 text-violet-600 dark:text-violet-300"><VizChart kind="bars" /></div>
         <ul class="space-y-2 text-sm text-muted-foreground">
           <li class="flex gap-2"><span class="text-primary">•</span> Decisions computed live, nothing cached, nothing stale.</li>
           <li class="flex gap-2"><span class="text-primary">•</span> Per user <em>and</em> per question type, comparisons and definitions learn separately.</li>
@@ -327,7 +327,7 @@ const steps = [
           </div>
         </div>
         <div class="grid grid-cols-2 gap-3">
-          <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-teal-600 dark:text-teal-300"><VizChart kind="bars" /></div></div>
+          <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-violet-600 dark:text-violet-300"><VizChart kind="bars" /></div></div>
           <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-primary flex items-center justify-center"><VizChart kind="donut" /></div></div>
           <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-cyan-400"><VizChart kind="area" /></div></div>
           <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-primary"><VizChart kind="iso" /></div></div>

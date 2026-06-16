@@ -13,7 +13,7 @@ const toneClass: Record<string, string> = {
   success: 'text-emerald-700 dark:text-emerald-300 border-emerald-400/35 bg-emerald-500/10',
   warning: 'text-amber-700 dark:text-amber-300 border-amber-400/35 bg-amber-500/10',
   danger: 'text-rose-700 dark:text-rose-300 border-rose-400/35 bg-rose-500/10',
-  info: 'text-cyan-700 dark:text-cyan-300 border-cyan-400/35 bg-cyan-500/10',
+  info: 'text-violet-700 dark:text-violet-300 border-violet-400/35 bg-violet-500/10',
 }
 </script>
 

@@ -88,8 +88,8 @@ onMounted(async () => {
         <RouterLink to="/" class="flex items-center gap-2.5 min-w-0">
           <svg viewBox="0 0 100 100" class="h-7 w-7" aria-hidden="true">
             <rect x="2" y="2" width="96" height="96" rx="27" fill="#15140d" />
-            <rect x="26" y="31" width="48" height="9" rx="4" fill="#f4f4ec" />
-            <rect x="26" y="46" width="48" height="9" rx="4" fill="#14b8a6" />
+            <rect x="26" y="31" width="48" height="9" rx="4" fill="#eceef6" />
+            <rect x="26" y="46" width="48" height="9" rx="4" fill="#4f7fe0" />
             <rect x="26" y="61" width="32" height="9" rx="4" fill="#6b6b5e" />
           </svg>
           <span class="font-semibold text-[15px] tracking-tight">APE</span>
@@ -117,7 +117,7 @@ onMounted(async () => {
           <RouterLink
             v-if="!isChatRoute"
             to="/app/chat"
-            class="btn-premium hidden sm:inline-flex items-center gap-1.5 h-8 px-3.5 rounded-md text-[13px] font-medium text-primary-foreground border border-teal-400/15"
+            class="btn-premium hidden sm:inline-flex items-center gap-1.5 h-8 px-3.5 rounded-md text-[13px] font-medium text-primary-foreground border border-violet-400/15"
           >
             Open chat
           </RouterLink>

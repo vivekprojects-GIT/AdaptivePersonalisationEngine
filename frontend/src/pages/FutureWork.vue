@@ -148,7 +148,7 @@ const phases = [
         <h2 class="text-xl font-semibold tracking-tight">The path forward</h2>
         <div class="relative space-y-3">
           <!-- timeline rail -->
-          <div class="absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-teal-400/40 via-border to-teal-400/25 hidden sm:block" />
+          <div class="absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-violet-400/40 via-border to-violet-400/25 hidden sm:block" />
           <div
             v-for="(ph, i) in phases"
             :key="ph.tag"

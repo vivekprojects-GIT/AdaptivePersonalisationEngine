@@ -4,103 +4,109 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Ink-on-paper: warm off-white, near-black ink, one deep-teal accent.
-     --cta is the teal button/badge fill (white text); --primary is a deep teal
-     that stays readable as text/borders/icons on the warm cream. */
-  --background: #fafaf5;
-  --foreground: #1c1c17;
-  --card: #ffffff;
-  --card-foreground: #1c1c17;
-  --popover: #ffffff;
-  --popover-foreground: #1c1c17;
-  --primary: #a16207;
-  --primary-foreground: #ffffff;
-  --secondary: #f2f2ea;
-  --secondary-foreground: #1c1c17;
-  --muted: #f2f2ea;
-  --muted-foreground: #57574e;
-  --accent: #a16207;
+  /* Cosmic / Universe theme — deep-space midnight, starlight ink, electric
+     violet accent with a cosmic-cyan secondary. Dark-first. */
+  --background: #0a0b16;
+  --foreground: #e8e9f5;
+  --card: #13152a;
+  --card-foreground: #e8e9f5;
+  --popover: #15172e;
+  --popover-foreground: #f2f3fb;
+  --primary: #c4b5fd;
+  --primary-foreground: #0a0b16;
+  --secondary: #1a1d38;
+  --secondary-foreground: #e8e9f5;
+  --muted: #1a1d38;
+  --muted-foreground: #9aa0c4;
+  --accent: #8b5cf6;
   --accent-foreground: #ffffff;
-  --destructive: #e11d48;
-  --destructive-foreground: #ffffff;
-  --border: rgba(28, 28, 23, 0.1);
-  --input: rgba(28, 28, 23, 0.16);
-  --ring: #eab308;
-  --cta: #facc15;
-  --cta-foreground: #1c1c17;
+  --destructive: #fb7185;
+  --destructive-foreground: #0a0b16;
+  --border: rgba(180, 190, 255, 0.12);
+  --input: rgba(180, 190, 255, 0.16);
+  --ring: #8b5cf6;
+  /* deep-violet tint + bright violet ink for the metric/stat cards */
+  --accent-soft: #1d1b3e;
+  --accent-strong: #a78bfa;
+  /* --cta is the violet accent fill (buttons, highlight mark, live dot). */
+  --cta: #8b5cf6;
+  --cta-foreground: #ffffff;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: #f8fafc;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #0891b2;
-  --sidebar-primary-foreground: #f8fafc;
-  --sidebar-accent: #e2e8f0;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: rgba(15, 23, 42, 0.1);
-  --sidebar-ring: #0891b2;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-bg-strong: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(24, 24, 27, 0.08);
-  --glass-shadow: rgba(24, 24, 27, 0.1);
-  --bg-primary: #fbfbfc;
-  --bg-secondary: #f4f4f5;
-  --bg-tertiary: #ededf0;
-  --bg-overlay: rgba(250, 250, 252, 0.84);
-  --success: #16a34a;
-  --warning: #d97706;
-  --error: #e11d48;
-  --info: #a16207;
-  --accent-primary: #a16207;
-  --accent-secondary: #eab308;
-  --accent-tertiary: #eab308;
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  --text-tertiary: #71717a;
-  --text-muted: #a1a1aa;
-  --border-light: rgba(24, 24, 27, 0.08);
-  --border-medium: rgba(24, 24, 27, 0.14);
-  --border-strong: rgba(24, 24, 27, 0.2);
+  --sidebar: #0c0d1c;
+  --sidebar-foreground: #e8e9f5;
+  --sidebar-primary: #8b5cf6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #171a32;
+  --sidebar-accent-foreground: #e8e9f5;
+  --sidebar-border: rgba(180, 190, 255, 0.10);
+  --sidebar-ring: #8b5cf6;
+  --glass-bg: rgba(19, 21, 42, 0.62);
+  --glass-bg-strong: rgba(19, 21, 42, 0.8);
+  --glass-border: rgba(180, 190, 255, 0.10);
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+  --bg-primary: #0d0f1e;
+  --bg-secondary: #13152a;
+  --bg-tertiary: #1a1d38;
+  --bg-overlay: rgba(10, 11, 22, 0.84);
+  --success: #34d399;
+  --warning: #fbbf24;
+  --error: #fb7185;
+  --info: #22d3ee;
+  --accent-primary: #c4b5fd;
+  --accent-secondary: #22d3ee;
+  --accent-tertiary: #8b5cf6;
+  --text-primary: #e8e9f5;
+  --text-secondary: #9aa0c4;
+  --text-tertiary: #7a80a6;
+  --text-muted: #5a5f80;
+  --border-light: rgba(180, 190, 255, 0.08);
+  --border-medium: rgba(180, 190, 255, 0.14);
+  --border-strong: rgba(180, 190, 255, 0.22);
 }
 
 .dark {
-  /* Billboard — warm near-black, paper-white text, the same teal accent. */
-  --background: #0c0c09;
-  --foreground: #f4f4ec;
-  --card: #15150f;
-  --card-foreground: #f4f4ec;
-  --popover: #181811;
-  --popover-foreground: #fafaf2;
-  --primary: #eab308;
-  --primary-foreground: #14140c;
-  --secondary: #1f1f17;
-  --secondary-foreground: #f4f4ec;
-  --muted: #191912;
-  --muted-foreground: #a3a399;
-  --accent: #eab308;
-  --accent-foreground: #14140c;
+  /* Cosmic — a touch deeper than :root so the toggle is a subtle shift, never
+     a broken theme. Same violet/cyan identity. */
+  --background: #07070f;
+  --foreground: #e8e9f5;
+  --card: #101226;
+  --card-foreground: #e8e9f5;
+  --popover: #12142a;
+  --popover-foreground: #f2f3fb;
+  --primary: #c4b5fd;
+  --primary-foreground: #07070f;
+  --secondary: #171a32;
+  --secondary-foreground: #e8e9f5;
+  --muted: #171a32;
+  --muted-foreground: #9aa0c4;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
   --destructive: #fb7185;
-  --destructive-foreground: #0c0c09;
-  --border: rgba(255, 255, 250, 0.08);
-  --input: rgba(255, 255, 250, 0.12);
-  --ring: #eab308;
-  --cta: #facc15;
-  --cta-foreground: #1c1c17;
-  --sidebar: #0e0e0a;
-  --sidebar-foreground: #f4f4ec;
-  --sidebar-primary: #eab308;
-  --sidebar-primary-foreground: #14140c;
-  --sidebar-accent: #1f1f17;
-  --sidebar-accent-foreground: #f4f4ec;
-  --sidebar-border: rgba(255, 255, 250, 0.07);
-  --sidebar-ring: #eab308;
-  --glass-bg: rgba(20, 20, 24, 0.55);
-  --glass-bg-strong: rgba(20, 20, 24, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: rgba(0, 0, 0, 0.55);
+  --destructive-foreground: #07070f;
+  --border: rgba(180, 190, 255, 0.12);
+  --input: rgba(180, 190, 255, 0.16);
+  --ring: #8b5cf6;
+  --accent-soft: #1a1838;
+  --accent-strong: #a78bfa;
+  --cta: #8b5cf6;
+  --cta-foreground: #ffffff;
+  --sidebar: #0a0a16;
+  --sidebar-foreground: #e8e9f5;
+  --sidebar-primary: #8b5cf6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #171a32;
+  --sidebar-accent-foreground: #e8e9f5;
+  --sidebar-border: rgba(180, 190, 255, 0.10);
+  --sidebar-ring: #8b5cf6;
+  --glass-bg: rgba(16, 18, 38, 0.55);
+  --glass-bg-strong: rgba(16, 18, 38, 0.72);
+  --glass-border: rgba(180, 190, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.6);
 }
 
 @theme inline {
@@ -148,16 +154,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    color-scheme: light;
+    color-scheme: dark;
     font-family:
-      'Inter',
+      'Geist',
       ui-sans-serif,
       system-ui,
       -apple-system,
       'Segoe UI',
       Roboto,
       sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; /* Inter: open digits/legibility */
+    font-feature-settings: 'ss01', 'cv01'; /* Geist: alt single-storey a/g */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -165,12 +171,15 @@
   h2,
   h3,
   .font-display {
-    /* Ramp-style neutral grotesque: Inter, tightly tracked, no quirk. */
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    letter-spacing: -0.025em;
+    /* Geist grotesque, Ramp-style: tight tracking, heavy weight, no quirk.
+       Ramp's whole identity is big bold neo-grotesque headlines on warm paper. */
+    font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.022em;
+    font-weight: 600;
   }
-  /* Big display headings get even tighter tracking — the premium signal. */
-  h1 { letter-spacing: -0.035em; }
+  /* Big display headings: heavier + tighter — the Ramp headline signal. */
+  h1 { letter-spacing: -0.038em; font-weight: 700; line-height: 1.02; }
+  h2 { font-weight: 650; letter-spacing: -0.03em; }
 }
 
 /* Premium elevation scale — one shadow language everywhere. */
@@ -195,6 +204,7 @@
 /* Numbers in data UIs must not jiggle — tabular figures for stats/tables/axes. */
 .tabular-nums,
 .stat-value {
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
   font-variant-numeric: tabular-nums lining-nums;
 }
 
@@ -214,8 +224,12 @@
 @layer base {
   body {
     background-color: var(--background);
+    /* Cosmic nebula — violet bloom top-center, cyan haze top-right, a deep
+       violet wash lower-left. Reads as deep space behind the starfield. */
     background-image:
-      radial-gradient(1100px 640px at 50% -12%, color-mix(in oklab, var(--primary) 7%, transparent), transparent 60%);
+      radial-gradient(1200px 760px at 50% -8%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 60%),
+      radial-gradient(820px 620px at 88% 10%, color-mix(in oklab, #22d3ee 14%, transparent), transparent 58%),
+      radial-gradient(760px 700px at 6% 36%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 62%);
     background-attachment: fixed;
     position: relative;
   }
@@ -290,7 +304,7 @@
 }
 
 .premium-reveal {
-  animation: premiumFadeIn 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: premiumFadeIn 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--stagger, 0s);
 }
 
@@ -299,18 +313,22 @@
 .glass-panel {
   background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 1px 2px rgb(28 28 23 / 0.04);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05), 0 14px 32px -22px rgb(20 30 60 / 0.22);
 }
 
 /* Ramp-style eyebrow: tiny uppercase letterspaced label + optional live
    value chip ("US CORPORATE PAYMENTS PROCESSED BY RAMP: 0.73%"). */
-/* Smooth route transitions (fade + slight rise) between pages. */
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 280ms ease, transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+/* Smooth route transitions — premium fade + rise + a touch of scale & blur. */
+.page-enter-active {
+  transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 460ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-.page-enter-from { opacity: 0; transform: translateY(12px); }
-.page-leave-to { opacity: 0; transform: translateY(-12px); }
+.page-leave-active {
+  transition: opacity 240ms ease, transform 240ms ease, filter 240ms ease;
+}
+.page-enter-from { opacity: 0; transform: translateY(16px) scale(0.992); filter: blur(6px); }
+.page-leave-to { opacity: 0; transform: translateY(-10px) scale(0.996); filter: blur(3px); }
 @media (prefers-reduced-motion: reduce) {
   .page-enter-active,
   .page-leave-active { transition: none; }
@@ -337,7 +355,7 @@
   height: 40px;
   border-radius: 13px;
   background: var(--cta);
-  color: #1c1c17;
+  color: #0f1422;
   font-weight: 700;
   font-size: 18px;
 }
@@ -360,7 +378,7 @@ section:not(.dark) h2 .text-muted-foreground {
 
 .apple-transition {
   transition-duration: 280ms;
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .badge-success {
@@ -408,16 +426,19 @@ section:not(.dark) h2 .text-muted-foreground {
   text-transform: none;
 }
 
+/* Strategy/format chip — clean neutral ink, so it doesn't fight the accent. */
 .ape-chip-strategy {
-  background: color-mix(in oklab, var(--primary) 12%, transparent);
-  color: color-mix(in oklab, var(--primary) 80%, var(--foreground) 20%);
-  border-color: color-mix(in oklab, var(--primary) 38%, transparent);
+  background: color-mix(in oklab, var(--foreground) 6%, transparent);
+  color: color-mix(in oklab, var(--foreground) 76%, transparent);
+  border-color: var(--border);
 }
 
+/* The "learned / reward / banked" signal is APE's core value — brand blue,
+   not a generic success green (which clashed with the theme). */
 .ape-chip-pos {
-  background: color-mix(in oklab, var(--success) 18%, transparent);
-  color: color-mix(in oklab, var(--success) 80%, var(--foreground) 15%);
-  border-color: color-mix(in oklab, var(--success) 42%, transparent);
+  background: color-mix(in oklab, var(--accent) 13%, transparent);
+  color: var(--accent-strong);
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
 }
 
 .ape-chip-neg {
@@ -444,7 +465,7 @@ section:not(.dark) h2 .text-muted-foreground {
   color: var(--muted-foreground);
   background: transparent;
   cursor: pointer;
-  transition: all 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ape-rate-btn:hover:not(:disabled) {
@@ -489,8 +510,8 @@ section:not(.dark) h2 .text-muted-foreground {
    over near-black read as muddy brown — never use status colors ambiently.) */
 .orb-cyan    { background: color-mix(in oklab, #5eead4 50%, transparent); }
 .orb-violet  { background: color-mix(in oklab, var(--primary) 45%, transparent); }
-.orb-emerald { background: color-mix(in oklab, #eab308 35%, transparent); }
-.orb-amber   { background: color-mix(in oklab, #eab308 45%, transparent); }
+.orb-emerald { background: color-mix(in oklab, #4f7fe0 35%, transparent); }
+.orb-amber   { background: color-mix(in oklab, #6f9bf0 45%, transparent); }
 
 @keyframes orbFloatA {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
@@ -509,7 +530,7 @@ section:not(.dark) h2 .text-muted-foreground {
 }
 .tilt-3d {
   transform-style: preserve-3d;
-  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 /* CSS-only hover tilt for feature cards (no JS needed). */
@@ -535,14 +556,14 @@ section:not(.dark) h2 .text-muted-foreground {
 .hero-card-2 { animation-delay: -2s; animation-duration: 7s; }
 .hero-card-3 { animation-delay: -4s; animation-duration: 8s; }
 
-/* Big stat numbers — gradient ink. */
+/* Big stat numbers — engineered mono figures in solid ink. A confident,
+   hand-built look; the gradient-text version read as templated/AI. */
 .stat-num {
-  background: linear-gradient(120deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
 /* Slow conic glow ring used behind the hero visual. */
@@ -568,7 +589,7 @@ section:not(.dark) h2 .text-muted-foreground {
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    color-mix(in oklab, #eab308 34%, transparent) 90deg,
+    color-mix(in oklab, #4f7fe0 34%, transparent) 90deg,
     transparent 180deg,
     color-mix(in oklab, #2dd4bf 22%, transparent) 270deg,
     transparent 360deg
@@ -581,7 +602,7 @@ section:not(.dark) h2 .text-muted-foreground {
   to   { opacity: 1; transform: translateY(0); }
 }
 .rise-in {
-  animation: riseIn 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: riseIn 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--stagger, 0s);
 }
 
@@ -589,17 +610,18 @@ section:not(.dark) h2 .text-muted-foreground {
    Blur-to-focus + rise = the Framer-style "snap into focus" entrance. */
 .reveal-init {
   opacity: 0;
-  transform: translateY(26px);
-  filter: blur(8px);
+  transform: translateY(20px);
+  filter: blur(6px);
 }
 .reveal-init.is-revealed {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
+  /* Ramp-snappy: ~0.5s reveals, not languid 0.76s. */
   transition:
-    opacity 760ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 440ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Scroll progress hairline at the very top of the page. */
@@ -647,7 +669,7 @@ section:not(.dark) h2 .text-muted-foreground {
   80%  { transform: scale(0.997) translateY(0); }
   100% { transform: scale(1) translateY(0); }
 }
-.spring-in { animation: springIn 640ms cubic-bezier(0.22, 1, 0.36, 1); }
+.spring-in { animation: springIn 640ms cubic-bezier(0.16, 1, 0.3, 1); }
 
 /* The reward chip that flies from the thumb button to the agent trace. */
 .fly-chip {
@@ -683,7 +705,7 @@ section:not(.dark) h2 .text-muted-foreground {
   inset: 0;
   background: linear-gradient(105deg, transparent 38%, rgb(255 255 255 / 0.28) 50%, transparent 62%);
   transform: translateX(-130%);
-  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 .btn-shine:hover::after { transform: translateX(130%); }
@@ -700,15 +722,15 @@ section:not(.dark) h2 .text-muted-foreground {
 .hero-word {
   display: inline-block;
   transform-origin: bottom;
-  animation: heroWordUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: heroWordUp 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--d, 0s);
   margin-right: 0.22em; /* inline-block spans swallow whitespace */
 }
 
-/* Accent highlighter — the one word that carries the brand color, white on teal. */
+/* Accent highlighter — the one word that carries the brand color, white on blue. */
 .hl-accent {
   background: var(--cta);
-  color: #1c1c17;
+  color: #ffffff;
   padding: 0 0.18em;
   border-radius: 0.14em;
   box-decoration-break: clone;
@@ -718,7 +740,7 @@ section:not(.dark) h2 .text-muted-foreground {
   to   { opacity: 1; transform: translateY(0); }
 }
 .hero-late {
-  animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: heroFadeUp 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--d, 0.5s);
 }
 
@@ -750,7 +772,7 @@ section:not(.dark) h2 .text-muted-foreground {
 }
 .orbit-ring-2 {
   inset: 16%;
-  border-color: color-mix(in oklab, #a16207 24%, transparent);
+  border-color: color-mix(in oklab, #3b63c4 24%, transparent);
   animation: orbitSpin2 26s linear infinite reverse;
 }
 .orbit-ring-2::before {
@@ -771,8 +793,8 @@ section:not(.dark) h2 .text-muted-foreground {
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background: #a16207;
-  box-shadow: 0 0 10px 2px color-mix(in oklab, #a16207 55%, transparent);
+  background: #3b63c4;
+  box-shadow: 0 0 10px 2px color-mix(in oklab, #3b63c4 55%, transparent);
 }
 .orbit-ring-2::after {
   background: color-mix(in oklab, var(--primary) 85%, white);
@@ -886,7 +908,7 @@ section:not(.dark) h2 .text-muted-foreground {
 .hero-sun {
   box-shadow:
     0 0 0 1px color-mix(in oklab, #2dd4bf 45%, transparent),
-    0 0 70px -8px color-mix(in oklab, #eab308 45%, transparent),
+    0 0 70px -8px color-mix(in oklab, #4f7fe0 45%, transparent),
     0 30px 60px -24px rgb(28 28 23 / 0.35);
 }
 
@@ -904,7 +926,7 @@ section:not(.dark) h2 .text-muted-foreground {
   letter-spacing: 0.02em;
   padding: 5px 11px;
   border-radius: 9999px;
-  color: #1c1c17;
+  color: #0f1422;
   border: 1px solid rgb(28 28 23 / 0.18);
   background: var(--cta);
   animation: corePulse 3.6s ease-in-out infinite;
@@ -922,16 +944,16 @@ section:not(.dark) h2 .text-muted-foreground {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in oklab, #eab308 55%, transparent);
+  border: 1px solid color-mix(in oklab, #4f7fe0 55%, transparent);
   background: radial-gradient(circle at 35% 30%,
-    color-mix(in oklab, #eab308 50%, var(--card)),
+    color-mix(in oklab, #4f7fe0 50%, var(--card)),
     color-mix(in oklab, #2dd4bf 16%, var(--card)) 70%);
   animation: corePulse 3.6s ease-in-out infinite;
   pointer-events: none;
 }
 @keyframes corePulse {
-  0%, 100% { box-shadow: 0 0 24px 0 color-mix(in oklab, #eab308 40%, transparent); }
-  50%      { box-shadow: 0 0 42px 8px color-mix(in oklab, #eab308 55%, transparent); }
+  0%, 100% { box-shadow: 0 0 24px 0 color-mix(in oklab, #4f7fe0 40%, transparent); }
+  50%      { box-shadow: 0 0 42px 8px color-mix(in oklab, #4f7fe0 55%, transparent); }
 }
 
 /* Camera-dolly entrance for the whole hero composition: it settles into
@@ -942,7 +964,7 @@ section:not(.dark) h2 .text-muted-foreground {
   to   { opacity: 1; transform: translateZ(0) rotateY(0) rotateX(0) scale(1); filter: blur(0); }
 }
 .hero-scene-in {
-  animation: heroSceneIn 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: heroSceneIn 1.25s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--d, 0.4s);
   /* Establishes the 3D viewing depth for the parallax layer below (perspective
      on the parent + preserve-3d on the child is the reliable pairing). */
@@ -982,7 +1004,7 @@ section:not(.dark) h2 .text-muted-foreground {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 /* The answer card floats forward in Z — the focal layer of the parallax. */
@@ -996,7 +1018,7 @@ section:not(.dark) h2 .text-muted-foreground {
 .faq-body {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-template-rows 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .faq-body.faq-open {
   grid-template-rows: 1fr;
@@ -1016,7 +1038,7 @@ section:not(.dark) h2 .text-muted-foreground {
   height: 600px;
   border-radius: 9999px;
   pointer-events: none;
-  background: radial-gradient(circle, color-mix(in oklab, #eab308 10%, transparent), transparent 62%);
+  background: radial-gradient(circle, color-mix(in oklab, #4f7fe0 10%, transparent), transparent 62%);
   mix-blend-mode: screen;
   opacity: 0;
   transition: opacity 500ms ease;
@@ -1165,7 +1187,7 @@ summary:focus-visible {
 @keyframes prefGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .pref-bar {
   transform-origin: left;
-  animation: prefGrow 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: prefGrow 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Bars grow from the baseline. */
@@ -1173,7 +1195,7 @@ summary:focus-visible {
 .viz-bar {
   transform-origin: bottom;
   transform-box: fill-box;
-  animation: vizBarGrow 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: vizBarGrow 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Line/area path draws itself. */
@@ -1191,19 +1213,19 @@ summary:focus-visible {
 .viz-arc {
   transform: rotate(-90deg);
   transform-origin: center;
-  animation: vizSweep 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: vizSweep 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Dots / bubbles pop and breathe. */
 @keyframes vizPop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
-.viz-dot { transform-box: fill-box; transform-origin: center; animation: vizPop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.viz-dot { transform-box: fill-box; transform-origin: center; animation: vizPop 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 @keyframes vizFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 .viz-bubble { animation: vizFloat 5s ease-in-out infinite; }
 
 /* Radar polygon scales in. */
 @keyframes vizScaleIn { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.viz-poly { transform-box: fill-box; transform-origin: center; animation: vizScaleIn 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.viz-poly { transform-box: fill-box; transform-origin: center; animation: vizScaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 /* Isometric 3D scene — the whole plot gently rotates in place. */
 @keyframes isoSpin {
@@ -1221,7 +1243,7 @@ summary:focus-visible {
 .iso-bar {
   transform-box: fill-box;
   transform-origin: bottom;
-  animation: isoRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: isoRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Soft sheen sweeping across a viz card. */
@@ -1239,7 +1261,7 @@ summary:focus-visible {
 
 /* Format-morph showcase: the active "shape" card lifts forward. */
 .shape-card {
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms;
   transform-style: preserve-3d;
 }
 .shape-card:hover {
@@ -1427,24 +1449,18 @@ summary:focus-visible {
   color: transparent;
 }
 
-/* Primary CTA surface: subtle vertical gradient + inner highlight. */
+/* Primary CTA surface: electric-violet, white text, with a soft cosmic glow. */
 .btn-premium {
-  /* CTA: flat signature teal, white text, crisp edge. */
-  background-image: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--cta) 94%, white 8%) 0%,
-    var(--cta) 58%,
-    color-mix(in oklab, var(--cta) 92%, black 6%) 100%
-  );
-  color: var(--cta-foreground);
+  background-image: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 58%, #7c3aed 100%);
+  color: #ffffff;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.35),
-    var(--shadow-sm);
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 8px 28px -8px rgba(139, 92, 246, 0.55);
 }
 .btn-premium:hover {
-  filter: brightness(1.04);
+  filter: brightness(1.18);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    inset 0 1px 0 rgb(255 255 255 / 0.14),
     var(--shadow-glow);
 }
 
@@ -1454,7 +1470,7 @@ summary:focus-visible {
   background: color-mix(in oklab, var(--card) 92%, transparent);
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(10px);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease;
+  transition: box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease;
 }
 .composer-shell:focus-within {
   border-color: color-mix(in oklab, var(--primary) 45%, var(--border));

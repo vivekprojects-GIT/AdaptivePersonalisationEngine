@@ -223,7 +223,7 @@ function downloadHtml() {
           tag="div"
           :initial="{ opacity: 0, y: 14, scale: 0.985 }"
           :animate="{ opacity: 1, y: 0, scale: 1 }"
-          :transition="{ duration: 0.38, easing: [0.22, 1, 0.36, 1], delay: i * 0.055 }"
+          :transition="{ duration: 0.38, easing: [0.16, 1, 0.3, 1], delay: i * 0.055 }"
           class="will-change-[transform,opacity]"
         >
           <component
@@ -234,7 +234,7 @@ function downloadHtml() {
           />
           <div
             v-else
-            class="rounded-lg border border-dashed border-amber-500/40 bg-amber-500/5 px-3 py-2 text-[11px] text-muted-foreground"
+            class="rounded-lg border border-dashed border-violet-500/40 bg-violet-500/5 px-3 py-2 text-[11px] text-muted-foreground"
           >
             <div class="font-medium text-foreground/90 mb-1">
               Unsupported widget block:
@@ -251,7 +251,7 @@ function downloadHtml() {
     <!-- While streaming, stay quiet until the first block completes (panel header shows "building live"). -->
     <div
       v-else-if="parseFailed && !streaming"
-      class="rounded-lg border border-dashed border-amber-500/40 bg-amber-500/5 px-3 py-3 text-xs text-muted-foreground"
+      class="rounded-lg border border-dashed border-violet-500/40 bg-violet-500/5 px-3 py-3 text-xs text-muted-foreground"
     >
       <!-- Never dump raw JSON to the user, show a friendly note only. -->
       The widget couldn’t be built for this answer. Try rephrasing or ask again.

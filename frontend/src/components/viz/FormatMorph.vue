@@ -71,7 +71,7 @@ onUnmounted(() => {
 <style scoped>
 .morph-body-enter-active,
 .morph-body-leave-active {
-  transition: opacity 360ms cubic-bezier(0.22, 1, 0.36, 1), transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1), transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .morph-body-enter-from { opacity: 0; transform: translateY(10px) scale(0.97); }
 .morph-body-leave-to { opacity: 0; transform: translateY(-10px) scale(0.97); }

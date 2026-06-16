@@ -84,8 +84,8 @@ function excite(n: { x: number; y: number }) {
   >
     <defs>
       <radialGradient id="nb-glow" cx="50%" cy="42%" r="60%">
-        <stop offset="0%" stop-color="#0d9488" stop-opacity="0.16" />
-        <stop offset="100%" stop-color="#0d9488" stop-opacity="0" />
+        <stop offset="0%" stop-color="#3b63c4" stop-opacity="0.16" />
+        <stop offset="100%" stop-color="#3b63c4" stop-opacity="0" />
       </radialGradient>
       <filter id="nb-blur" x="-60%" y="-60%" width="220%" height="220%">
         <feGaussianBlur stdDeviation="2.2" />
@@ -175,11 +175,11 @@ function excite(n: { x: number; y: number }) {
 
 .nb-node {
   fill: color-mix(in oklab, var(--foreground) 70%, transparent);
-  transition: r 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: r 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nb-node-hot {
   fill: var(--primary);
-  transition: r 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: r 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nb-excited { fill: var(--primary); }
 

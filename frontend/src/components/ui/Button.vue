@@ -33,7 +33,7 @@ const variantClasses = computed(() => {
     case 'destructive':
       return 'bg-destructive text-destructive-foreground hover:bg-destructive/92 shadow-sm shadow-red-600/20'
     case 'outline':
-      return 'border border-input/90 bg-white/85 dark:bg-background/58 text-foreground hover:bg-accent/12 hover:border-foreground/30'
+      return 'border border-border bg-card/50 text-foreground hover:bg-accent/15 hover:border-accent/50'
     case 'ghost':
       return 'text-foreground/90 hover:text-foreground hover:bg-accent/14'
     case 'default':
@@ -59,7 +59,7 @@ const sizeClasses = computed(() => {
 const classes = computed(() =>
   cn(
     'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none',
-    'transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] cursor-pointer',
+    'transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/85 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
     'disabled:pointer-events-none disabled:opacity-55 disabled:saturate-75',
     '[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:h-4 [&_svg]:w-4',

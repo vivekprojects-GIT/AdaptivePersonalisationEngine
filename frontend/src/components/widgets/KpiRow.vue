@@ -13,7 +13,7 @@ defineProps<{ block: { items?: { label?: string; value?: string; tone?: string }
       <div
         class="text-lg font-semibold mt-0.5"
         :class="{
-          'text-emerald-600 dark:text-emerald-400': it.tone === 'positive',
+          'text-violet-600 dark:text-violet-400': it.tone === 'positive',
           'text-red-600 dark:text-red-400': it.tone === 'negative',
         }"
       >

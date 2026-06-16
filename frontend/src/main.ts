@@ -5,6 +5,7 @@ import router from './router'
 import { initThemeMode } from './lib/theme'
 import { vReveal } from './lib/reveal'
 import { vMagnet } from './lib/magnet'
+import { vTilt } from './lib/tilt'
 
 initThemeMode()
-createApp(App).use(router).directive('reveal', vReveal).directive('magnet', vMagnet).mount('#app')
+createApp(App).use(router).directive('reveal', vReveal).directive('magnet', vMagnet).directive('tilt', vTilt).mount('#app')

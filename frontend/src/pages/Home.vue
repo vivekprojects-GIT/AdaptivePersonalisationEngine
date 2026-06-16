@@ -7,11 +7,18 @@ import Button from '@/components/ui/Button.vue'
 import VizChart from '@/components/viz/VizChart.vue'
 import TechGlyph from '@/components/viz/TechGlyph.vue'
 import CountUp from '@/components/viz/CountUp.vue'
-import MorphingAnswer from '@/components/viz/MorphingAnswer.vue'
+import HeroCollage from '@/components/viz/HeroCollage.vue'
+import DotGrid from '@/components/viz/DotGrid.vue'
+import ProblemCollage from '@/components/viz/ProblemCollage.vue'
+import FormatWall from '@/components/viz/FormatWall.vue'
+import MetricCards from '@/components/viz/MetricCards.vue'
+import Testimonial from '@/components/viz/Testimonial.vue'
+import UseCaseGrid from '@/components/viz/UseCaseGrid.vue'
 import NeuralBrain from '@/components/viz/NeuralBrain.vue'
 import ArchFlow from '@/components/viz/ArchFlow.vue'
 import ApePlayground from '@/components/viz/ApePlayground.vue'
 import AgentTrace from '@/components/viz/AgentTrace.vue'
+import ExplainCard from '@/components/viz/ExplainCard.vue'
 import InteractiveChart from '@/components/viz/InteractiveChart.vue'
 import { HandThumbUpIcon, HandThumbDownIcon } from '@/components/icons'
 import {
@@ -220,12 +227,12 @@ const brainSteps = [
 ]
 
 const techStack = [
-  { key: 'python', name: 'Python 3.12', role: 'service layer', color: 'text-teal-600 dark:text-teal-300' },
-  { key: 'stats', name: 'Adaptive Memory', role: 'expands in real time', color: 'text-teal-600 dark:text-teal-300' },
+  { key: 'python', name: 'Python 3.12', role: 'service layer', color: 'text-violet-600 dark:text-violet-300' },
+  { key: 'stats', name: 'Adaptive Memory', role: 'expands in real time', color: 'text-violet-600 dark:text-violet-300' },
   { key: 'claude', name: 'Claude', role: 'content generation', color: 'text-primary' },
-  { key: 'vue', name: 'Vue 3 · Vite', role: 'reference frontend', color: 'text-emerald-300' },
+  { key: 'vue', name: 'Vue 3 · Vite', role: 'reference frontend', color: 'text-violet-300' },
   { key: 'echarts', name: 'ECharts', role: 'live visualizations', color: 'text-cyan-300' },
-  { key: 'lambda', name: 'AWS Lambda', role: 'serverless compute', color: 'text-amber-300' },
+  { key: 'lambda', name: 'AWS Lambda', role: 'serverless compute', color: 'text-violet-300' },
   { key: 'dynamodb', name: 'DynamoDB', role: 'production store', color: 'text-sky-300' },
   { key: 'figma', name: 'Figma', role: 'design system', color: 'text-rose-300' },
 ]
@@ -284,13 +291,13 @@ const techRowB = techStack.slice(4)
  * as the tech stack). The point: nothing here is hardcoded; the map keys
  * itself by whatever domain your traffic carries. */
 const domainStrip = [
-  { name: 'Finance', dot: '#0d9488' },
+  { name: 'Finance', dot: '#3b63c4' },
   { name: 'Healthcare', dot: '#34d399' },
   { name: 'Legal', dot: '#0f766e' },
   { name: 'E-commerce', dot: '#22d3ee' },
   { name: 'Education', dot: '#5eead4' },
   { name: 'Insurance', dot: '#2dd4bf' },
-  { name: 'Manufacturing', dot: '#14b8a6' },
+  { name: 'Manufacturing', dot: '#4f7fe0' },
   { name: 'Travel', dot: '#fb7185' },
   { name: 'Energy', dot: '#38bdf8' },
   { name: 'Customer support', dot: '#c4b5fd' },
@@ -396,8 +403,8 @@ const integrations = [
         <RouterLink to="/" class="flex items-center gap-2.5 min-w-0">
           <svg viewBox="0 0 100 100" class="h-7 w-7" aria-hidden="true">
             <rect x="2" y="2" width="96" height="96" rx="27" fill="#15140d" />
-            <rect x="26" y="31" width="48" height="9" rx="4" fill="#f4f4ec" />
-            <rect x="26" y="46" width="48" height="9" rx="4" fill="#14b8a6" />
+            <rect x="26" y="31" width="48" height="9" rx="4" fill="#eceef6" />
+            <rect x="26" y="46" width="48" height="9" rx="4" fill="#4f7fe0" />
             <rect x="26" y="61" width="32" height="9" rx="4" fill="#6b6b5e" />
           </svg>
           <span class="font-semibold text-[15px] tracking-tight">APE</span>
@@ -442,6 +449,8 @@ const integrations = [
       id="home"
       class="relative overflow-hidden scroll-mt-16"
     >
+      <!-- Interactive dot grid: reacts to the cursor with a 3D bulge -->
+      <DotGrid />
       <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div class="flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
           <div class="hero-late eyebrow" style="--d: 0.05s">
@@ -457,12 +466,12 @@ const integrations = [
           <span class="hero-word" style="--d: 0.5s">user’s</span>
           <span class="hero-word hl-accent" style="--d: 0.58s">format</span>
         </h1>
-        <p class="hero-late text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl" style="--d: 0.65s">
+        <p class="hero-late text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl" style="--d: 0.5s">
           Most AI gives every user the same answer. APE learns who wants a table, who wants a
           two-line verdict, who needs a chart, then reshapes every reply to fit them. Drop it on
           top of any LLM, RAG, or agent.
         </p>
-        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-3" style="--d: 0.8s">
+        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-3" style="--d: 0.6s">
           <Button v-magnet :to="loggedIn ? '/app/chat' : '/login?mode=register'" class="btn-shine h-12 px-7 text-sm gap-2 shadow-md shadow-black/10">
             <ChatBubbleLeftRightIcon class="h-4 w-4" />
             {{ loggedIn ? 'Open the app' : 'Get started, it’s free' }}
@@ -472,7 +481,7 @@ const integrations = [
             How it works
           </Button>
         </div>
-        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs text-muted-foreground" style="--d: 0.95s">
+        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs text-muted-foreground" style="--d: 0.7s">
           <span>real-time memory</span>
           <span class="text-muted-foreground/40">·</span>
           <span>~<CountUp :end="3" suffix=" ms" /> decisions</span>
@@ -484,9 +493,9 @@ const integrations = [
 
         </div>
 
-        <!-- RIGHT: the product mockup -->
-        <div class="hero-late relative w-full max-w-lg mx-auto lg:ml-auto" style="--d: 0.55s">
-          <MorphingAnswer />
+        <!-- RIGHT: the product collage (central card + floating engine cards) -->
+        <div class="hero-late relative w-full max-w-lg mx-auto lg:ml-auto lg:max-w-none lg:pr-2" style="--d: 0.55s">
+          <HeroCollage />
           <div class="core-badge">live memory</div>
         </div>
       </div>
@@ -496,8 +505,8 @@ const integrations = [
         <div class="max-w-6xl mx-auto px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
           <span class="eyebrow">
             <span class="relative flex h-1.5 w-1.5">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-70" />
-              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400" />
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4f7fe0] opacity-70" />
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4f7fe0]" />
             </span>
             the engine at work
           </span>
@@ -519,6 +528,23 @@ const integrations = [
         </div>
       </div>
     </section>
+
+    <!-- ================= PROBLEM: ONE ANSWER, WRONG SHAPE ================= -->
+    <ProblemCollage />
+
+    <!-- ================= FORMAT CATALOG WALL ================= -->
+    <FormatWall />
+
+    <!-- ================= METRIC CARDS (blue/lavender) ================= -->
+    <MetricCards />
+
+    <!-- ================= TESTIMONIAL (placeholder) ================= -->
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <Testimonial />
+    </div>
+
+    <!-- ================= USE-CASE GRID ================= -->
+    <UseCaseGrid />
 
     <!-- ================= HOW IT WORKS, 3 STEPS ================= -->
     <section class="relative max-w-6xl mx-auto px-5 lg:px-8 py-16 lg:py-20 scroll-mt-16">
@@ -571,7 +597,7 @@ const integrations = [
         <!-- ChatGPT -->
         <div v-reveal="100" class="rise-in rounded-3xl border bg-card/60 glass-panel p-5 flex flex-col">
           <div class="flex items-center gap-2 mb-4">
-            <span class="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+            <span class="h-2.5 w-2.5 rounded-full bg-violet-400/80" />
             <span class="text-sm font-medium">ChatGPT</span>
             <span class="ml-auto text-[10px] text-muted-foreground">same for every user</span>
           </div>
@@ -605,7 +631,7 @@ const integrations = [
         </div>
 
         <!-- APE-powered app -->
-        <div v-reveal="220" class="rise-in rounded-3xl border border-teal-400/30 bg-card/70 glass-panel p-5 flex flex-col shadow-lg shadow-teal-500/10">
+        <div v-reveal="220" class="rise-in rounded-3xl border border-violet-400/30 bg-card/70 glass-panel p-5 flex flex-col shadow-lg shadow-violet-500/10">
           <div class="flex items-center gap-2 mb-3">
             <span class="h-2.5 w-2.5 rounded-full bg-primary" />
             <span class="text-sm font-medium">Your app + APE</span>
@@ -617,11 +643,11 @@ const integrations = [
             <button
               type="button"
               class="flex items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition-all cursor-pointer"
-              :class="comparePersona === 'priya' ? 'border-teal-400/40 bg-teal-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
+              :class="comparePersona === 'priya' ? 'border-violet-400/40 bg-violet-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
               :aria-pressed="comparePersona === 'priya'"
               @click="comparePersona = 'priya'"
             >
-              <span class="h-7 w-7 shrink-0 rounded-full bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-[11px] font-semibold text-primary">P</span>
+              <span class="h-7 w-7 shrink-0 rounded-full bg-violet-500/20 border border-violet-400/30 flex items-center justify-center text-[11px] font-semibold text-primary">P</span>
               <span class="min-w-0">
                 <span class="block text-[12px] font-medium truncate">Priya</span>
                 <span class="block text-[10px] text-muted-foreground truncate">reads the numbers first</span>
@@ -630,7 +656,7 @@ const integrations = [
             <button
               type="button"
               class="flex items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition-all cursor-pointer"
-              :class="comparePersona === 'marcus' ? 'border-teal-400/40 bg-teal-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
+              :class="comparePersona === 'marcus' ? 'border-violet-400/40 bg-violet-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
               :aria-pressed="comparePersona === 'marcus'"
               @click="comparePersona = 'marcus'"
             >
@@ -656,10 +682,10 @@ const integrations = [
                 <div class="text-muted-foreground">Tax paid</div><div class="text-center">now</div><div class="text-center">at retirement</div>
               </div>
               <div class="grid grid-cols-3 gap-x-3 py-2 border-b border-border/40">
-                <div class="text-muted-foreground">Growth</div><div class="text-center text-emerald-500 dark:text-emerald-400">tax-free</div><div class="text-center">tax-deferred</div>
+                <div class="text-muted-foreground">Growth</div><div class="text-center text-violet-500 dark:text-violet-400">tax-free</div><div class="text-center">tax-deferred</div>
               </div>
               <div class="grid grid-cols-3 gap-x-3 py-2">
-                <div class="text-muted-foreground">Wins when</div><div class="text-center text-emerald-500 dark:text-emerald-400">rate rises</div><div class="text-center">rate falls</div>
+                <div class="text-muted-foreground">Wins when</div><div class="text-center text-violet-500 dark:text-violet-400">rate rises</div><div class="text-center">rate falls</div>
               </div>
             </div>
             <p class="text-[12.5px] leading-relaxed"><span class="font-medium">Verdict:</span> Roth. At 29 with rising income, today’s rate is likely the lowest you’ll ever pay.</p>
@@ -727,7 +753,7 @@ const integrations = [
             class="rise-in group rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover"
           >
             <div class="flex items-center justify-between mb-3.5">
-              <div class="h-9 w-9 rounded-xl border border-teal-400/20 bg-teal-500/10 flex items-center justify-center">
+              <div class="h-9 w-9 rounded-xl border border-violet-400/20 bg-violet-500/10 flex items-center justify-center">
                 <component :is="s.icon" class="h-4 w-4 text-primary" />
               </div>
               <div class="text-right">
@@ -776,30 +802,9 @@ const integrations = [
             How the learning works <span aria-hidden="true">→</span>
           </a>
         </div>
-        <!-- live mockup: real answer card -->
-        <div class="scrolly-depth rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7 tilt-3d tilt-hover">
-          <div class="rounded-2xl border bg-card p-4 shadow-lg shadow-black/20">
-            <div class="text-xs text-muted-foreground mb-1.5 flex items-center gap-1.5 flex-wrap">
-              <span class="font-medium text-foreground/80 mr-0.5">Assistant</span>
-              <span class="ape-chip ape-chip-strategy">comparison table</span>
-              <span class="ape-chip ape-chip-pos">learned · memory</span>
-              <span class="ape-chip">Comparison</span>
-              <span class="ape-chip ape-chip-pos">+1.0 reward</span>
-            </div>
-            <div class="text-[13px] leading-relaxed text-foreground/90 mb-2.5">Here's how the two plans compare on what matters:</div>
-            <div class="grid grid-cols-3 gap-x-3 gap-y-1.5 text-xs rounded-xl border bg-background/50 p-3">
-              <div class="text-muted-foreground"></div><div class="font-medium text-center">HDHP</div><div class="font-medium text-center">Low deductible</div>
-              <div class="text-muted-foreground">Premium</div><div class="text-center tabular-nums text-emerald-400">$210/mo</div><div class="text-center tabular-nums">$385/mo</div>
-              <div class="text-muted-foreground">Deductible</div><div class="text-center tabular-nums">$3,200</div><div class="text-center tabular-nums text-emerald-400">$750</div>
-              <div class="text-muted-foreground">HSA eligible</div><div class="text-center text-emerald-400">Yes</div><div class="text-center">No</div>
-            </div>
-            <div class="flex items-center gap-1.5 mt-3 pt-2.5 border-t border-border/50">
-              <span class="text-[10px] text-muted-foreground mr-0.5">Rate this answer</span>
-              <span class="ape-rate-btn is-active-up"><HandThumbUpIcon class="h-3.5 w-3.5" /></span>
-              <span class="ape-rate-btn"><HandThumbDownIcon class="h-3.5 w-3.5" /></span>
-              <span class="text-[10px] text-muted-foreground">queued, scores this answer with your next message</span>
-            </div>
-          </div>
+        <!-- live mockup: cycling answer card -->
+        <div class="scrolly-depth rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7">
+          <div v-tilt="6"><ExplainCard /></div>
         </div>
       </div>
 
@@ -819,17 +824,9 @@ const integrations = [
             See it on your next question <span aria-hidden="true">→</span>
           </RouterLink>
         </div>
-        <div class="lg:order-1 scrolly-depth-soft rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7 tilt-3d tilt-hover">
-          <div class="max-w-sm mx-auto h-[420px]">
-            <AgentTrace
-              phase="generate"
-              intent="Comparison"
-              :signals="['thumbs_up']"
-              :reward-applied="1"
-              strategy="comparison_table"
-              method="learned"
-              :has-widget="false"
-            />
+        <div class="lg:order-1 scrolly-depth-soft rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7">
+          <div v-tilt="6" class="max-w-sm mx-auto h-[420px]">
+            <AgentTrace autoplay />
           </div>
         </div>
       </div>
@@ -851,8 +848,8 @@ const integrations = [
           </a>
         </div>
         <!-- live mockup: chart answer with redraw actions -->
-        <div class="scrolly-depth rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7 tilt-3d tilt-hover viz-card">
-          <div class="rounded-2xl border bg-card p-4 shadow-lg shadow-black/20">
+        <div class="scrolly-depth rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7 viz-card">
+          <div v-tilt="6" class="rounded-2xl border bg-card p-4 shadow-lg shadow-violet-900/10">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-medium">Quarterly deliveries by model</span>
               <span class="ape-chip">export anytime</span>
@@ -1029,7 +1026,7 @@ const integrations = [
                 </div>
                 <div class="h-1.5 rounded-full bg-muted/60 overflow-hidden">
                   <div
-                    class="pref-bar h-full rounded-full bg-gradient-to-r from-teal-500 to-teal-400"
+                    class="pref-bar h-full rounded-full bg-gradient-to-r from-violet-500 to-violet-400"
                     :style="{ width: p.v * 100 + '%', animationDelay: pi * 0.15 + 's' }"
                   />
                 </div>
@@ -1130,7 +1127,7 @@ const integrations = [
                 class="flex items-center justify-between rounded-xl border bg-background/50 px-3 py-2"
               >
                 <span class="text-xs">{{ tp.t }}</span>
-                <span class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-400 tabular-nums">
+                <span class="inline-flex items-center gap-1 text-[11px] font-medium text-violet-400 tabular-nums">
                   <ArrowTrendingUpIcon class="h-3 w-3" /> {{ tp.d }}
                 </span>
               </div>
@@ -1151,7 +1148,7 @@ const integrations = [
                 </div>
                 <div class="h-1.5 rounded-full bg-muted/60 overflow-hidden">
                   <div
-                    class="pref-bar h-full rounded-full bg-gradient-to-r from-teal-500 to-teal-400"
+                    class="pref-bar h-full rounded-full bg-gradient-to-r from-violet-500 to-violet-400"
                     :style="{ width: dm.v * 2.4 + '%', animationDelay: di * 0.12 + 's' }"
                   />
                 </div>
@@ -1259,7 +1256,7 @@ const integrations = [
               <h3 class="font-semibold text-sm">Rankings &amp; totals</h3>
               <span class="ape-chip">bar</span>
             </div>
-            <div class="h-32 text-teal-600 dark:text-teal-400"><VizChart :key="'b' + (galleryReplay.bars || 0)" kind="bars" /></div>
+            <div class="h-32 text-violet-600 dark:text-violet-400"><VizChart :key="'b' + (galleryReplay.bars || 0)" kind="bars" /></div>
           </div>
 
           <div class="rise-in rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover viz-card" :style="{ '--stagger': '0.14s' }" @pointerenter="rep('iso')">
@@ -1299,7 +1296,7 @@ const integrations = [
               <h3 class="font-semibold text-sm">Multi-series time</h3>
               <span class="ape-chip">timeseries · combo</span>
             </div>
-            <div class="h-32 text-teal-600 dark:text-teal-300"><VizChart :key="'l' + (galleryReplay.lines || 0)" kind="lines" /></div>
+            <div class="h-32 text-violet-600 dark:text-violet-300"><VizChart :key="'l' + (galleryReplay.lines || 0)" kind="lines" /></div>
           </div>
 
           <div class="rise-in rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover viz-card md:col-span-2 lg:col-span-2" :style="{ '--stagger': '0.49s' }" @pointerenter="rep('heat')">
@@ -1346,7 +1343,7 @@ const integrations = [
             next pick = proven results + a measured dose of curiosity
           </div>
           <div class="text-[11px] text-muted-foreground mt-1.5">
-            <span class="text-primary font-medium">lean on what works</span> · <span class="text-teal-600 dark:text-teal-400 font-medium">keep testing what might</span>
+            <span class="text-primary font-medium">lean on what works</span> · <span class="text-violet-600 dark:text-violet-400 font-medium">keep testing what might</span>
             · computed live on every pick, never cached, never stale
           </div>
         </div>
@@ -1419,7 +1416,7 @@ const integrations = [
   <span class="text-foreground/80">"signals"</span>: ["thumbs_up"]   <span class="text-muted-foreground/60">// reaction to last answer</span>
 }
 
-<span class="text-teal-600 dark:text-teal-300">→</span> {
+<span class="text-violet-600 dark:text-violet-300">→</span> {
   <span class="text-foreground/80">"selected_strategy"</span>: "comparison_table",
   <span class="text-foreground/80">"instruction"</span>: {
     "text": "Present the options as a
@@ -1505,7 +1502,7 @@ const integrations = [
             :key="i"
             v-reveal="i * 50"
             class="rise-in rounded-2xl border bg-card/70 glass-panel overflow-hidden transition-colors"
-            :class="openFaq === i ? 'border-teal-400/30' : ''"
+            :class="openFaq === i ? 'border-violet-400/30' : ''"
           >
             <button
               type="button"
@@ -1517,7 +1514,7 @@ const integrations = [
               <span class="text-[14.5px] font-medium leading-snug">{{ f.q }}</span>
               <span
                 class="shrink-0 h-6 w-6 rounded-full border flex items-center justify-center text-muted-foreground transition-transform duration-300"
-                :class="openFaq === i ? 'rotate-45 border-teal-400/40 text-primary' : ''"
+                :class="openFaq === i ? 'rotate-45 border-violet-400/40 text-primary' : ''"
                 aria-hidden="true"
               >
                 <svg viewBox="0 0 12 12" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
@@ -1569,8 +1566,8 @@ const integrations = [
             <div class="flex items-center gap-2.5">
               <svg viewBox="0 0 100 100" class="h-8 w-8" aria-hidden="true">
                 <rect x="2" y="2" width="96" height="96" rx="27" fill="#15140d" />
-                <rect x="26" y="31" width="48" height="9" rx="4" fill="#f4f4ec" />
-                <rect x="26" y="46" width="48" height="9" rx="4" fill="#14b8a6" />
+                <rect x="26" y="31" width="48" height="9" rx="4" fill="#eceef6" />
+                <rect x="26" y="46" width="48" height="9" rx="4" fill="#4f7fe0" />
                 <rect x="26" y="61" width="32" height="9" rx="4" fill="#6b6b5e" />
               </svg>
               <span class="font-semibold">APE</span>

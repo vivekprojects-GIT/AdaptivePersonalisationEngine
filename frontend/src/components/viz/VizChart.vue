@@ -11,7 +11,7 @@ const props = defineProps<{ kind: 'bars' | 'area' | 'donut' | 'iso' | 'radar' | 
 // Cohesive cool palette led by the theme violet, with one warm accent.
 const CYAN = '#22d3ee'
 const TEAL = '#2dd4bf'
-const VIOLET = '#0d9488'
+const VIOLET = '#3b63c4'
 const BLUE = '#0f766e'
 const EMERALD = '#34d399'
 const AMBER = '#fb7185'
