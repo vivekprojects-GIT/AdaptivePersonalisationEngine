@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
   dotRadius?: number  // base dot radius
   influence?: number  // cursor influence radius (px)
   grow?: number       // max extra scale at the cursor
-}>(), { gap: 26, dotRadius: 1.5, influence: 150, grow: 2.6 })
+}>(), { gap: 22, dotRadius: 1.0, influence: 175, grow: 1.7 })
 
 // far = resting dot color (cool gray-blue); near = lifted/darkened blue ink.
 // Starfield: dim blue-white stars at rest, brightening to violet-white near the
@@ -56,7 +56,7 @@ function build() {
       dots.push({
         x: ox + c * props.gap, y: oy + r * props.gap,
         ph: frac * 6.283,                                 // twinkle phase
-        sz: 0.7 + frac * 0.7,                             // star-size variation
+        sz: 0.55 + frac * 0.5,                            // small star-size variation
       })
     }
 }
@@ -73,17 +73,23 @@ function frame() {
   for (const d of dots) {
     const dx = d.x - cx, dy = d.y - cy
     const dist = Math.hypot(dx, dy)
-    let e = 0
-    if (dist < R) { const t = 1 - dist / R; e = t * t } // eased 0..1 falloff
-    const scale = 1 + e * props.grow                    // bigger = closer
-    const twinkle = 0.26 + 0.16 * Math.sin(now * 0.0015 + d.ph) // stars breathe
-    const alpha = twinkle + e * (0.95 - twinkle)        // brighten near cursor
-    const push = reduce ? 0 : e * 7                     // 3D outward bulge
+    const twinkle = 0.22 + 0.14 * Math.sin(now * 0.0015 + d.ph) // stars breathe
+    // Eye: a bright IRIS ring of stars around a dim PUPIL that tracks the cursor.
+    let iris = 0, pupil = 0
+    if (dist < R) {
+      const t = dist / R                                // 0 (center) .. 1 (edge)
+      iris = Math.exp(-((t - 0.52) * (t - 0.52)) / 0.052)  // bright ring at mid-radius
+      pupil = Math.exp(-(t * t) / 0.03)                    // dark hole at the center
+    }
+    let alpha = twinkle + iris * (0.95 - twinkle) - pupil * twinkle * 0.9
+    if (alpha < 0.015) alpha = 0.015
+    const scale = Math.max(0.35, 1 + iris * props.grow - pupil * 0.5)
     const nx = dist > 0 ? dx / dist : 0
     const ny = dist > 0 ? dy / dist : 0
-    const r = (FAR[0] + (NEAR[0] - FAR[0]) * e) | 0
-    const g = (FAR[1] + (NEAR[1] - FAR[1]) * e) | 0
-    const b = (FAR[2] + (NEAR[2] - FAR[2]) * e) | 0
+    const push = reduce ? 0 : iris * 4 - pupil * 3      // iris dilates out, pupil tucks in
+    const r = (FAR[0] + (NEAR[0] - FAR[0]) * iris) | 0
+    const g = (FAR[1] + (NEAR[1] - FAR[1]) * iris) | 0
+    const b = (FAR[2] + (NEAR[2] - FAR[2]) * iris) | 0
     ctx.beginPath()
     ctx.arc(d.x + nx * push, d.y + ny * push, props.dotRadius * d.sz * scale, 0, 6.2832)
     ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`
