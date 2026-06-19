@@ -1080,8 +1080,10 @@ section:not(.dark) h2 .text-muted-foreground {
    fading out to the edges so the neurons glow around the centered content. */
 .hero-scrim-center {
   background:
-    radial-gradient(62% 78% at 50% 44%, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.26) 48%, rgba(0, 0, 0, 0) 78%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, transparent 18%, transparent 82%, rgba(0, 0, 0, 0.55) 100%);
+    /* strong central vignette so the copy stays crisp; fades out before the
+       side brains so they keep glowing */
+    radial-gradient(44% 60% at 50% 46%, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.68) 36%, rgba(0, 0, 0, 0.22) 66%, rgba(0, 0, 0, 0) 82%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 24%, transparent 50%, rgba(0, 0, 0, 0.22) 80%, rgba(0, 0, 0, 0.55) 100%);
 }
 /* Uniform-ish veil for centered dark sections so neurons glow but centered
    text/cards stay readable, with a touch more darkening top & bottom. */
