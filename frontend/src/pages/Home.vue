@@ -466,48 +466,52 @@ const integrations = [
       id="home"
       class="relative overflow-hidden scroll-mt-16"
     >
-      <!-- Copy block on a clean dark background; the 3D brain scene sits below it. -->
-      <div class="relative z-10 max-w-3xl mx-auto px-5 lg:px-8 pt-16 lg:pt-24 pb-6 flex flex-col items-center justify-center text-center gap-6">
-        <div class="hero-late eyebrow" style="--d: 0.05s">
-          Adaptive Personalisation Engine
-        </div>
-        <h1 class="text-4xl sm:text-5xl lg:text-[52px] xl:text-[60px] font-semibold tracking-[-0.035em] leading-[1.06] text-balance">
-          <span class="hero-word" style="--d: 0.1s">Your</span>
-          <span class="hero-word" style="--d: 0.2s">AI,</span><br />
-          <span class="hero-word" style="--d: 0.32s">in</span>
-          <span class="hero-word" style="--d: 0.42s">every</span>
-          <span class="hero-word" style="--d: 0.5s">user’s</span>
-          <span class="hero-word hl-accent" style="--d: 0.58s">format</span>
-        </h1>
-        <p class="hero-late text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto" style="--d: 0.78s">
-          Most AI gives every user the same answer. APE learns who wants a table, who wants a
-          two-line verdict, who needs a chart, then reshapes every reply to fit them. Drop it on
-          top of any LLM, RAG, or agent.
-        </p>
-        <div class="hero-late flex flex-wrap items-center justify-center gap-3" style="--d: 0.88s">
-          <Button v-magnet :to="loggedIn ? '/app/chat' : '/login?mode=register'" class="btn-shine h-12 px-7 text-sm gap-2 shadow-md shadow-black/10">
-            <ChatBubbleLeftRightIcon class="h-4 w-4" />
-            {{ loggedIn ? 'Open the app' : 'Get started, it’s free' }}
-          </Button>
-          <Button to="/about" variant="outline" class="h-12 px-7 text-sm gap-2">
-            <InformationCircleIcon class="h-4 w-4" />
-            How it works
-          </Button>
-        </div>
-        <div class="hero-late flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground" style="--d: 0.98s">
-          <span>real-time memory</span>
-          <span class="text-muted-foreground/40">·</span>
-          <span>~<CountUp :end="3" suffix=" ms" /> decisions</span>
-          <span class="text-muted-foreground/40">·</span>
-          <span><CountUp :end="18" /> formats</span>
-          <span class="text-muted-foreground/40">·</span>
-          <span>governed visuals</span>
-        </div>
-      </div>
+      <!-- dotted-grid backdrop -->
+      <div class="absolute inset-0 bg-dotgrid pointer-events-none opacity-70" aria-hidden="true"></div>
 
-      <!-- live-demo collage, merged into the hero: one question, every person's shape -->
-      <div class="relative max-w-6xl mx-auto px-5 lg:px-8 pt-2 pb-10">
-        <div class="hero-late relative w-full max-w-xl lg:max-w-2xl mx-auto" style="--d: 1.05s">
+      <!-- 2-column hero: copy left, the live floating collage spread on the right -->
+      <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+        <!-- LEFT · copy -->
+        <div class="flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
+          <div class="hero-late eyebrow" style="--d: 0.05s">
+            Adaptive Personalisation Engine
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-[52px] xl:text-[60px] font-semibold tracking-[-0.035em] leading-[1.06] text-balance">
+            <span class="hero-word" style="--d: 0.1s">Your</span>
+            <span class="hero-word" style="--d: 0.2s">AI,</span><br />
+            <span class="hero-word" style="--d: 0.32s">in</span>
+            <span class="hero-word" style="--d: 0.42s">every</span>
+            <span class="hero-word" style="--d: 0.5s">user’s</span>
+            <span class="hero-word hl-accent" style="--d: 0.58s">format</span>
+          </h1>
+          <p class="hero-late text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0" style="--d: 0.78s">
+            Most AI gives every user the same answer. APE learns who wants a table, who wants a
+            two-line verdict, who needs a chart, then reshapes every reply to fit them. Drop it on
+            top of any LLM, RAG, or agent.
+          </p>
+          <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-3" style="--d: 0.88s">
+            <Button v-magnet :to="loggedIn ? '/app/chat' : '/login?mode=register'" class="btn-shine h-12 px-7 text-sm gap-2 shadow-md shadow-black/10">
+              <ChatBubbleLeftRightIcon class="h-4 w-4" />
+              {{ loggedIn ? 'Open the app' : 'Get started, it’s free' }}
+            </Button>
+            <Button to="/about" variant="outline" class="h-12 px-7 text-sm gap-2">
+              <InformationCircleIcon class="h-4 w-4" />
+              How it works
+            </Button>
+          </div>
+          <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs text-muted-foreground" style="--d: 0.98s">
+            <span>real-time memory</span>
+            <span class="text-muted-foreground/40">·</span>
+            <span>~<CountUp :end="3" suffix=" ms" /> decisions</span>
+            <span class="text-muted-foreground/40">·</span>
+            <span><CountUp :end="18" /> formats</span>
+            <span class="text-muted-foreground/40">·</span>
+            <span>governed visuals</span>
+          </div>
+        </div>
+
+        <!-- RIGHT · live floating collage (classify → select → render → apply) -->
+        <div class="hero-late relative w-full lg:pl-4" style="--d: 0.55s">
           <HeroCollage />
           <div class="core-badge">live memory</div>
         </div>
