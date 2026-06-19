@@ -8,7 +8,7 @@ import VizChart from '@/components/viz/VizChart.vue'
 import TechGlyph from '@/components/viz/TechGlyph.vue'
 import CountUp from '@/components/viz/CountUp.vue'
 import HeroCollage from '@/components/viz/HeroCollage.vue'
-import HeroBackdrop from '@/components/viz/HeroBackdrop.vue'
+import BrainCloneHero from '@/components/viz/BrainCloneHero.vue'
 import ProblemCollage from '@/components/viz/ProblemCollage.vue'
 import DecideIntents from '@/components/viz/DecideIntents.vue'
 import RewardScoring from '@/components/viz/RewardScoring.vue'
@@ -16,7 +16,6 @@ import FormatWall from '@/components/viz/FormatWall.vue'
 import MetricCards from '@/components/viz/MetricCards.vue'
 import Testimonial from '@/components/viz/Testimonial.vue'
 import UseCaseGrid from '@/components/viz/UseCaseGrid.vue'
-import NeuralBrain3D from '@/components/viz/NeuralBrain3D.vue'
 import ArchFlow from '@/components/viz/ArchFlow.vue'
 import ApePlayground from '@/components/viz/ApePlayground.vue'
 import AgentTrace from '@/components/viz/AgentTrace.vue'
@@ -490,12 +489,6 @@ const integrations = [
           <span class="text-muted-foreground/40">·</span>
           <span>governed visuals</span>
         </div>
-      </div>
-
-      <!-- 3D brain-clone scene — a human mind cloned into its AI, sitting fully below the copy -->
-      <div class="relative w-full h-[42vh] min-h-[320px] lg:h-[46vh] overflow-hidden">
-        <HeroBackdrop />
-        <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none z-[1]" aria-hidden="true" />
       </div>
 
       <!-- Ramp-style live ticker — real numbers straight from the engine -->
@@ -985,39 +978,38 @@ const integrations = [
           </p>
         </div>
 
-        <div v-reveal="100" class="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 items-center mb-12">
-          <!-- living 3D neural brain — neurons + synapses firing -->
-          <div class="relative rounded-3xl border bg-card/70 glass-panel p-6 overflow-hidden">
-            <div class="relative h-[340px]">
-              <NeuralBrain3D />
-            </div>
-            <div class="flex items-center justify-center gap-2 flex-wrap">
-              <span class="ape-chip ape-chip-strategy">preference pathways</span>
-              <span class="ape-chip">strengthen with every reaction</span>
-            </div>
+        <!-- brain-clone scene: a human mind (left) cloned into its AI (right), with the
+             six DECIDE intents streaming across — personalisation, made literal -->
+        <div v-reveal="100" class="relative rounded-3xl border bg-card/70 glass-panel overflow-hidden mb-10">
+          <div class="relative h-[44vh] min-h-[360px]">
+            <BrainCloneHero />
           </div>
-
-          <!-- understand → map → serve -->
-          <div class="space-y-4">
-            <div
-              v-for="(s, i) in brainSteps"
-              :key="s.title"
-              class="flex gap-4 rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover"
-            >
-              <div class="h-9 w-9 shrink-0 rounded-lg bg-primary/12 border border-primary/30 flex items-center justify-center text-sm font-bold text-primary">
-                {{ i + 1 }}
-              </div>
-              <div>
-                <h3 class="font-semibold text-sm">{{ s.title }}</h3>
-                <p class="text-xs text-muted-foreground leading-relaxed mt-1">{{ s.body }}</p>
-              </div>
-            </div>
-            <p class="text-xs text-muted-foreground/80 pl-1">
-              The result is simple to feel: answers land right the first time, so users stop
-              re-asking and reformatting, less friction, more signal.
-            </p>
+          <div class="flex items-center justify-center gap-2 flex-wrap pb-5">
+            <span class="ape-chip ape-chip-strategy">preference pathways</span>
+            <span class="ape-chip">strengthen with every reaction</span>
           </div>
         </div>
+
+        <!-- understand → map → serve -->
+        <div v-reveal="120" class="grid sm:grid-cols-3 gap-4 mb-6">
+          <div
+            v-for="(s, i) in brainSteps"
+            :key="s.title"
+            class="flex gap-4 rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover"
+          >
+            <div class="h-9 w-9 shrink-0 rounded-lg bg-primary/12 border border-primary/30 flex items-center justify-center text-sm font-bold text-primary">
+              {{ i + 1 }}
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm">{{ s.title }}</h3>
+              <p class="text-xs text-muted-foreground leading-relaxed mt-1">{{ s.body }}</p>
+            </div>
+          </div>
+        </div>
+        <p v-reveal="160" class="text-xs text-muted-foreground/80 text-center mb-12">
+          The result is simple to feel: answers land right the first time, so users stop
+          re-asking and reformatting, less friction, more signal.
+        </p>
 
         <!-- domain preference profiles -->
         <div v-reveal="120" class="grid md:grid-cols-2 gap-4 mb-8">
