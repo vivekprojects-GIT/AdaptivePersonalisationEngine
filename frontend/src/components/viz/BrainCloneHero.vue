@@ -1,9 +1,9 @@
 <!--
-  BrainCloneHero — the landing hero backdrop. A 3D human mind (left, cool white)
-  is mirror-cloned into an AI brain (right, TRON red). Six DECIDE intents
-  (Decision · Explanation · Comparison · Instructional · Definitional ·
-  Evaluation) stream across the bridge between them; as each fires, the AI brain
-  lights up the matching region — APE learning to answer in the human's shape.
+  BrainCloneHero — the Personalisation visual. A reader's mind (left, cool white)
+  and APE's learned preference map of that reader (right, TRON red). Six DECIDE
+  intents (Decision · Explanation · Comparison · Instructional · Definitional ·
+  Evaluation) stream across the bridge between them; as each fires, APE's side
+  lights up — APE learning which answer format the reader prefers, per intent.
 
   Dependency-free: a shared neuron cloud is projected twice (the right side is the
   left reflected across the centre, so it is literally a clone), rotated in 3D with
@@ -119,8 +119,8 @@ function frame() {
   drawBridge(active)
 
   // side labels
-  label(gh.X, gh.Y + scale * 0.5, 'THE HUMAN MIND', '220,220,230', 0.34, 11)
-  label(ga.X, ga.Y + scale * 0.52, 'ITS AI CLONE', '255,80,84', 0.58, 11)
+  label(gh.X, gh.Y + scale * 0.5, 'THE READER', '220,220,230', 0.34, 11)
+  label(ga.X, ga.Y + scale * 0.52, 'APE’S PREFERENCE MAP', '255,80,84', 0.55, 11)
 }
 
 function paintGlow(X: number, Y: number, r: number, rgb: string, a: number) {
