@@ -9,6 +9,7 @@ import TechGlyph from '@/components/viz/TechGlyph.vue'
 import CountUp from '@/components/viz/CountUp.vue'
 import HeroCollage from '@/components/viz/HeroCollage.vue'
 import BrainCloneHero from '@/components/viz/BrainCloneHero.vue'
+import Presentation from '@/components/Presentation.vue'
 import ProblemCollage from '@/components/viz/ProblemCollage.vue'
 import DecideIntents from '@/components/viz/DecideIntents.vue'
 import RewardScoring from '@/components/viz/RewardScoring.vue'
@@ -355,6 +356,7 @@ const apiUp = ref<boolean | null>(null)
 // Drives the nav + hero CTAs: signed-in users see "Open the app", everyone
 // else sees Sign in / Get started.
 const loggedIn = ref(isAuthenticated())
+const showDeck = ref(false)
 
 /* Live counters for the hero eyebrow + ticker strip — real engine numbers. */
 const heroStats = ref<null | {
@@ -426,6 +428,20 @@ const integrations = [
           <RouterLink to="/about" class="px-3 py-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors">About</RouterLink>
         </nav>
         <div class="flex items-center gap-1.5">
+          <!-- Presentation widget — opens the APE deck in a fullscreen viewer -->
+          <button
+            type="button"
+            title="Open the presentation deck"
+            class="inline-flex items-center gap-1.5 h-8 px-2.5 sm:px-3 rounded-lg border border-red-400/35 bg-red-500/10 text-[13px] font-medium text-foreground hover:bg-red-500/20 hover:border-red-400/60 transition"
+            @click="showDeck = true"
+          >
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="13" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+              <path d="M10.5 8.5l3.5 2.5-3.5 2.5z" fill="currentColor" stroke="none" />
+            </svg>
+            <span class="hidden sm:inline">Presentation</span>
+          </button>
           <template v-if="loggedIn">
             <Button to="/app/chat" class="h-8 px-3.5 text-[13px] gap-1.5">
               Open the app
@@ -491,6 +507,14 @@ const integrations = [
         </div>
       </div>
 
+      <!-- live-demo collage, merged into the hero: one question, every person's shape -->
+      <div class="relative max-w-6xl mx-auto px-5 lg:px-8 pt-2 pb-10">
+        <div class="hero-late relative w-full max-w-xl lg:max-w-2xl mx-auto" style="--d: 1.05s">
+          <HeroCollage />
+          <div class="core-badge">live memory</div>
+        </div>
+      </div>
+
       <!-- Ramp-style live ticker — real numbers straight from the engine -->
       <div v-if="heroStats" class="relative border-y bg-card/70">
         <div class="max-w-6xl mx-auto px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
@@ -517,19 +541,6 @@ const integrations = [
             </span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ================= LIVE DEMO — ONE QUESTION, EVERY PERSON ================= -->
-    <section class="relative max-w-6xl mx-auto px-5 lg:px-8 py-16 lg:py-24 scroll-mt-16">
-      <div v-reveal class="text-center max-w-2xl mx-auto mb-10">
-        <span class="eyebrow">see it live</span>
-        <h2 class="text-3xl lg:text-4xl font-semibold tracking-[-0.03em] mt-3">One question, every person’s shape</h2>
-        <p class="mt-3 text-muted-foreground">The same question, reshaped for each reader — watch APE pick the format in real time.</p>
-      </div>
-      <div class="hero-late relative w-full max-w-xl lg:max-w-2xl mx-auto" style="--d: 0.1s">
-        <HeroCollage />
-        <div class="core-badge">live memory</div>
       </div>
     </section>
 
@@ -978,13 +989,15 @@ const integrations = [
           </p>
         </div>
 
-        <!-- brain-clone scene: a human mind (left) cloned into its AI (right), with the
-             six DECIDE intents streaming across — personalisation, made literal -->
-        <div v-reveal="100" class="relative rounded-3xl border bg-card/70 glass-panel overflow-hidden mb-10">
-          <div class="relative h-[44vh] min-h-[360px]">
-            <BrainCloneHero />
-          </div>
-          <div class="flex items-center justify-center gap-2 flex-wrap pb-5">
+        <!-- brain-clone scene as a hero band: a human mind (left) cloned into its AI
+             (right), the six DECIDE intents streaming across — personalisation, made literal -->
+        <div v-reveal="100" class="relative h-[62vh] min-h-[460px] mb-10 overflow-hidden rounded-[28px] border border-border/60">
+          <div class="absolute inset-0 z-0" aria-hidden="true"
+            style="background: radial-gradient(58% 70% at 80% 50%, rgba(255,6,10,0.12), transparent 72%), radial-gradient(52% 64% at 20% 50%, rgba(255,255,255,0.05), transparent 72%), #0b0b0e;"></div>
+          <BrainCloneHero />
+          <div class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background/80 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/85 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
+          <div class="absolute inset-x-0 bottom-5 flex items-center justify-center gap-2 flex-wrap z-[2]">
             <span class="ape-chip ape-chip-strategy">preference pathways</span>
             <span class="ape-chip">strengthen with every reaction</span>
           </div>
@@ -1614,5 +1627,7 @@ const integrations = [
       </div>
     </footer>
 
+    <!-- Fullscreen presentation deck overlay -->
+    <Presentation v-if="showDeck" @close="showDeck = false" />
   </div>
 </template>

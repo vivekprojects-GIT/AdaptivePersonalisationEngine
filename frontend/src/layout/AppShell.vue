@@ -15,10 +15,12 @@ import {
   SparklesIcon,
 } from '@/components/icons'
 import AccountMenu from '@/components/AccountMenu.vue'
+import Presentation from '@/components/Presentation.vue'
 
 const route = useRoute()
 const router = useRouter()
 const showMobileNav = ref(false)
+const showDeck = ref(false)
 
 const theme = ref<ThemeMode>(getThemeMode())
 const themeLabel = computed(() => (theme.value === 'system' ? 'System' : theme.value === 'dark' ? 'Dark' : 'Light'))
@@ -116,6 +118,20 @@ onMounted(async () => {
           >
             <SparklesIcon class="h-3.5 w-3.5" /> {{ themeLabel }}
           </button>
+          <!-- Presentation widget — opens the APE deck in a fullscreen viewer -->
+          <button
+            type="button"
+            title="Open the presentation deck"
+            class="hidden sm:inline-flex items-center gap-1.5 h-8 px-3 rounded-lg border border-red-400/35 bg-red-500/10 text-[13px] font-medium text-foreground hover:bg-red-500/20 hover:border-red-400/60 transition"
+            @click="showDeck = true"
+          >
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="13" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+              <path d="M10.5 8.5l3.5 2.5-3.5 2.5z" fill="currentColor" stroke="none" />
+            </svg>
+            Presentation
+          </button>
           <AccountMenu v-if="getAccessToken()" class="hidden md:block" />
           <RouterLink
             v-if="!isChatRoute"
@@ -144,6 +160,18 @@ onMounted(async () => {
           >
             <component :is="n.icon" class="h-4 w-4" /> {{ n.label }}
           </RouterLink>
+          <button
+            type="button"
+            class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[13px] font-medium text-foreground hover:bg-muted/40"
+            @click="showDeck = true; showMobileNav = false"
+          >
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="13" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+              <path d="M10.5 8.5l3.5 2.5-3.5 2.5z" fill="currentColor" stroke="none" />
+            </svg>
+            Presentation
+          </button>
           <div class="flex items-center gap-2 pt-2 mt-1 border-t">
             <button type="button" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border px-3 py-2 text-sm text-muted-foreground hover:text-foreground" @click="cycleTheme">
               <SparklesIcon class="h-4 w-4" /> Theme: {{ themeLabel }}
@@ -165,5 +193,8 @@ onMounted(async () => {
         <RouterView />
       </section>
     </main>
+
+    <!-- Fullscreen presentation deck overlay -->
+    <Presentation v-if="showDeck" @close="showDeck = false" />
   </div>
 </template>
