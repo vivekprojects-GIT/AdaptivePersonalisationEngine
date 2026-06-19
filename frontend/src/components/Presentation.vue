@@ -9,7 +9,7 @@
     <!-- top bar -->
     <header class="deck-bar">
       <div class="deck-brand">
-        <span class="dot" /> APE · The Adaptive Presentation Engine
+        <span class="dot" /> APE<span class="brand-sub"> · The Adaptive Presentation Engine</span>
       </div>
       <div class="deck-actions">
         <span class="deck-count">{{ i + 1 }} / {{ slides.length }}</span>
@@ -314,9 +314,9 @@ onBeforeUnmount(() => {
 
 /* top bar */
 .deck-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-.deck-brand { display: inline-flex; align-items: center; gap: 8px; font: 600 12px/1 'JetBrains Mono', monospace; letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.7); }
-.deck-brand .dot { width: 7px; height: 7px; border-radius: 999px; background: #ff060a; box-shadow: 0 0 10px 1px rgba(255, 6, 10, 0.7); }
-.deck-actions { display: flex; align-items: center; gap: 8px; }
+.deck-brand { display: inline-flex; align-items: center; gap: 8px; min-width: 0; white-space: nowrap; font: 600 12px/1 'JetBrains Mono', monospace; letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.7); }
+.deck-brand .dot { width: 7px; height: 7px; border-radius: 999px; flex: none; background: #ff060a; box-shadow: 0 0 10px 1px rgba(255, 6, 10, 0.7); }
+.deck-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .deck-count { font: 600 12px/1 'JetBrains Mono', monospace; color: rgba(255, 255, 255, 0.6); margin-right: 4px; }
 .dbtn { display: inline-flex; align-items: center; gap: 6px; height: 34px; min-width: 34px; padding: 0 9px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(255, 255, 255, 0.04); color: #fff; cursor: pointer; transition: all 0.15s ease; }
 .dbtn:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.28); }
@@ -464,5 +464,16 @@ h2.big { font-size: 5.4cqw; }
   .title-orbs span { animation: none; }
   .sfade-enter-active, .sfade-leave-active { transition: opacity 0.15s ease; }
   .sfade-enter-from { transform: none; }
+}
+
+/* mobile: keep the top bar compact so the controls never wrap */
+@media (max-width: 640px) {
+  .brand-sub { display: none; }
+  .deck-count { display: none; }
+  .deck-actions { gap: 6px; }
+  .dbtn { padding: 0 7px; }
+  .dbtn-label { display: none; }
+  .deck-bar { padding: 10px 12px; }
+  .deck-stagewrap { padding: 10px; }
 }
 </style>
