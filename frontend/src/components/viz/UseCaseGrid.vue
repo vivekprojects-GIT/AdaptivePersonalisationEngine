@@ -43,11 +43,11 @@ const cases = [
 .tile {
   position: relative; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden;
   display: grid; place-items: center;
-  background: linear-gradient(155deg, #211f44 0%, #16182e 55%, #0e1020 100%);
+  background: linear-gradient(155deg, color-mix(in oklab, var(--accent) 16%, #131316) 0%, #131316 55%, #0a0a0c 100%);
   border: 1px solid var(--border);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.story:hover .tile { transform: translateY(-4px); box-shadow: 0 24px 50px -24px rgba(63, 99, 196, 0.45); }
+.story:hover .tile { transform: translateY(-4px); box-shadow: 0 24px 50px -24px rgba(255, 6, 10, 0.45); }
 .logo-ph {
   font-family: 'Geist', sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.03em;
   color: color-mix(in oklab, var(--accent-strong) 78%, transparent);
@@ -55,7 +55,7 @@ const cases = [
 .go {
   position: absolute; top: 12px; right: 12px; width: 30px; height: 30px;
   display: grid; place-items: center; border-radius: 999px;
-  background: var(--foreground); color: #fff; font-size: 14px;
+  background: var(--accent); color: var(--accent-foreground); font-size: 14px;
   opacity: 0; transform: translateY(-4px); transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .story:hover .go { opacity: 1; transform: translateY(0); }

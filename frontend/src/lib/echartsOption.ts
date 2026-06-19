@@ -50,21 +50,21 @@ const PALETTE = [
   '#f97316', // orange
   '#22c55e', // green
   '#ef4444', // red
-  '#a855f7', // purple
+  '#ff3b3f', // red
   '#14b8a6', // teal
   '#eab308', // gold
   '#ec4899', // pink
-  '#0ea5e9', // sky
+  '#d10006', // deep red
   '#0d9488', // teal
   '#f43f5e', // rose
   '#6366f1', // indigo
   '#06b6d4', // cyan
-  '#f59e0b', // amber
+  '#ff060a', // TRON red
   '#10b981', // emerald
-  '#0f766e', // indigo
+  '#0f766e', // teal
   '#d946ef', // fuchsia
   '#0891b2', // deep cyan
-  '#0f766e', // olive
+  '#0f766e', // teal
   '#e11d48', // crimson
 ]
 export const POSITIVE = '#16a34a'
@@ -416,7 +416,7 @@ function buildEChartsOptionRaw(chart: ChartSpec, title = '', opts: { dark?: bool
           bottom: 40,
           sort: 'descending',
           gap: 2,
-          label: { show: true, position: 'inside', fontSize: 10, color: '#fff', formatter: (p: any) => p.name + ': ' + fmtVal(p.value) },
+          label: { show: true, position: 'inside', fontSize: 10, color: '#ffffff', formatter: (p: any) => p.name + ': ' + fmtVal(p.value) },
           data: d.map((x, i) => ({ ...x, itemStyle: { color: colorAt(i, d.length) } })),
         },
       ],
@@ -611,7 +611,7 @@ function buildEChartsOptionRaw(chart: ChartSpec, title = '', opts: { dark?: bool
         symbol: 'roundRect',
         symbolSize: [Math.min(120, Math.max(54, n.name.length * 7)), 34] as [number, number],
         itemStyle: { color: colorAt(i, nodes.length), borderColor: 'rgba(255,255,255,0.65)', borderWidth: 1 },
-        label: { show: true, color: '#fff', fontSize: 11, fontWeight: 600 as const, overflow: 'truncate' as const, width: 110 },
+        label: { show: true, color: '#ffffff', fontSize: 11, fontWeight: 600 as const, overflow: 'truncate' as const, width: 110 },
       }
     })
 
@@ -903,7 +903,7 @@ function buildEChartsOptionRaw(chart: ChartSpec, title = '', opts: { dark?: bool
             position: (isStacked ? 'inside' : isHBar ? 'right' : 'top') as 'inside' | 'right' | 'top',
             fontSize: 10,
             fontWeight: 600 as const,
-            color: isStacked ? '#fff' : tc,
+            color: isStacked ? '#ffffff' : tc,
             formatter: (p: any) => fmtVal(p.value),
           }
         : asLine

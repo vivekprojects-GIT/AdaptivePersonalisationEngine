@@ -8,10 +8,10 @@ import { ref } from 'vue'
 
 const props = defineProps<{ kind: 'bars' | 'area' | 'donut' | 'iso' | 'radar' | 'bubbles' | 'lines' | 'heat' }>()
 
-// Cohesive cool palette led by the theme violet, with one warm accent.
-const CYAN = '#22d3ee'
-const TEAL = '#2dd4bf'
-const VIOLET = '#3b63c4'
+// Cohesive TRON-red palette led by the brand red, with teal/emerald/rose accents.
+const CYAN = '#ff5c60'
+const TEAL = '#ff3b3f'
+const VIOLET = '#d10006'
 const BLUE = '#0f766e'
 const EMERALD = '#34d399'
 const AMBER = '#fb7185'

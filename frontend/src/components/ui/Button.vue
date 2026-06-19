@@ -33,7 +33,7 @@ const variantClasses = computed(() => {
     case 'destructive':
       return 'bg-destructive text-destructive-foreground hover:bg-destructive/92 shadow-sm shadow-red-600/20'
     case 'outline':
-      return 'border border-border bg-card/50 text-foreground hover:bg-accent/15 hover:border-accent/50'
+      return 'border border-red-400/25 bg-card/40 backdrop-blur-sm text-foreground hover:bg-red-500/12 hover:border-red-400/55 hover:text-[#ffffff] hover:shadow-[0_6px_22px_-10px_rgba(255,6,10,0.5)]'
     case 'ghost':
       return 'text-foreground/90 hover:text-foreground hover:bg-accent/14'
     case 'default':
@@ -45,7 +45,7 @@ const variantClasses = computed(() => {
 const sizeClasses = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'h-8 px-3 text-xs rounded-md'
+      return 'h-8 px-3 text-xs rounded-lg'
     case 'lg':
       return 'h-11 px-5 text-sm rounded-xl'
     case 'icon':
@@ -59,9 +59,9 @@ const sizeClasses = computed(() => {
 const classes = computed(() =>
   cn(
     'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none',
-    'transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer',
+    'transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:hover:-translate-y-px active:scale-[0.97] active:translate-y-0 cursor-pointer',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/85 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-    'disabled:pointer-events-none disabled:opacity-55 disabled:saturate-75',
+    'disabled:pointer-events-none disabled:opacity-50 disabled:saturate-75 disabled:shadow-none',
     '[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:h-4 [&_svg]:w-4',
     sizeClasses.value,
     variantClasses.value,

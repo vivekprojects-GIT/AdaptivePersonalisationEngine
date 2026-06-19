@@ -14,8 +14,8 @@ import { computed, ref } from 'vue'
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 const SERIES = [
-  { name: 'Comparisons → tables', color: '#3b63c4', data: [42, 48, 55, 53, 61, 66, 64, 71, 74, 78, 81, 84] },
-  { name: 'Definitions → one-liners', color: '#22d3ee', data: [30, 34, 33, 41, 45, 52, 55, 57, 63, 66, 65, 70] },
+  { name: 'Comparisons → tables', color: '#d10006', data: [42, 48, 55, 53, 61, 66, 64, 71, 74, 78, 81, 84] },
+  { name: 'Definitions → one-liners', color: '#ff5c60', data: [30, 34, 33, 41, 45, 52, 55, 57, 63, 66, 65, 70] },
   { name: 'Everything → long prose', color: '#64748b', data: [58, 54, 50, 47, 44, 40, 42, 38, 35, 33, 30, 28] },
 ]
 

@@ -18,7 +18,7 @@ const formats = [
     <div class="max-w-2xl" v-reveal>
       <h2 class="text-2xl sm:text-3xl lg:text-[40px] font-semibold leading-[1.1]">
         One answer, every shape.
-        <span class="text-muted-foreground">APE picks between 18 formats — and learns which one each person keeps.</span>
+        <span class="text-muted-foreground">A few of the 18 shapes APE picks between — it learns which one each person keeps.</span>
       </h2>
       <RouterLink to="/about" class="report-link">
         See how it decides <span aria-hidden="true">→</span>
@@ -74,7 +74,7 @@ const formats = [
 .cell:hover { background: color-mix(in oklab, var(--accent) 14%, var(--card)); }
 .cell-label {
   font-size: 13px; font-weight: 500; letter-spacing: -0.01em;
-  color: var(--muted-foreground); text-align: center; transition: color 0.25s ease;
+  color: color-mix(in oklab, var(--foreground) 82%, var(--muted-foreground)); text-align: center; transition: color 0.25s ease;
 }
 .cell:hover .cell-label { color: var(--foreground); }
 .cell-arrow {
@@ -90,7 +90,7 @@ const formats = [
 .feature {
   position: relative; color: #fff; padding: 22px;
   display: flex; flex-direction: column; justify-content: flex-end; min-height: 160px;
-  background: radial-gradient(130% 90% at 80% 8%, #2a2928 0%, #15140f 55%, #0c0a08 100%);
+  background: radial-gradient(130% 90% at 80% 8%, color-mix(in oklab, var(--accent) 22%, #131316) 0%, #131316 55%, #0a0a0c 100%);
 }
 .feat-eyebrow {
   position: absolute; top: 18px; left: 22px;

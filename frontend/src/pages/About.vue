@@ -86,9 +86,9 @@ const steps = [
           </button>
           <RouterLink to="/" class="flex items-center gap-2" aria-label="APE home">
             <svg viewBox="0 0 24 24" class="h-7 w-7">
-              <rect width="24" height="24" rx="6" fill="#15150f" />
+              <rect width="24" height="24" rx="6" fill="#131316" />
               <rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#eceef6" opacity="0.85" />
-              <rect x="6" y="11" width="12" height="2.2" rx="1.1" fill="#4f7fe0" />
+              <rect x="6" y="11" width="12" height="2.2" rx="1.1" fill="#ff060a" />
               <rect x="6" y="15" width="9" height="2.2" rx="1.1" fill="#eceef6" opacity="0.85" />
             </svg>
             <span class="text-sm font-semibold tracking-tight">APE</span>
@@ -202,8 +202,8 @@ const steps = [
         </div>
         <!-- REWARD with reaction visual -->
         <div class="rounded-2xl border bg-card/70 glass-panel p-6 tilt-3d tilt-hover space-y-4">
-          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-violet-600 dark:text-violet-300">
-            <span class="h-7 w-7 rounded-lg bg-violet-500/12 border border-violet-500/30 inline-flex items-center justify-center">R</span>
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-red-300">
+            <span class="h-7 w-7 rounded-lg bg-red-500/12 border border-red-500/30 inline-flex items-center justify-center">R</span>
             Reward
           </div>
           <h3 class="font-semibold">Learn from the reaction, on the next turn</h3>
@@ -262,7 +262,7 @@ const steps = [
       <div class="orb orb-cyan orb-float-a h-72 w-72 -left-20 top-10" />
       <div class="max-w-6xl mx-auto px-4 lg:px-6 py-14 grid lg:grid-cols-2 gap-4 items-stretch">
       <div v-reveal class="rounded-2xl border bg-card/70 glass-panel p-6 space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Scoring that can’t be flattered</h2>
+        <h2 class="text-2xl lg:text-3xl font-semibold tracking-tight">Scoring that can’t be flattered</h2>
         <p class="text-sm text-muted-foreground leading-relaxed">
           Every reaction is scored on two separate axes, was the <strong>answer</strong> good, and was
           the <strong>shape</strong> good. Only the shape moves the format engine. A polite “thanks!”
@@ -284,7 +284,7 @@ const steps = [
       </div>
 
       <div v-reveal="100" class="rounded-2xl border bg-card/70 glass-panel p-6 space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Learns like a scientist</h2>
+        <h2 class="text-2xl lg:text-3xl font-semibold tracking-tight">Learns like a scientist</h2>
         <p class="text-sm text-muted-foreground leading-relaxed">
           It learns the way a careful scientist would: lean on the formats that earned the best reactions,
           keep a deliberate sliver of curiosity, never get stuck on a lucky early winner.
@@ -293,10 +293,10 @@ const steps = [
           next pick = proven results + a measured dose of curiosity
           <div class="mt-1 text-[11px]">
             <span class="text-primary">lean on what works</span> +
-            <span class="text-violet-600 dark:text-violet-300"> keep testing what might</span>
+            <span class="text-red-300"> keep testing what might</span>
           </div>
         </div>
-        <div class="h-28 text-violet-600 dark:text-violet-300"><VizChart kind="bars" /></div>
+        <div class="h-28 text-red-300"><VizChart kind="bars" /></div>
         <ul class="space-y-2 text-sm text-muted-foreground">
           <li class="flex gap-2"><span class="text-primary">•</span> Decisions computed live, nothing cached, nothing stale.</li>
           <li class="flex gap-2"><span class="text-primary">•</span> Per user <em>and</em> per question type, comparisons and definitions learn separately.</li>
@@ -327,9 +327,9 @@ const steps = [
           </div>
         </div>
         <div class="grid grid-cols-2 gap-3">
-          <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-violet-600 dark:text-violet-300"><VizChart kind="bars" /></div></div>
+          <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-red-300"><VizChart kind="bars" /></div></div>
           <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-primary flex items-center justify-center"><VizChart kind="donut" /></div></div>
-          <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-cyan-400"><VizChart kind="area" /></div></div>
+          <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-red-400"><VizChart kind="area" /></div></div>
           <div class="rounded-2xl border bg-card/80 p-4 viz-card"><div class="h-24 text-primary"><VizChart kind="iso" /></div></div>
         </div>
       </div>

@@ -113,7 +113,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
   border: 1px solid var(--border);
   border-radius: 11px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 44px -18px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(180, 190, 255, 0.06);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transform: translateZ(var(--z));
   transform-style: preserve-3d;
   animation:
@@ -163,7 +163,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 .cc-mini { display: flex; align-items: center; gap: 9px; }
 .ava {
   width: 26px; height: 26px; flex: none; display: grid; place-items: center;
-  border-radius: 999px; background: var(--accent); color: #fff;
+  border-radius: 999px; background: var(--accent); color: var(--accent-foreground);
   font: 600 11px/1 'Geist', sans-serif;
 }
 .cc-sub { margin-top: 3px; font-size: 11px; color: var(--muted-foreground); }

@@ -84,8 +84,8 @@ function excite(n: { x: number; y: number }) {
   >
     <defs>
       <radialGradient id="nb-glow" cx="50%" cy="42%" r="60%">
-        <stop offset="0%" stop-color="#3b63c4" stop-opacity="0.16" />
-        <stop offset="100%" stop-color="#3b63c4" stop-opacity="0" />
+        <stop offset="0%" stop-color="#d10006" stop-opacity="0.16" />
+        <stop offset="100%" stop-color="#d10006" stop-opacity="0" />
       </radialGradient>
       <filter id="nb-blur" x="-60%" y="-60%" width="220%" height="220%">
         <feGaussianBlur stdDeviation="2.2" />

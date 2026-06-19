@@ -63,7 +63,7 @@ onUnmounted(() => {
         class="h-1 rounded-full transition-all duration-500"
         :class="i === idx ? 'w-5 bg-primary/80' : 'w-1.5 bg-muted-foreground/30'"
       />
-      <span class="ml-auto text-[9px] uppercase tracking-wider text-muted-foreground/70">same answer · new shape</span>
+      <span class="ml-auto text-[9px] uppercase tracking-wider text-muted-foreground">same answer · new shape</span>
     </div>
   </div>
 </template>

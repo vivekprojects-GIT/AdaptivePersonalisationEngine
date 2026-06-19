@@ -23,8 +23,8 @@ const metrics = [
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10" v-reveal>
-      <div v-for="(m, i) in metrics" :key="i" class="metric" :style="{ '--d': i * 60 + 'ms' }">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+      <div v-for="(m, i) in metrics" :key="i" class="metric" v-reveal="i * 70">
         <div class="m-num"><span class="n">{{ m.num }}</span><span v-if="m.unit" class="u">{{ m.unit }}</span></div>
         <p class="m-cap">{{ m.cap }}</p>
       </div>
@@ -44,7 +44,7 @@ const metrics = [
 }
 .metric:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 40px -20px rgba(63, 99, 196, 0.4);
+  box-shadow: 0 18px 40px -20px rgba(255, 6, 10, 0.4);
 }
 .m-num {
   display: flex; align-items: baseline; gap: 5px;

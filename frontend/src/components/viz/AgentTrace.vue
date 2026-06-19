@@ -103,7 +103,7 @@ const steps = computed(() => [
         <div v-if="i < steps.length - 1" class="absolute left-[11px] top-6 bottom-0 w-px transition-colors duration-500"
           :class="status(i) === 'done' ? 'bg-primary/50' : 'bg-border'" />
         <div :id="s.key === 'reward' ? 'trace-reward-slot' : undefined"
-          class="absolute left-0 top-0.5 h-[23px] w-[23px] rounded-full border-2 flex items-center justify-center transition-all duration-400"
+          class="absolute left-0 top-0.5 h-[23px] w-[23px] rounded-full border-2 flex items-center justify-center transition-all duration-500"
           :class="{
             'border-border bg-background/60': status(i) === 'idle',
             'border-primary bg-primary/15 trace-pulse': status(i) === 'active',
@@ -130,7 +130,7 @@ const steps = computed(() => [
       </div>
     </div>
 
-    <p class="text-[10px] text-muted-foreground/70 mt-3 pt-3 border-t leading-relaxed">
+    <p class="text-[10px] text-muted-foreground mt-3 pt-3 border-t leading-relaxed">
       This is the real pipeline for every message, the same one call your own agents would make.
     </p>
   </div>

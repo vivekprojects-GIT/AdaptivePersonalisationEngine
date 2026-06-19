@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
+import FormatField from '@/components/viz/FormatField.vue'
 import { clearAccessToken, getAccessToken } from '@/lib/auth'
 import { clearSessionUsername, setSessionUsername } from '@/lib/sessionUser'
 import { getThemeMode, setThemeMode, type ThemeMode } from '@/lib/theme'
@@ -80,17 +81,19 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col text-foreground">
+  <div class="min-h-screen flex flex-col text-foreground relative">
+    <!-- subtle format-field backdrop — APE's core idea: many answer formats, one chosen -->
+    <div class="fixed inset-0 z-0 opacity-70 pointer-events-none" aria-hidden="true"><FormatField /></div>
     <!-- ===================== TOP NAV ===================== -->
     <header class="sticky top-0 z-50 glass-panel border-b/70">
       <div class="max-w-7xl mx-auto px-4 lg:px-6 h-[52px] flex items-center justify-between gap-4">
         <!-- brand -->
         <RouterLink to="/" class="flex items-center gap-2.5 min-w-0">
           <svg viewBox="0 0 100 100" class="h-7 w-7" aria-hidden="true">
-            <rect x="2" y="2" width="96" height="96" rx="27" fill="#15140d" />
-            <rect x="26" y="31" width="48" height="9" rx="4" fill="#eceef6" />
-            <rect x="26" y="46" width="48" height="9" rx="4" fill="#4f7fe0" />
-            <rect x="26" y="61" width="32" height="9" rx="4" fill="#6b6b5e" />
+            <rect x="2" y="2" width="96" height="96" rx="27" fill="#131316" />
+            <rect x="26" y="31" width="48" height="9" rx="4" fill="#ffffff" />
+            <rect x="26" y="46" width="48" height="9" rx="4" fill="#ff060a" />
+            <rect x="26" y="61" width="32" height="9" rx="4" fill="#ff5c60" />
           </svg>
           <span class="font-semibold text-[15px] tracking-tight">APE</span>
         </RouterLink>
@@ -117,7 +120,7 @@ onMounted(async () => {
           <RouterLink
             v-if="!isChatRoute"
             to="/app/chat"
-            class="btn-premium hidden sm:inline-flex items-center gap-1.5 h-8 px-3.5 rounded-md text-[13px] font-medium text-primary-foreground border border-violet-400/15"
+            class="btn-premium hidden sm:inline-flex items-center gap-1.5 h-8 px-3.5 rounded-md text-[13px] font-medium text-primary-foreground border border-red-400/15"
           >
             Open chat
           </RouterLink>
@@ -154,7 +157,7 @@ onMounted(async () => {
     </header>
 
     <!-- ===================== CONTENT ===================== -->
-    <main class="flex-1 min-h-0 flex flex-col" :class="isChatRoute ? 'overflow-hidden' : 'overflow-y-auto'">
+    <main class="relative z-10 flex-1 min-h-0 flex flex-col" :class="isChatRoute ? 'overflow-hidden' : 'overflow-y-auto'">
       <section
         class="flex-1 min-h-0 flex flex-col"
         :class="isChatRoute ? 'p-1 lg:p-2 overflow-hidden' : 'p-0'"

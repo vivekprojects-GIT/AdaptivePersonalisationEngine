@@ -4,108 +4,109 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Cosmic / Universe theme — deep-space midnight, starlight ink, electric
-     violet accent with a cosmic-cyan secondary. Dark-first. */
-  --background: #0a0b16;
-  --foreground: #e8e9f5;
-  --card: #13152a;
-  --card-foreground: #e8e9f5;
-  --popover: #15172e;
-  --popover-foreground: #f2f3fb;
-  --primary: #c4b5fd;
-  --primary-foreground: #0a0b16;
-  --secondary: #1a1d38;
-  --secondary-foreground: #e8e9f5;
-  --muted: #1a1d38;
-  --muted-foreground: #9aa0c4;
-  --accent: #8b5cf6;
+  /* TRON theme — near-black base, white ink, TRON red (#ff060a) brand accent.
+     Black + red + white, techy and high-contrast. Dark-first. */
+  --background: #0a0a0c;
+  --foreground: #ffffff;
+  --card: #131316;
+  --card-foreground: #ffffff;
+  --popover: #161619;
+  --popover-foreground: #ffffff;
+  --primary: #ff2b30;
+  --primary-foreground: #ffffff;
+  --secondary: #1c1c20;
+  --secondary-foreground: #ffffff;
+  --muted: #1c1c20;
+  --muted-foreground: #9b9ba3;
+  --accent: #ff060a;
   --accent-foreground: #ffffff;
   --destructive: #fb7185;
-  --destructive-foreground: #0a0b16;
-  --border: rgba(180, 190, 255, 0.12);
-  --input: rgba(180, 190, 255, 0.16);
-  --ring: #8b5cf6;
-  /* deep-violet tint + bright violet ink for the metric/stat cards */
-  --accent-soft: #1d1b3e;
-  --accent-strong: #a78bfa;
-  /* --cta is the violet accent fill (buttons, highlight mark, live dot). */
-  --cta: #8b5cf6;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.16);
+  --ring: #ff060a;
+  /* deep red tint + bright red ink for the metric/stat cards */
+  --accent-soft: #2a0a0c;
+  --accent-strong: #ff4a4e;
+  /* --cta is the TRON-red accent fill (buttons, highlight mark, live dot). */
+  --cta: #ff060a;
   --cta-foreground: #ffffff;
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* TRON-red chart ramp — brand red through light red/rose tints, no amber/sky. */
+  --chart-1: oklch(0.62 0.245 25.5);
+  --chart-2: oklch(0.7 0.2 22);
+  --chart-3: oklch(0.78 0.16 20);
+  --chart-4: oklch(0.55 0.22 27);
+  --chart-5: oklch(0.84 0.1 18);
   --radius: 0.625rem;
-  --sidebar: #0c0d1c;
-  --sidebar-foreground: #e8e9f5;
-  --sidebar-primary: #8b5cf6;
+  --sidebar: #0c0c0e;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ff060a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #171a32;
-  --sidebar-accent-foreground: #e8e9f5;
-  --sidebar-border: rgba(180, 190, 255, 0.10);
-  --sidebar-ring: #8b5cf6;
-  --glass-bg: rgba(19, 21, 42, 0.62);
-  --glass-bg-strong: rgba(19, 21, 42, 0.8);
-  --glass-border: rgba(180, 190, 255, 0.10);
+  --sidebar-accent: #1a1a1d;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.10);
+  --sidebar-ring: #ff060a;
+  --glass-bg: rgba(16, 16, 19, 0.62);
+  --glass-bg-strong: rgba(16, 16, 19, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.10);
   --glass-shadow: rgba(0, 0, 0, 0.5);
-  --bg-primary: #0d0f1e;
-  --bg-secondary: #13152a;
-  --bg-tertiary: #1a1d38;
-  --bg-overlay: rgba(10, 11, 22, 0.84);
+  --bg-primary: #08080a;
+  --bg-secondary: #131316;
+  --bg-tertiary: #1c1c20;
+  --bg-overlay: rgba(0, 0, 0, 0.84);
   --success: #34d399;
-  --warning: #fbbf24;
+  --warning: #f5a623;
   --error: #fb7185;
-  --info: #22d3ee;
-  --accent-primary: #c4b5fd;
-  --accent-secondary: #22d3ee;
-  --accent-tertiary: #8b5cf6;
-  --text-primary: #e8e9f5;
-  --text-secondary: #9aa0c4;
-  --text-tertiary: #7a80a6;
-  --text-muted: #5a5f80;
-  --border-light: rgba(180, 190, 255, 0.08);
-  --border-medium: rgba(180, 190, 255, 0.14);
-  --border-strong: rgba(180, 190, 255, 0.22);
+  --info: #ff5c60;
+  --accent-primary: #ff2b30;
+  --accent-secondary: #ff5c60;
+  --accent-tertiary: #ff060a;
+  --text-primary: #ffffff;
+  --text-secondary: #9b9ba3;
+  --text-tertiary: #74747c;
+  --text-muted: #54545b;
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.22);
 }
 
 .dark {
-  /* Cosmic — a touch deeper than :root so the toggle is a subtle shift, never
-     a broken theme. Same violet/cyan identity. */
-  --background: #07070f;
-  --foreground: #e8e9f5;
-  --card: #101226;
-  --card-foreground: #e8e9f5;
-  --popover: #12142a;
-  --popover-foreground: #f2f3fb;
-  --primary: #c4b5fd;
-  --primary-foreground: #07070f;
-  --secondary: #171a32;
-  --secondary-foreground: #e8e9f5;
-  --muted: #171a32;
-  --muted-foreground: #9aa0c4;
-  --accent: #8b5cf6;
+  /* TRON — a touch deeper than :root so the toggle is a subtle shift, never
+     a broken theme. Same black / red / white identity. */
+  --background: #050507;
+  --foreground: #ffffff;
+  --card: #0f0f12;
+  --card-foreground: #ffffff;
+  --popover: #141417;
+  --popover-foreground: #ffffff;
+  --primary: #ff2b30;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1d;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1d;
+  --muted-foreground: #9b9ba3;
+  --accent: #ff060a;
   --accent-foreground: #ffffff;
   --destructive: #fb7185;
-  --destructive-foreground: #07070f;
-  --border: rgba(180, 190, 255, 0.12);
-  --input: rgba(180, 190, 255, 0.16);
-  --ring: #8b5cf6;
-  --accent-soft: #1a1838;
-  --accent-strong: #a78bfa;
-  --cta: #8b5cf6;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.16);
+  --ring: #ff060a;
+  --accent-soft: #240809;
+  --accent-strong: #ff4a4e;
+  --cta: #ff060a;
   --cta-foreground: #ffffff;
-  --sidebar: #0a0a16;
-  --sidebar-foreground: #e8e9f5;
-  --sidebar-primary: #8b5cf6;
+  --sidebar: #070709;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ff060a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #171a32;
-  --sidebar-accent-foreground: #e8e9f5;
-  --sidebar-border: rgba(180, 190, 255, 0.10);
-  --sidebar-ring: #8b5cf6;
-  --glass-bg: rgba(16, 18, 38, 0.55);
-  --glass-bg-strong: rgba(16, 18, 38, 0.72);
-  --glass-border: rgba(180, 190, 255, 0.08);
+  --sidebar-accent: #1a1a1d;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.10);
+  --sidebar-ring: #ff060a;
+  --glass-bg: rgba(14, 14, 17, 0.55);
+  --glass-bg-strong: rgba(14, 14, 17, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: rgba(0, 0, 0, 0.6);
 }
 
@@ -189,8 +190,11 @@
   --shadow-md: 0 2px 4px rgb(15 23 42 / 0.04), 0 8px 24px -8px rgb(15 23 42 / 0.14);
   --shadow-lg: 0 4px 8px rgb(15 23 42 / 0.05), 0 18px 44px -16px rgb(15 23 42 / 0.22);
   /* Refined, neutral elevation — a hairline ring + soft shadow, not a colored glow. */
-  --shadow-glow: 0 0 0 1px rgba(24, 24, 27, 0.06),
-    0 10px 30px -12px rgba(24, 24, 27, 0.18);
+  --shadow-glow: 0 0 0 1px rgba(20, 20, 24, 0.06),
+    0 10px 30px -12px rgba(20, 20, 24, 0.18);
+  /* Accent glow — the brand TRON-red bloom for primary hover/focus states. */
+  --shadow-glow-accent: 0 0 0 1px rgba(255, 6, 10, 0.4),
+    0 14px 34px -12px rgba(255, 6, 10, 0.55);
 }
 .dark {
   --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
@@ -224,11 +228,11 @@
 @layer base {
   body {
     background-color: var(--background);
-    /* Cosmic nebula — violet bloom top-center, cyan haze top-right, a deep
-       violet wash lower-left. Reads as deep space behind the starfield. */
+    /* Cosmic nebula — TRON-red bloom top-center, lighter red haze top-right, a
+       deep red wash lower-left. Reads as deep space behind the starfield. */
     background-image:
       radial-gradient(1200px 760px at 50% -8%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 60%),
-      radial-gradient(820px 620px at 88% 10%, color-mix(in oklab, #22d3ee 14%, transparent), transparent 58%),
+      radial-gradient(820px 620px at 88% 10%, color-mix(in oklab, #ff5c60 14%, transparent), transparent 58%),
       radial-gradient(760px 700px at 6% 36%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 62%);
     background-attachment: fixed;
     position: relative;
@@ -346,7 +350,7 @@
   text-transform: uppercase;
   color: var(--primary);
 }
-/* Yellow step number badge with ink digit. */
+/* TRON-red step number badge with white digit. */
 .step-num {
   display: inline-flex;
   align-items: center;
@@ -355,11 +359,11 @@
   height: 40px;
   border-radius: 13px;
   background: var(--cta);
-  color: #0f1422;
+  color: #ffffff;
   font-weight: 700;
   font-size: 18px;
 }
-/* Brand light-section heading accent words in teal (echoes the hero "shape"),
+/* Brand light-section heading accent words in TRON red (echoes the hero "shape"),
    so light sections read as part of the product, not a generic template. */
 section:not(.dark) h2 .text-muted-foreground {
   color: var(--primary);
@@ -433,7 +437,7 @@ section:not(.dark) h2 .text-muted-foreground {
   border-color: var(--border);
 }
 
-/* The "learned / reward / banked" signal is APE's core value — brand blue,
+/* The "learned / reward / banked" signal is APE's core value — brand TRON red,
    not a generic success green (which clashed with the theme). */
 .ape-chip-pos {
   background: color-mix(in oklab, var(--accent) 13%, transparent);
@@ -505,13 +509,13 @@ section:not(.dark) h2 .text-muted-foreground {
   pointer-events: none;
   will-change: transform;
 }
-/* ONE ambient family — every page glows the same violet/indigo, so the
+/* ONE ambient family — every page glows the same TRON red, so the
    backdrop never shifts hue between sections or routes. (Green/cyan orbs
    over near-black read as muddy brown — never use status colors ambiently.) */
-.orb-cyan    { background: color-mix(in oklab, #5eead4 50%, transparent); }
-.orb-violet  { background: color-mix(in oklab, var(--primary) 45%, transparent); }
-.orb-emerald { background: color-mix(in oklab, #4f7fe0 35%, transparent); }
-.orb-amber   { background: color-mix(in oklab, #6f9bf0 45%, transparent); }
+.orb-cyan    { background: color-mix(in oklab, #ffb0b2 50%, transparent); }
+.orb-violet  { background: color-mix(in oklab, var(--accent) 45%, transparent); }
+.orb-emerald { background: color-mix(in oklab, var(--accent-strong) 40%, transparent); }
+.orb-amber   { background: color-mix(in oklab, var(--accent) 45%, transparent); }
 
 @keyframes orbFloatA {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
@@ -584,14 +588,14 @@ section:not(.dark) h2 .text-muted-foreground {
   animation: ringSpin 18s linear infinite;
   pointer-events: none;
 }
-/* Sun variant — lime corona sweep for the hero system. */
+/* Sun variant — TRON-red corona sweep for the hero system. */
 .glow-ring-sun {
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    color-mix(in oklab, #4f7fe0 34%, transparent) 90deg,
+    color-mix(in oklab, #ff060a 34%, transparent) 90deg,
     transparent 180deg,
-    color-mix(in oklab, #2dd4bf 22%, transparent) 270deg,
+    color-mix(in oklab, #ff3b3f 22%, transparent) 270deg,
     transparent 360deg
   );
 }
@@ -727,7 +731,7 @@ section:not(.dark) h2 .text-muted-foreground {
   margin-right: 0.22em; /* inline-block spans swallow whitespace */
 }
 
-/* Accent highlighter — the one word that carries the brand color, white on blue. */
+/* Accent highlighter — the one word that carries the brand color, white ink on TRON red. */
 .hl-accent {
   background: var(--cta);
   color: #ffffff;
@@ -772,12 +776,12 @@ section:not(.dark) h2 .text-muted-foreground {
 }
 .orbit-ring-2 {
   inset: 16%;
-  border-color: color-mix(in oklab, #3b63c4 24%, transparent);
+  border-color: color-mix(in oklab, #d10006 24%, transparent);
   animation: orbitSpin2 26s linear infinite reverse;
 }
 .orbit-ring-2::before {
-  background: #22d3ee;
-  box-shadow: 0 0 12px 2px color-mix(in oklab, #22d3ee 55%, transparent);
+  background: #ff5c60;
+  box-shadow: 0 0 12px 2px color-mix(in oklab, #ff5c60 55%, transparent);
 }
 @keyframes orbitSpin2 {
   from { transform: rotateX(62deg) rotateY(18deg) rotateZ(0deg); }
@@ -793,8 +797,8 @@ section:not(.dark) h2 .text-muted-foreground {
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background: #3b63c4;
-  box-shadow: 0 0 10px 2px color-mix(in oklab, #3b63c4 55%, transparent);
+  background: #d10006;
+  box-shadow: 0 0 10px 2px color-mix(in oklab, #d10006 55%, transparent);
 }
 .orbit-ring-2::after {
   background: color-mix(in oklab, var(--primary) 85%, white);
@@ -809,8 +813,8 @@ section:not(.dark) h2 .text-muted-foreground {
 .orbit-ring-3::before {
   width: 6px;
   height: 6px;
-  background: #22d3ee;
-  box-shadow: 0 0 12px 2px color-mix(in oklab, #22d3ee 50%, transparent);
+  background: #ff5c60;
+  box-shadow: 0 0 12px 2px color-mix(in oklab, #ff5c60 50%, transparent);
 }
 .orbit-ring-3::after {
   background: var(--primary);
@@ -903,17 +907,17 @@ section:not(.dark) h2 .text-muted-foreground {
   -webkit-mask-image: linear-gradient(to bottom, black, color-mix(in oklab, black 55%, transparent));
 }
 
-/* The sun card — crisp ink shadow plus a soft lime halo; flat and confident
+/* The sun card — crisp ink shadow plus a soft TRON-red glow; flat and confident
    on paper, glowing on the dark billboard. */
 .hero-sun {
   box-shadow:
-    0 0 0 1px color-mix(in oklab, #2dd4bf 45%, transparent),
-    0 0 70px -8px color-mix(in oklab, #4f7fe0 45%, transparent),
-    0 30px 60px -24px rgb(28 28 23 / 0.35);
+    0 0 0 1px color-mix(in oklab, #ff3b3f 45%, transparent),
+    0 0 70px -8px color-mix(in oklab, #ff060a 45%, transparent),
+    0 30px 60px -24px rgb(10 10 12 / 0.35);
 }
 
 /* Core badge docked to the sun card's corner — names the engine. The
-   signature lime chip: bright fill, ink text. */
+   signature TRON-red chip: bright fill, white ink. */
 .core-badge {
   position: absolute;
   top: -13px;
@@ -926,8 +930,8 @@ section:not(.dark) h2 .text-muted-foreground {
   letter-spacing: 0.02em;
   padding: 5px 11px;
   border-radius: 9999px;
-  color: #0f1422;
-  border: 1px solid rgb(28 28 23 / 0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   background: var(--cta);
   animation: corePulse 3.6s ease-in-out infinite;
 }
@@ -944,16 +948,16 @@ section:not(.dark) h2 .text-muted-foreground {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in oklab, #4f7fe0 55%, transparent);
+  border: 1px solid color-mix(in oklab, #ff060a 55%, transparent);
   background: radial-gradient(circle at 35% 30%,
-    color-mix(in oklab, #4f7fe0 50%, var(--card)),
-    color-mix(in oklab, #2dd4bf 16%, var(--card)) 70%);
+    color-mix(in oklab, #ff060a 50%, var(--card)),
+    color-mix(in oklab, #ff3b3f 16%, var(--card)) 70%);
   animation: corePulse 3.6s ease-in-out infinite;
   pointer-events: none;
 }
 @keyframes corePulse {
-  0%, 100% { box-shadow: 0 0 24px 0 color-mix(in oklab, #4f7fe0 40%, transparent); }
-  50%      { box-shadow: 0 0 42px 8px color-mix(in oklab, #4f7fe0 55%, transparent); }
+  0%, 100% { box-shadow: 0 0 24px 0 color-mix(in oklab, #ff060a 40%, transparent); }
+  50%      { box-shadow: 0 0 42px 8px color-mix(in oklab, #ff060a 55%, transparent); }
 }
 
 /* Camera-dolly entrance for the whole hero composition: it settles into
@@ -1027,7 +1031,7 @@ section:not(.dark) h2 .text-muted-foreground {
   .faq-body { transition: none; }
 }
 
-/* Cursor spotlight — a warm pool of sunlight that follows the pointer
+/* Cursor spotlight — a TRON-red pool of light that follows the pointer
    across the hero. Driven by a transform set in JS; screen blend keeps it
    luminous over the near-black base. */
 .hero-spotlight {
@@ -1038,7 +1042,7 @@ section:not(.dark) h2 .text-muted-foreground {
   height: 600px;
   border-radius: 9999px;
   pointer-events: none;
-  background: radial-gradient(circle, color-mix(in oklab, #4f7fe0 10%, transparent), transparent 62%);
+  background: radial-gradient(circle, color-mix(in oklab, #ff060a 10%, transparent), transparent 62%);
   mix-blend-mode: screen;
   opacity: 0;
   transition: opacity 500ms ease;
@@ -1054,40 +1058,40 @@ section:not(.dark) h2 .text-muted-foreground {
   background-size: 26px 26px;
 }
 
-/* Full-bleed hero: the 3D neuron brain is the background. Deep ink-teal so the
+/* Full-bleed hero: the 3D neuron brain is the background. Deep near-black so the
    additive glow of the neurons reads against it. */
 .neuron-hero {
   background:
-    radial-gradient(70% 90% at 78% 30%, rgba(20, 184, 166, 0.18), transparent 65%),
-    linear-gradient(180deg, #06120f 0%, #050d0b 60%, #040a09 100%);
+    radial-gradient(70% 90% at 78% 30%, rgba(255, 6, 10, 0.18), transparent 65%),
+    linear-gradient(180deg, #08080a 0%, #0a0a0c 60%, #000000 100%);
 }
 /* Darken the left so the headline stays readable over the neurons; let the
    right side stay open so the brain glows behind the answer card. */
 .hero-scrim {
   background: linear-gradient(
     100deg,
-    #050d0b 0%,
-    rgba(5, 13, 11, 0.72) 34%,
-    rgba(5, 13, 11, 0.30) 62%,
-    rgba(5, 13, 11, 0) 100%
+    #0a0a0c 0%,
+    rgba(0, 0, 0, 0.72) 34%,
+    rgba(0, 0, 0, 0.30) 62%,
+    rgba(0, 0, 0, 0) 100%
   );
 }
 /* Centered hero veil: darkest down the middle (behind the headline + card),
    fading out to the edges so the neurons glow around the centered content. */
 .hero-scrim-center {
   background:
-    radial-gradient(62% 78% at 50% 44%, rgba(5, 13, 11, 0.86) 0%, rgba(5, 13, 11, 0.5) 46%, rgba(5, 13, 11, 0) 78%),
-    linear-gradient(180deg, rgba(5, 13, 11, 0.4) 0%, transparent 18%, transparent 82%, rgba(5, 13, 11, 0.55) 100%);
+    radial-gradient(62% 78% at 50% 44%, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.26) 48%, rgba(0, 0, 0, 0) 78%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, transparent 18%, transparent 82%, rgba(0, 0, 0, 0.55) 100%);
 }
 /* Uniform-ish veil for centered dark sections so neurons glow but centered
    text/cards stay readable, with a touch more darkening top & bottom. */
 .section-scrim {
   background: linear-gradient(
     180deg,
-    rgba(5, 13, 11, 0.72) 0%,
-    rgba(5, 13, 11, 0.5) 26%,
-    rgba(5, 13, 11, 0.5) 74%,
-    rgba(5, 13, 11, 0.72) 100%
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.5) 26%,
+    rgba(0, 0, 0, 0.5) 74%,
+    rgba(0, 0, 0, 0.72) 100%
   );
 }
 
@@ -1449,20 +1453,28 @@ summary:focus-visible {
   color: transparent;
 }
 
-/* Primary CTA surface: electric-violet, white text, with a soft cosmic glow. */
+/* Primary CTA — a TRON-red gradient with a glass sheen, crisp ring, and a red
+   glow on hover. White ink on red. */
 .btn-premium {
-  background-image: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 58%, #7c3aed 100%);
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 44%),
+    linear-gradient(108deg, #c20007 0%, #ff060a 48%, #ff3b3f 100%);
   color: #ffffff;
+  border: 1px solid rgba(255, 130, 132, 0.55);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.25),
-    0 8px 28px -8px rgba(139, 92, 246, 0.55);
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 7px rgba(120, 0, 6, 0.35),
+    0 6px 22px -6px rgba(255, 6, 10, 0.6);
 }
 .btn-premium:hover {
-  filter: brightness(1.18);
+  filter: brightness(1.06) saturate(1.06);
+  border-color: rgba(255, 160, 162, 0.6);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.14),
-    var(--shadow-glow);
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 8px 30px -6px rgba(255, 6, 10, 0.7),
+    0 0 26px -2px rgba(255, 92, 96, 0.28);
 }
+.btn-premium:active { filter: brightness(0.97); }
 
 /* Chat composer: floating pill that lights up on focus. */
 .composer-shell {
@@ -1474,7 +1486,7 @@ summary:focus-visible {
 }
 .composer-shell:focus-within {
   border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
-  box-shadow: var(--shadow-glow);
+  box-shadow: var(--shadow-glow-accent);
 }
 
 /* Respect users who prefer less motion. */

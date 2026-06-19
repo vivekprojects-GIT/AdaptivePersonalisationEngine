@@ -63,14 +63,14 @@ const TONE_HEX: Record<string, string> = {
   success: '#16a34a',
   negative: '#dc2626',
   danger: '#dc2626',
-  warning: '#d97706',
+  warning: '#c20007',
   info: '#2563eb',
   neutral: '#475569',
   default: '#475569',
 }
 const BAR_HEX: Record<string, string> = {
   emerald: '#10b981',
-  amber: '#f59e0b',
+  amber: '#ff060a',
   red: '#ef4444',
   cyan: '#06b6d4',
   indigo: '#0f766e',

@@ -897,9 +897,9 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
           <span
             class="h-2 w-2 rounded-full shrink-0"
             :class="{
-              'bg-violet-500': healthOk === true,
+              'bg-emerald-500': healthOk === true,
               'bg-red-500': healthOk === false,
-              'bg-cyan-500 animate-pulse': healthOk === null,
+              'bg-red-500 animate-pulse': healthOk === null,
             }"
           />
           {{ healthOk === false ? 'offline' : healthOk === true ? 'online' : 'checking…' }}
@@ -949,18 +949,18 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
             class="flex items-center gap-2 normal-case font-normal text-[11px] rounded-full px-2.5 py-1.5 border max-w-[min(100%,20rem)] transition-colors"
             :class="
               widgetStreamPhase
-                ? 'border-cyan-500/45 bg-cyan-500/12 text-cyan-900 dark:text-cyan-100 shadow-sm shadow-black/20'
+                ? 'border-red-500/45 bg-red-500/12 text-red-900 dark:text-red-100 shadow-sm shadow-black/20'
                 : 'border-border/80 bg-muted/50 text-foreground/80'
             "
           >
             <span class="relative flex h-2 w-2 shrink-0">
               <span
                 v-if="widgetStreamPhase"
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-70"
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-70"
               />
               <span
                 class="relative inline-flex rounded-full h-2 w-2"
-                :class="widgetStreamPhase ? 'bg-cyan-500' : 'bg-primary'"
+                :class="widgetStreamPhase ? 'bg-red-500' : 'bg-primary'"
               />
             </span>
             <span class="truncate">{{ streamStatus || 'Working…' }}</span>
@@ -980,7 +980,7 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
             <div class="relative mb-5">
               <div class="orb orb-cyan orb-float-a h-28 w-28 -top-6 -left-8 opacity-40" />
               <div class="orb orb-violet orb-float-b h-28 w-28 -bottom-6 -right-8 opacity-40" />
-              <div class="relative h-16 w-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/12 border border-primary/30 flex items-center justify-center">
+              <div class="relative h-16 w-16 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-500/12 border border-primary/30 flex items-center justify-center">
                 <BoltIcon class="h-7 w-7 text-primary" />
               </div>
             </div>
@@ -1119,8 +1119,8 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
                   class="mt-2 inline-flex items-center gap-2 text-xs text-muted-foreground rounded-full border bg-background/60 px-3 py-1.5"
                 >
                   <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-70" />
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-70" />
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
                   </span>
                   Building widget…
                 </div>
@@ -1275,7 +1275,7 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, rgb(167 139 250), rgb(6 182 212));
+  background: linear-gradient(90deg, var(--primary), var(--accent-strong));
   opacity: 0.55;
   animation: typingPulse 1.1s infinite ease-in-out;
 }
@@ -1308,10 +1308,10 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
 @keyframes widgetPanelBreathe {
   0%,
   100% {
-    box-shadow: 0 1px 0 0 rgba(6, 182, 212, 0.14);
+    box-shadow: 0 1px 0 0 rgba(255, 6, 10, 0.14);
   }
   50% {
-    box-shadow: 0 10px 36px -4px rgba(6, 182, 212, 0.38);
+    box-shadow: 0 10px 36px -4px rgba(255, 6, 10, 0.38);
   }
 }
 
@@ -1327,29 +1327,29 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
   color: hsl(var(--primary));
   font-weight: 600;
 }
-/* Vanguard "can't visualize this" note, red callout. */
+/* Vanguard "can't visualize this" note, rose error callout (distinct from brand red). */
 .vanguard-note {
   margin-top: 0.6rem;
   padding: 0.5rem 0.75rem;
   border-radius: 0.6rem;
-  border: 1px solid hsl(0 72% 50% / 0.35);
-  background: hsl(0 80% 55% / 0.08);
-  color: hsl(0 70% 42%);
+  border: 1px solid hsl(350 89% 55% / 0.35);
+  background: hsl(351 95% 60% / 0.08);
+  color: hsl(347 77% 45%);
   font-size: 0.85rem;
   line-height: 1.45;
 }
 .vanguard-note :deep(strong),
 .vanguard-note strong {
-  color: hsl(0 72% 45%);
+  color: hsl(347 77% 48%);
   font-weight: 700;
 }
 :global(.dark) .vanguard-note {
-  color: hsl(0 85% 76%);
-  border-color: hsl(0 72% 60% / 0.4);
-  background: hsl(0 80% 55% / 0.12);
+  color: hsl(351 95% 78%);
+  border-color: hsl(351 95% 71% / 0.4);
+  background: hsl(351 95% 60% / 0.12);
 }
 :global(.dark) .vanguard-note strong {
-  color: hsl(0 85% 80%);
+  color: hsl(353 96% 82%);
 }
 /* "### Analysis" → a compact uppercase section label. */
 .assistant-markdown :deep(h1),
@@ -1424,5 +1424,11 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
   padding-left: 0.75rem;
   border-left: 3px solid hsl(var(--border));
   color: hsl(var(--muted-foreground));
+}
+
+/* Respect reduced-motion on the chat's continuous animations. */
+@media (prefers-reduced-motion: reduce) {
+  .typing-dot { animation: none; opacity: 0.6; }
+  .widget-glow { animation: none; }
 }
 </style>

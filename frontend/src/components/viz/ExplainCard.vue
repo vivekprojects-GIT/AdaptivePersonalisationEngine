@@ -30,7 +30,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 </script>
 
 <template>
-  <div class="rounded-2xl border bg-card p-4 shadow-lg shadow-violet-900/10">
+  <div class="rounded-2xl border bg-card p-4 shadow-lg shadow-red-900/10">
     <!-- chips: format · method · intent · reward (cross-fade per turn) -->
     <div class="text-xs text-muted-foreground mb-2 flex items-center gap-1.5 flex-wrap min-h-[22px]">
       <span class="font-medium text-foreground/80 mr-0.5">Assistant</span>
@@ -54,19 +54,19 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
         <!-- table -->
         <div v-if="s.fmt === 'table'" key="table" class="grid grid-cols-3 gap-x-3 gap-y-1.5 text-xs rounded-xl border bg-background/50 p-3">
           <div class="text-muted-foreground"></div><div class="font-medium text-center">HDHP</div><div class="font-medium text-center">Low deductible</div>
-          <div class="text-muted-foreground">Premium</div><div class="text-center tabular-nums text-violet-500">$210/mo</div><div class="text-center tabular-nums">$385/mo</div>
-          <div class="text-muted-foreground">Deductible</div><div class="text-center tabular-nums">$3,200</div><div class="text-center tabular-nums text-violet-500">$750</div>
-          <div class="text-muted-foreground">HSA eligible</div><div class="text-center text-violet-500">Yes</div><div class="text-center">No</div>
+          <div class="text-muted-foreground">Premium</div><div class="text-center tabular-nums text-red-500">$210/mo</div><div class="text-center tabular-nums">$385/mo</div>
+          <div class="text-muted-foreground">Deductible</div><div class="text-center tabular-nums">$3,200</div><div class="text-center tabular-nums text-red-500">$750</div>
+          <div class="text-muted-foreground">HSA eligible</div><div class="text-center text-red-500">Yes</div><div class="text-center">No</div>
         </div>
         <!-- bullets -->
         <ul v-else-if="s.fmt === 'bullets'" key="bullets" class="text-xs rounded-xl border bg-background/50 p-3 space-y-2">
-          <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-sm bg-violet-500 flex-none" />HDHP: <span class="text-foreground/90">$210/mo premium</span>, but a $3,200 deductible.</li>
-          <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-sm bg-violet-500 flex-none" />Low-deductible: pricier monthly, far less risk up front.</li>
-          <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-sm bg-violet-500 flex-none" />Healthy + want the HSA tax break? <span class="text-foreground/90">HDHP wins.</span></li>
+          <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-sm bg-red-500 flex-none" />HDHP: <span class="text-foreground/90">$210/mo premium</span>, but a $3,200 deductible.</li>
+          <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-sm bg-red-500 flex-none" />Low-deductible: pricier monthly, far less risk up front.</li>
+          <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-sm bg-red-500 flex-none" />Healthy + want the HSA tax break? <span class="text-foreground/90">HDHP wins.</span></li>
         </ul>
         <!-- one-liner -->
         <div v-else key="oneline" class="text-sm font-medium text-foreground rounded-xl border bg-background/50 p-3.5 leading-relaxed">
-          Go with the <span class="text-violet-600">HDHP</span> — lower premium, and the HSA tax break wins long-term.
+          Go with the <span class="text-red-600">HDHP</span> — lower premium, and the HSA tax break wins long-term.
         </div>
       </Transition>
     </div>
@@ -81,7 +81,7 @@ onUnmounted(() => { if (timer) clearInterval(timer) })
 </template>
 
 <style scoped>
-.body-slot { position: relative; min-height: 108px; }
+.body-slot { position: relative; min-height: 96px; display: grid; align-items: center; }
 .morph-enter-active, .morph-leave-active { transition: opacity 360ms cubic-bezier(0.16, 1, 0.3, 1), transform 360ms cubic-bezier(0.16, 1, 0.3, 1); }
 .morph-enter-from { opacity: 0; transform: translateY(10px); }
 .morph-leave-to { opacity: 0; transform: translateY(-10px); position: absolute; inset: 0; }

@@ -78,14 +78,14 @@ const rows: Row[] = [
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px 20px;
-  box-shadow: 0 1px 2px rgba(16, 22, 44, 0.04), 0 16px 34px -22px rgba(16, 22, 44, 0.22);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 16px 34px -22px rgba(0, 0, 0, 0.5);
 }
 
 /* ASK side */
 .ask { display: flex; align-items: center; gap: 11px; }
 .av {
   width: 34px; height: 34px; flex: none; border-radius: 999px;
-  background: var(--accent); color: #fff; display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-foreground); display: grid; place-items: center;
   font: 600 13px/1 'Geist', sans-serif;
 }
 .ask-t { display: flex; flex-direction: column; line-height: 1.35; }
@@ -97,7 +97,7 @@ const rows: Row[] = [
 .vs { display: flex; flex-direction: column; align-items: center; gap: 3px; }
 .vs .x {
   width: 26px; height: 26px; display: grid; place-items: center; border-radius: 999px;
-  background: rgba(251, 113, 133, 0.16); color: #fb7185; font-size: 13px; font-weight: 700;
+  background: color-mix(in oklab, var(--destructive) 16%, transparent); color: var(--destructive); font-size: 13px; font-weight: 700;
 }
 .vs-l { font: 600 8.5px/1 'JetBrains Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-foreground); }
 
@@ -106,16 +106,16 @@ const rows: Row[] = [
 .got-h { font: 600 9px/1 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-foreground); }
 .prev {
   margin-top: 7px; padding: 10px 12px; border-radius: 10px;
-  background: var(--secondary); border: 1px solid var(--border);
+  background: color-mix(in oklab, #000 28%, var(--card)); border: 1px solid var(--border-medium);
 }
 .wall { display: flex; flex-direction: column; gap: 4px; }
-.wall i { display: block; height: 5px; width: 100%; border-radius: 3px; background: color-mix(in oklab, var(--foreground) 16%, transparent); }
+.wall i { display: block; height: 5px; width: 100%; border-radius: 3px; background: color-mix(in oklab, var(--foreground) 28%, transparent); }
 .oneline { font-size: 14px; font-weight: 500; color: var(--foreground); }
 .chart { display: flex; align-items: flex-end; gap: 6px; height: 44px; }
-.chart i { flex: 1; border-radius: 3px 3px 0 0; background: color-mix(in oklab, var(--foreground) 20%, transparent); }
+.chart i { flex: 1; border-radius: 3px 3px 0 0; background: color-mix(in oklab, var(--foreground) 28%, transparent); }
 
-.verdict { margin-top: 9px; display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 500; color: #fb7185; }
-.verdict .dot { width: 6px; height: 6px; border-radius: 999px; background: #e11d48; flex: none; }
+.verdict { margin-top: 9px; display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 500; color: var(--destructive); }
+.verdict .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--destructive); flex: none; }
 
 .punch {
   margin: 40px auto 0; text-align: center; max-width: 640px;

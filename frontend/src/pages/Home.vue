@@ -8,13 +8,15 @@ import VizChart from '@/components/viz/VizChart.vue'
 import TechGlyph from '@/components/viz/TechGlyph.vue'
 import CountUp from '@/components/viz/CountUp.vue'
 import HeroCollage from '@/components/viz/HeroCollage.vue'
-import DotGrid from '@/components/viz/DotGrid.vue'
+import HeroBackdrop from '@/components/viz/HeroBackdrop.vue'
 import ProblemCollage from '@/components/viz/ProblemCollage.vue'
+import DecideIntents from '@/components/viz/DecideIntents.vue'
+import RewardScoring from '@/components/viz/RewardScoring.vue'
 import FormatWall from '@/components/viz/FormatWall.vue'
 import MetricCards from '@/components/viz/MetricCards.vue'
 import Testimonial from '@/components/viz/Testimonial.vue'
 import UseCaseGrid from '@/components/viz/UseCaseGrid.vue'
-import NeuralBrain from '@/components/viz/NeuralBrain.vue'
+import NeuralBrain3D from '@/components/viz/NeuralBrain3D.vue'
 import ArchFlow from '@/components/viz/ArchFlow.vue'
 import ApePlayground from '@/components/viz/ApePlayground.vue'
 import AgentTrace from '@/components/viz/AgentTrace.vue'
@@ -227,13 +229,13 @@ const brainSteps = [
 ]
 
 const techStack = [
-  { key: 'python', name: 'Python 3.12', role: 'service layer', color: 'text-violet-600 dark:text-violet-300' },
-  { key: 'stats', name: 'Adaptive Memory', role: 'expands in real time', color: 'text-violet-600 dark:text-violet-300' },
+  { key: 'python', name: 'Python 3.12', role: 'service layer', color: 'text-red-600 dark:text-red-300' },
+  { key: 'stats', name: 'Adaptive Memory', role: 'expands in real time', color: 'text-red-600 dark:text-red-300' },
   { key: 'claude', name: 'Claude', role: 'content generation', color: 'text-primary' },
-  { key: 'vue', name: 'Vue 3 · Vite', role: 'reference frontend', color: 'text-violet-300' },
-  { key: 'echarts', name: 'ECharts', role: 'live visualizations', color: 'text-cyan-300' },
-  { key: 'lambda', name: 'AWS Lambda', role: 'serverless compute', color: 'text-violet-300' },
-  { key: 'dynamodb', name: 'DynamoDB', role: 'production store', color: 'text-sky-300' },
+  { key: 'vue', name: 'Vue 3 · Vite', role: 'reference frontend', color: 'text-red-300' },
+  { key: 'echarts', name: 'ECharts', role: 'live visualizations', color: 'text-red-300' },
+  { key: 'lambda', name: 'AWS Lambda', role: 'serverless compute', color: 'text-red-300' },
+  { key: 'dynamodb', name: 'DynamoDB', role: 'production store', color: 'text-red-300' },
   { key: 'figma', name: 'Figma', role: 'design system', color: 'text-rose-300' },
 ]
 
@@ -291,16 +293,16 @@ const techRowB = techStack.slice(4)
  * as the tech stack). The point: nothing here is hardcoded; the map keys
  * itself by whatever domain your traffic carries. */
 const domainStrip = [
-  { name: 'Finance', dot: '#3b63c4' },
+  { name: 'Finance', dot: '#d10006' },
   { name: 'Healthcare', dot: '#34d399' },
   { name: 'Legal', dot: '#0f766e' },
-  { name: 'E-commerce', dot: '#22d3ee' },
-  { name: 'Education', dot: '#5eead4' },
-  { name: 'Insurance', dot: '#2dd4bf' },
-  { name: 'Manufacturing', dot: '#4f7fe0' },
+  { name: 'E-commerce', dot: '#ff5c60' },
+  { name: 'Education', dot: '#ffb0b2' },
+  { name: 'Insurance', dot: '#ff3b3f' },
+  { name: 'Manufacturing', dot: '#ff060a' },
   { name: 'Travel', dot: '#fb7185' },
-  { name: 'Energy', dot: '#38bdf8' },
-  { name: 'Customer support', dot: '#c4b5fd' },
+  { name: 'Energy', dot: '#ff5c60' },
+  { name: 'Customer support', dot: '#ff2b30' },
 ]
 
 /* Side-by-side: generic assistants vs an APE-powered app, same question.
@@ -402,10 +404,10 @@ const integrations = [
       <div class="max-w-6xl mx-auto px-4 lg:px-6 h-[52px] flex items-center justify-between gap-4">
         <RouterLink to="/" class="flex items-center gap-2.5 min-w-0">
           <svg viewBox="0 0 100 100" class="h-7 w-7" aria-hidden="true">
-            <rect x="2" y="2" width="96" height="96" rx="27" fill="#15140d" />
-            <rect x="26" y="31" width="48" height="9" rx="4" fill="#eceef6" />
-            <rect x="26" y="46" width="48" height="9" rx="4" fill="#4f7fe0" />
-            <rect x="26" y="61" width="32" height="9" rx="4" fill="#6b6b5e" />
+            <rect x="2" y="2" width="96" height="96" rx="27" fill="#131316" />
+            <rect x="26" y="31" width="48" height="9" rx="4" fill="#ffffff" />
+            <rect x="26" y="46" width="48" height="9" rx="4" fill="#ff060a" />
+            <rect x="26" y="61" width="32" height="9" rx="4" fill="#ff5c60" />
           </svg>
           <span class="font-semibold text-[15px] tracking-tight">APE</span>
         </RouterLink>
@@ -449,16 +451,18 @@ const integrations = [
       id="home"
       class="relative overflow-hidden scroll-mt-16"
     >
-      <!-- Interactive dot grid: reacts to the cursor with a 3D bulge -->
-      <DotGrid />
-      <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div class="flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
-          <div class="hero-late eyebrow" style="--d: 0.05s">
-          personalized answer formats
+      <!-- core-idea backdrop: drifting answer-format glyphs, one "chosen" (or a hero video when set) — + a centre scrim for legibility -->
+      <HeroBackdrop />
+      <div class="absolute inset-0 z-[1] pointer-events-none hero-scrim-center" aria-hidden="true" />
+      <!-- Centered copy over the brain-clone stage: the 3D scene reads on the sides,
+           the headline sits clean in the middle. -->
+      <div class="relative z-10 max-w-3xl mx-auto px-5 lg:px-8 min-h-[82vh] flex flex-col items-center justify-center text-center gap-6 py-24">
+        <div class="hero-late eyebrow" style="--d: 0.05s">
+          a human mind, cloned into your AI
           <span v-if="heroStats && heroStats.total_turns > 0" class="eyebrow-chip"><CountUp :end="heroStats.total_turns" /> learned</span>
           <span v-else class="eyebrow-chip">live</span>
         </div>
-        <h1 class="text-4xl sm:text-5xl lg:text-[52px] xl:text-[60px] font-semibold tracking-[-0.035em] leading-[1.06]">
+        <h1 class="text-4xl sm:text-5xl lg:text-[52px] xl:text-[60px] font-semibold tracking-[-0.035em] leading-[1.06] text-balance">
           <span class="hero-word" style="--d: 0.1s">Your</span>
           <span class="hero-word" style="--d: 0.2s">AI,</span><br />
           <span class="hero-word" style="--d: 0.32s">in</span>
@@ -466,12 +470,12 @@ const integrations = [
           <span class="hero-word" style="--d: 0.5s">user’s</span>
           <span class="hero-word hl-accent" style="--d: 0.58s">format</span>
         </h1>
-        <p class="hero-late text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl" style="--d: 0.5s">
+        <p class="hero-late text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto" style="--d: 0.78s">
           Most AI gives every user the same answer. APE learns who wants a table, who wants a
           two-line verdict, who needs a chart, then reshapes every reply to fit them. Drop it on
           top of any LLM, RAG, or agent.
         </p>
-        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-3" style="--d: 0.6s">
+        <div class="hero-late flex flex-wrap items-center justify-center gap-3" style="--d: 0.88s">
           <Button v-magnet :to="loggedIn ? '/app/chat' : '/login?mode=register'" class="btn-shine h-12 px-7 text-sm gap-2 shadow-md shadow-black/10">
             <ChatBubbleLeftRightIcon class="h-4 w-4" />
             {{ loggedIn ? 'Open the app' : 'Get started, it’s free' }}
@@ -481,7 +485,7 @@ const integrations = [
             How it works
           </Button>
         </div>
-        <div class="hero-late flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs text-muted-foreground" style="--d: 0.7s">
+        <div class="hero-late flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground" style="--d: 0.98s">
           <span>real-time memory</span>
           <span class="text-muted-foreground/40">·</span>
           <span>~<CountUp :end="3" suffix=" ms" /> decisions</span>
@@ -490,14 +494,6 @@ const integrations = [
           <span class="text-muted-foreground/40">·</span>
           <span>governed visuals</span>
         </div>
-
-        </div>
-
-        <!-- RIGHT: the product collage (central card + floating engine cards) -->
-        <div class="hero-late relative w-full max-w-lg mx-auto lg:ml-auto lg:max-w-none lg:pr-2" style="--d: 0.55s">
-          <HeroCollage />
-          <div class="core-badge">live memory</div>
-        </div>
       </div>
 
       <!-- Ramp-style live ticker — real numbers straight from the engine -->
@@ -505,8 +501,8 @@ const integrations = [
         <div class="max-w-6xl mx-auto px-4 lg:px-6 py-2.5 flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
           <span class="eyebrow">
             <span class="relative flex h-1.5 w-1.5">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4f7fe0] opacity-70" />
-              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4f7fe0]" />
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff060a] opacity-70" />
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#ff060a]" />
             </span>
             the engine at work
           </span>
@@ -529,11 +525,30 @@ const integrations = [
       </div>
     </section>
 
+    <!-- ================= LIVE DEMO — ONE QUESTION, EVERY PERSON ================= -->
+    <section class="relative max-w-6xl mx-auto px-5 lg:px-8 py-16 lg:py-24 scroll-mt-16">
+      <div v-reveal class="text-center max-w-2xl mx-auto mb-10">
+        <span class="eyebrow">see it live</span>
+        <h2 class="text-3xl lg:text-4xl font-semibold tracking-[-0.03em] mt-3">One question, every person’s shape</h2>
+        <p class="mt-3 text-muted-foreground">The same question, reshaped for each reader — watch APE pick the format in real time.</p>
+      </div>
+      <div class="hero-late relative w-full max-w-xl lg:max-w-2xl mx-auto" style="--d: 0.1s">
+        <HeroCollage />
+        <div class="core-badge">live memory</div>
+      </div>
+    </section>
+
     <!-- ================= PROBLEM: ONE ANSWER, WRONG SHAPE ================= -->
     <ProblemCollage />
 
+    <!-- ================= THE DECIDE MODEL — 6 INTENTS ================= -->
+    <DecideIntents />
+
     <!-- ================= FORMAT CATALOG WALL ================= -->
     <FormatWall />
+
+    <!-- ================= REWARD SCORING — CONTENT vs FORMAT ================= -->
+    <RewardScoring />
 
     <!-- ================= METRIC CARDS (blue/lavender) ================= -->
     <MetricCards />
@@ -547,23 +562,23 @@ const integrations = [
     <UseCaseGrid />
 
     <!-- ================= HOW IT WORKS, 3 STEPS ================= -->
-    <section class="relative max-w-6xl mx-auto px-5 lg:px-8 py-16 lg:py-20 scroll-mt-16">
+    <section class="relative max-w-6xl mx-auto px-5 lg:px-8 py-24 scroll-mt-16">
       <div v-reveal class="text-center mb-10">
         <span class="eyebrow">how it works</span>
-        <h2 class="text-3xl lg:text-4xl font-semibold tracking-[-0.02em] mt-3">Three steps, no setup</h2>
+        <h2 class="text-4xl lg:text-5xl font-semibold tracking-[-0.03em] mt-3">Three steps, no setup</h2>
       </div>
-      <div class="grid sm:grid-cols-3 gap-5">
-        <div v-reveal="0" class="rise-in rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div v-reveal="0" class="rise-in rounded-2xl border bg-card/70 glass-panel p-6 tilt-3d tilt-hover">
           <span class="step-num">1</span>
           <h3 class="text-lg font-semibold mt-4">A user asks</h3>
           <p class="text-sm text-muted-foreground mt-1.5 leading-relaxed">Someone asks your AI a question, exactly like they do now.</p>
         </div>
-        <div v-reveal="90" class="rise-in rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+        <div v-reveal="90" class="rise-in rounded-2xl border bg-card/70 glass-panel p-6 tilt-3d tilt-hover">
           <span class="step-num">2</span>
           <h3 class="text-lg font-semibold mt-4">APE picks the format</h3>
           <p class="text-sm text-muted-foreground mt-1.5 leading-relaxed">It looks at what that person liked before and picks the best shape for them, like a table, a chart, or a two line verdict.</p>
         </div>
-        <div v-reveal="180" class="rise-in rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+        <div v-reveal="180" class="rise-in rounded-2xl border bg-card/70 glass-panel p-6 tilt-3d tilt-hover">
           <span class="step-num">3</span>
           <h3 class="text-lg font-semibold mt-4">They get it their way</h3>
           <p class="text-sm text-muted-foreground mt-1.5 leading-relaxed">The same answer arrives in the format that person actually wants, and it gets sharper every reply.</p>
@@ -595,9 +610,9 @@ const integrations = [
       <div class="grid lg:grid-cols-3 gap-4 items-stretch">
 
         <!-- ChatGPT -->
-        <div v-reveal="100" class="rise-in rounded-3xl border bg-card/60 glass-panel p-5 flex flex-col">
+        <div v-reveal="100" class="rise-in rounded-3xl border bg-card/70 glass-panel p-5 flex flex-col">
           <div class="flex items-center gap-2 mb-4">
-            <span class="h-2.5 w-2.5 rounded-full bg-violet-400/80" />
+            <span class="h-2.5 w-2.5 rounded-full bg-muted-foreground/50" />
             <span class="text-sm font-medium">ChatGPT</span>
             <span class="ml-auto text-[10px] text-muted-foreground">same for every user</span>
           </div>
@@ -613,9 +628,9 @@ const integrations = [
         </div>
 
         <!-- Claude -->
-        <div v-reveal="160" class="rise-in rounded-3xl border bg-card/60 glass-panel p-5 flex flex-col">
+        <div v-reveal="160" class="rise-in rounded-3xl border bg-card/70 glass-panel p-5 flex flex-col">
           <div class="flex items-center gap-2 mb-4">
-            <span class="h-2.5 w-2.5 rounded-full bg-orange-400/80" />
+            <span class="h-2.5 w-2.5 rounded-full bg-red-400/70" />
             <span class="text-sm font-medium">Claude</span>
             <span class="ml-auto text-[10px] text-muted-foreground">one default style</span>
           </div>
@@ -631,7 +646,7 @@ const integrations = [
         </div>
 
         <!-- APE-powered app -->
-        <div v-reveal="220" class="rise-in rounded-3xl border border-violet-400/30 bg-card/70 glass-panel p-5 flex flex-col shadow-lg shadow-violet-500/10">
+        <div v-reveal="220" class="rise-in rounded-3xl border border-red-400/30 bg-card/70 glass-panel p-5 flex flex-col shadow-lg shadow-red-500/10">
           <div class="flex items-center gap-2 mb-3">
             <span class="h-2.5 w-2.5 rounded-full bg-primary" />
             <span class="text-sm font-medium">Your app + APE</span>
@@ -643,11 +658,11 @@ const integrations = [
             <button
               type="button"
               class="flex items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition-all cursor-pointer"
-              :class="comparePersona === 'priya' ? 'border-violet-400/40 bg-violet-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
+              :class="comparePersona === 'priya' ? 'border-red-400/40 bg-red-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
               :aria-pressed="comparePersona === 'priya'"
               @click="comparePersona = 'priya'"
             >
-              <span class="h-7 w-7 shrink-0 rounded-full bg-violet-500/20 border border-violet-400/30 flex items-center justify-center text-[11px] font-semibold text-primary">P</span>
+              <span class="h-7 w-7 shrink-0 rounded-full bg-red-500/20 border border-red-400/30 flex items-center justify-center text-[11px] font-semibold text-primary">P</span>
               <span class="min-w-0">
                 <span class="block text-[12px] font-medium truncate">Priya</span>
                 <span class="block text-[10px] text-muted-foreground truncate">reads the numbers first</span>
@@ -656,11 +671,11 @@ const integrations = [
             <button
               type="button"
               class="flex items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition-all cursor-pointer"
-              :class="comparePersona === 'marcus' ? 'border-violet-400/40 bg-violet-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
+              :class="comparePersona === 'marcus' ? 'border-red-400/40 bg-red-500/10' : 'hover:border-border opacity-70 hover:opacity-100'"
               :aria-pressed="comparePersona === 'marcus'"
               @click="comparePersona = 'marcus'"
             >
-              <span class="h-7 w-7 shrink-0 rounded-full bg-cyan-500/15 border border-cyan-400/25 flex items-center justify-center text-[11px] font-semibold text-cyan-600 dark:text-cyan-300">M</span>
+              <span class="h-7 w-7 shrink-0 rounded-full bg-red-500/15 border border-red-400/25 flex items-center justify-center text-[11px] font-semibold text-red-600 dark:text-red-300">M</span>
               <span class="min-w-0">
                 <span class="block text-[12px] font-medium truncate">Marcus</span>
                 <span class="block text-[10px] text-muted-foreground truncate">wants the verdict first</span>
@@ -682,10 +697,10 @@ const integrations = [
                 <div class="text-muted-foreground">Tax paid</div><div class="text-center">now</div><div class="text-center">at retirement</div>
               </div>
               <div class="grid grid-cols-3 gap-x-3 py-2 border-b border-border/40">
-                <div class="text-muted-foreground">Growth</div><div class="text-center text-violet-500 dark:text-violet-400">tax-free</div><div class="text-center">tax-deferred</div>
+                <div class="text-muted-foreground">Growth</div><div class="text-center text-red-500 dark:text-red-400">tax-free</div><div class="text-center">tax-deferred</div>
               </div>
               <div class="grid grid-cols-3 gap-x-3 py-2">
-                <div class="text-muted-foreground">Wins when</div><div class="text-center text-violet-500 dark:text-violet-400">rate rises</div><div class="text-center">rate falls</div>
+                <div class="text-muted-foreground">Wins when</div><div class="text-center text-red-500 dark:text-red-400">rate rises</div><div class="text-center">rate falls</div>
               </div>
             </div>
             <p class="text-[12.5px] leading-relaxed"><span class="font-medium">Verdict:</span> Roth. At 29 with rising income, today’s rate is likely the lowest you’ll ever pay.</p>
@@ -753,7 +768,7 @@ const integrations = [
             class="rise-in group rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover"
           >
             <div class="flex items-center justify-between mb-3.5">
-              <div class="h-9 w-9 rounded-xl border border-violet-400/20 bg-violet-500/10 flex items-center justify-center">
+              <div class="h-9 w-9 rounded-xl border border-red-400/20 bg-red-500/10 flex items-center justify-center">
                 <component :is="s.icon" class="h-4 w-4 text-primary" />
               </div>
               <div class="text-right">
@@ -803,7 +818,7 @@ const integrations = [
           </a>
         </div>
         <!-- live mockup: cycling answer card -->
-        <div class="scrolly-depth rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7">
+        <div class="scrolly-depth rounded-3xl border bg-card/70 glass-panel p-5 lg:p-7">
           <div v-tilt="6"><ExplainCard /></div>
         </div>
       </div>
@@ -824,7 +839,7 @@ const integrations = [
             See it on your next question <span aria-hidden="true">→</span>
           </RouterLink>
         </div>
-        <div class="lg:order-1 scrolly-depth-soft rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7">
+        <div class="lg:order-1 scrolly-depth-soft rounded-3xl border bg-card/70 glass-panel p-5 lg:p-7">
           <div v-tilt="6" class="max-w-sm mx-auto h-[420px]">
             <AgentTrace autoplay />
           </div>
@@ -848,8 +863,8 @@ const integrations = [
           </a>
         </div>
         <!-- live mockup: chart answer with redraw actions -->
-        <div class="scrolly-depth rounded-3xl border bg-card/60 glass-panel p-5 lg:p-7 viz-card">
-          <div v-tilt="6" class="rounded-2xl border bg-card p-4 shadow-lg shadow-violet-900/10">
+        <div class="scrolly-depth rounded-3xl border bg-card/70 glass-panel p-5 lg:p-7 viz-card">
+          <div v-tilt="6" class="rounded-2xl border bg-card p-4 shadow-lg shadow-red-900/10">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-medium">Quarterly deliveries by model</span>
               <span class="ape-chip">export anytime</span>
@@ -963,16 +978,16 @@ const integrations = [
               </span>
             </div>
           </div>
-          <p class="text-center text-[11px] text-muted-foreground/70 mt-2">
+          <p class="text-center text-[11px] text-muted-foreground mt-2">
             …and any domain your traffic carries, nothing here is hardcoded
           </p>
         </div>
 
         <div v-reveal="100" class="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 items-center mb-12">
-          <!-- living neural brain -->
-          <div class="relative rounded-3xl border bg-card/60 glass-panel p-6">
-            <div class="h-[320px]">
-              <NeuralBrain />
+          <!-- living 3D neural brain — neurons + synapses firing -->
+          <div class="relative rounded-3xl border bg-card/70 glass-panel p-6 overflow-hidden">
+            <div class="relative h-[340px]">
+              <NeuralBrain3D />
             </div>
             <div class="flex items-center justify-center gap-2 flex-wrap">
               <span class="ape-chip ape-chip-strategy">preference pathways</span>
@@ -1026,7 +1041,7 @@ const integrations = [
                 </div>
                 <div class="h-1.5 rounded-full bg-muted/60 overflow-hidden">
                   <div
-                    class="pref-bar h-full rounded-full bg-gradient-to-r from-violet-500 to-violet-400"
+                    class="pref-bar h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
                     :style="{ width: p.v * 100 + '%', animationDelay: pi * 0.15 + 's' }"
                   />
                 </div>
@@ -1088,10 +1103,10 @@ const integrations = [
             <span class="tabular-nums text-primary font-medium">μ {{ f.mu.toFixed(2) }}</span>
           </div>
           <p class="text-xs text-muted-foreground leading-relaxed">{{ f.insight }}</p>
-          <div class="text-[10px] text-muted-foreground/70">{{ f.n }} interactions · confidence grows with evidence</div>
+          <div class="text-[10px] text-muted-foreground">{{ f.n }} interactions · confidence grows with evidence</div>
         </div>
       </div>
-      <p v-reveal="160" class="text-center text-[11px] text-muted-foreground/70 mt-6">
+      <p v-reveal="160" class="text-center text-[11px] text-muted-foreground mt-6">
         Illustrative facets, every cell is recomputed live from real reactions, never frozen into a static persona.
       </p>
     </section>
@@ -1127,7 +1142,7 @@ const integrations = [
                 class="flex items-center justify-between rounded-xl border bg-background/50 px-3 py-2"
               >
                 <span class="text-xs">{{ tp.t }}</span>
-                <span class="inline-flex items-center gap-1 text-[11px] font-medium text-violet-400 tabular-nums">
+                <span class="inline-flex items-center gap-1 text-[11px] font-medium text-red-400 tabular-nums">
                   <ArrowTrendingUpIcon class="h-3 w-3" /> {{ tp.d }}
                 </span>
               </div>
@@ -1148,7 +1163,7 @@ const integrations = [
                 </div>
                 <div class="h-1.5 rounded-full bg-muted/60 overflow-hidden">
                   <div
-                    class="pref-bar h-full rounded-full bg-gradient-to-r from-violet-500 to-violet-400"
+                    class="pref-bar h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
                     :style="{ width: dm.v * 2.4 + '%', animationDelay: di * 0.12 + 's' }"
                   />
                 </div>
@@ -1248,7 +1263,7 @@ const integrations = [
               <h3 class="font-semibold text-sm">Trends over time</h3>
               <span class="ape-chip">line · area</span>
             </div>
-            <div class="h-32 text-cyan-500"><VizChart :key="'a' + (galleryReplay.area || 0)" kind="area" /></div>
+            <div class="h-32 text-red-500"><VizChart :key="'a' + (galleryReplay.area || 0)" kind="area" /></div>
           </div>
 
           <div class="rise-in rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover viz-card" :style="{ '--stagger': '0.07s' }" @pointerenter="rep('bars')">
@@ -1256,7 +1271,7 @@ const integrations = [
               <h3 class="font-semibold text-sm">Rankings &amp; totals</h3>
               <span class="ape-chip">bar</span>
             </div>
-            <div class="h-32 text-violet-600 dark:text-violet-400"><VizChart :key="'b' + (galleryReplay.bars || 0)" kind="bars" /></div>
+            <div class="h-32 text-red-600 dark:text-red-400"><VizChart :key="'b' + (galleryReplay.bars || 0)" kind="bars" /></div>
           </div>
 
           <div class="rise-in rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover viz-card" :style="{ '--stagger': '0.14s' }" @pointerenter="rep('iso')">
@@ -1280,7 +1295,7 @@ const integrations = [
               <h3 class="font-semibold text-sm">Multi-factor</h3>
               <span class="ape-chip">radar</span>
             </div>
-            <div class="h-32 text-cyan-500 flex items-center justify-center"><VizChart :key="'r' + (galleryReplay.radar || 0)" kind="radar" /></div>
+            <div class="h-32 text-red-500 flex items-center justify-center"><VizChart :key="'r' + (galleryReplay.radar || 0)" kind="radar" /></div>
           </div>
 
           <div class="rise-in rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover viz-card" :style="{ '--stagger': '0.35s' }" @pointerenter="rep('bubbles')">
@@ -1296,7 +1311,7 @@ const integrations = [
               <h3 class="font-semibold text-sm">Multi-series time</h3>
               <span class="ape-chip">timeseries · combo</span>
             </div>
-            <div class="h-32 text-violet-600 dark:text-violet-300"><VizChart :key="'l' + (galleryReplay.lines || 0)" kind="lines" /></div>
+            <div class="h-32 text-red-600 dark:text-red-300"><VizChart :key="'l' + (galleryReplay.lines || 0)" kind="lines" /></div>
           </div>
 
           <div class="rise-in rounded-2xl border bg-card/70 glass-panel p-5 tilt-3d tilt-hover viz-card md:col-span-2 lg:col-span-2" :style="{ '--stagger': '0.49s' }" @pointerenter="rep('heat')">
@@ -1307,7 +1322,7 @@ const integrations = [
             <div class="h-32"><VizChart :key="'h' + (galleryReplay.heat || 0)" kind="heat" /></div>
           </div>
         </div>
-        <p v-reveal="160" class="text-center text-[11px] text-muted-foreground/70 mt-5">
+        <p v-reveal="160" class="text-center text-[11px] text-muted-foreground mt-5">
           Hover any chart to watch it draw itself again, every visual in the product animates in live.
         </p>
       </div>
@@ -1343,7 +1358,7 @@ const integrations = [
             next pick = proven results + a measured dose of curiosity
           </div>
           <div class="text-[11px] text-muted-foreground mt-1.5">
-            <span class="text-primary font-medium">lean on what works</span> · <span class="text-violet-600 dark:text-violet-400 font-medium">keep testing what might</span>
+            <span class="text-primary font-medium">lean on what works</span> · <span class="text-red-600 dark:text-red-400 font-medium">keep testing what might</span>
             · computed live on every pick, never cached, never stale
           </div>
         </div>
@@ -1367,7 +1382,7 @@ const integrations = [
         </div>
 
         <!-- live architecture: where APE sits in a RAG / agentic stack -->
-        <div v-reveal="100" class="rounded-3xl border bg-card/60 glass-panel p-4 lg:p-8 mb-8 overflow-hidden">
+        <div v-reveal="100" class="rounded-3xl border bg-card/70 glass-panel p-4 lg:p-8 mb-8 overflow-hidden">
           <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
             <div class="flex items-center gap-2">
               <h3 class="font-semibold">Inside your stack</h3>
@@ -1416,7 +1431,7 @@ const integrations = [
   <span class="text-foreground/80">"signals"</span>: ["thumbs_up"]   <span class="text-muted-foreground/60">// reaction to last answer</span>
 }
 
-<span class="text-violet-600 dark:text-violet-300">→</span> {
+<span class="text-red-600 dark:text-red-300">→</span> {
   <span class="text-foreground/80">"selected_strategy"</span>: "comparison_table",
   <span class="text-foreground/80">"instruction"</span>: {
     "text": "Present the options as a
@@ -1477,7 +1492,7 @@ const integrations = [
             </div>
           </div>
         </div>
-        <p class="text-center text-[11px] text-muted-foreground/70 pt-1">hover to pause</p>
+        <p class="text-center text-[11px] text-muted-foreground pt-1">hover to pause</p>
       </div>
     </section>
 
@@ -1502,7 +1517,7 @@ const integrations = [
             :key="i"
             v-reveal="i * 50"
             class="rise-in rounded-2xl border bg-card/70 glass-panel overflow-hidden transition-colors"
-            :class="openFaq === i ? 'border-violet-400/30' : ''"
+            :class="openFaq === i ? 'border-red-400/30' : ''"
           >
             <button
               type="button"
@@ -1514,7 +1529,7 @@ const integrations = [
               <span class="text-[14.5px] font-medium leading-snug">{{ f.q }}</span>
               <span
                 class="shrink-0 h-6 w-6 rounded-full border flex items-center justify-center text-muted-foreground transition-transform duration-300"
-                :class="openFaq === i ? 'rotate-45 border-violet-400/40 text-primary' : ''"
+                :class="openFaq === i ? 'rotate-45 border-red-400/40 text-primary' : ''"
                 aria-hidden="true"
               >
                 <svg viewBox="0 0 12 12" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
@@ -1565,10 +1580,10 @@ const integrations = [
           <div class="space-y-3 lg:col-span-2 max-w-sm">
             <div class="flex items-center gap-2.5">
               <svg viewBox="0 0 100 100" class="h-8 w-8" aria-hidden="true">
-                <rect x="2" y="2" width="96" height="96" rx="27" fill="#15140d" />
-                <rect x="26" y="31" width="48" height="9" rx="4" fill="#eceef6" />
-                <rect x="26" y="46" width="48" height="9" rx="4" fill="#4f7fe0" />
-                <rect x="26" y="61" width="32" height="9" rx="4" fill="#6b6b5e" />
+                <rect x="2" y="2" width="96" height="96" rx="27" fill="#131316" />
+                <rect x="26" y="31" width="48" height="9" rx="4" fill="#ffffff" />
+                <rect x="26" y="46" width="48" height="9" rx="4" fill="#ff060a" />
+                <rect x="26" y="61" width="32" height="9" rx="4" fill="#ff5c60" />
               </svg>
               <span class="font-semibold">APE</span>
             </div>
@@ -1576,7 +1591,7 @@ const integrations = [
               The Adaptive Personalisation Engine. One headless call between your model and
               your user, learning the shape every answer should take.
             </p>
-            <p class="text-[11px] text-muted-foreground/70">The LLM owns the content · APE owns the format</p>
+            <p class="text-[11px] text-muted-foreground">The LLM owns the content · APE owns the format</p>
           </div>
           <!-- product -->
           <div class="space-y-3">
@@ -1598,7 +1613,7 @@ const integrations = [
             </div>
           </div>
         </div>
-        <div class="border-t pt-6 flex flex-wrap items-center justify-between gap-3 text-[11px] text-muted-foreground/70">
+        <div class="border-t pt-6 flex flex-wrap items-center justify-between gap-3 text-[11px] text-muted-foreground">
           <span>© 2026 APE · Adaptive Personalisation Engine</span>
           <span>~3 ms decisions · 18 formats · 9 signals · 6 intents</span>
         </div>

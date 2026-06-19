@@ -24,10 +24,10 @@
 <style scoped>
 .testi {
   position: relative; overflow: hidden;
-  margin: 24px auto; max-width: 90rem;
+  margin: 24px auto; max-width: 80rem;
   border-radius: 28px;
   background:
-    radial-gradient(120% 140% at 12% 0%, #21304f 0%, #141a2a 48%, #0c1018 100%);
+    radial-gradient(120% 140% at 12% 0%, color-mix(in oklab, var(--accent) 18%, #131316) 0%, #131316 48%, #0a0a0c 100%);
   color: #fff;
 }
 .inner { padding: 64px 40px 56px; max-width: 900px; }
@@ -46,7 +46,7 @@ blockquote {
 }
 @media (min-width: 768px) { blockquote { max-width: 24ch; } }
 .attr { display: flex; align-items: center; gap: 12px; margin-top: 36px; }
-.attr .dot { width: 40px; height: 40px; border-radius: 999px; background: linear-gradient(135deg, #6f9bf0, #3b63c4); flex: none; }
+.attr .dot { width: 40px; height: 40px; border-radius: 999px; background: linear-gradient(135deg, var(--accent-strong), var(--accent)); flex: none; }
 .attr b { display: block; font-size: 15px; }
 .attr span { font-size: 13px; color: rgba(255, 255, 255, 0.6); }
 </style>
