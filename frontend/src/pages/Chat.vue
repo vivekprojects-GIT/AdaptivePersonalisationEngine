@@ -785,7 +785,7 @@ function cleanAssistantText(raw: string | undefined | null) {
   return stripLeakedJson(noTags).trim()
 }
 
-// Vanguard "can't visualize this" notes: the model emits a NOTE line which we
+// "Can't visualize this" notes: the model emits a NOTE line which we
 // surface as a red callout (and strip from the prose body). Tolerant of the
 // markdown the model may wrap it in: `NOTE:`, `**Note:**`, `> Note:`, `- Note:`.
 function noteOf(line: string): string | null {
@@ -1098,7 +1098,7 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
                     <div
                       v-for="(n, ni) in extractNotes(cleanAssistantText(m.content))"
                       :key="'note-' + ni"
-                      class="vanguard-note"
+                      class="noviz-note"
                     >
                       <strong>Note:</strong> {{ n }}
                     </div>
@@ -1327,8 +1327,8 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
   color: hsl(var(--primary));
   font-weight: 600;
 }
-/* Vanguard "can't visualize this" note, rose error callout (distinct from brand red). */
-.vanguard-note {
+/* "Can't visualize this" note, rose error callout (distinct from brand red). */
+.noviz-note {
   margin-top: 0.6rem;
   padding: 0.5rem 0.75rem;
   border-radius: 0.6rem;
@@ -1338,17 +1338,17 @@ function downloadWidgetHtmlFor(m: ChatMessage, idx: number) {
   font-size: 0.85rem;
   line-height: 1.45;
 }
-.vanguard-note :deep(strong),
-.vanguard-note strong {
+.noviz-note :deep(strong),
+.noviz-note strong {
   color: hsl(347 77% 48%);
   font-weight: 700;
 }
-:global(.dark) .vanguard-note {
+:global(.dark) .noviz-note {
   color: hsl(351 95% 78%);
   border-color: hsl(351 95% 71% / 0.4);
   background: hsl(351 95% 60% / 0.12);
 }
-:global(.dark) .vanguard-note strong {
+:global(.dark) .noviz-note strong {
   color: hsl(353 96% 82%);
 }
 /* "### Analysis" → a compact uppercase section label. */

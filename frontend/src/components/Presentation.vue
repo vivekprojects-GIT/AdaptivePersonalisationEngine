@@ -31,7 +31,7 @@
           <div class="slide-host" :key="i">
           <!-- 0 · TITLE -->
           <section v-if="i === 0" class="slide slide-title">
-            <div class="kicker">VANGUARD PERSONAL WEALTH · APRIL 2026</div>
+            <div class="kicker">PERSONAL WEALTH · APRIL 2026</div>
             <h1>The Adaptive<br /><span class="hl">Presentation Engine</span></h1>
             <p class="lead">Learning the right way to answer — for every kind of question.</p>
             <div class="title-orbs"><span /><span /><span /><span /><span /><span /></div>
