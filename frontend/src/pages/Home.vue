@@ -469,7 +469,7 @@ const integrations = [
       <!-- Copy block on a clean dark background; the 3D brain scene sits below it. -->
       <div class="relative z-10 max-w-3xl mx-auto px-5 lg:px-8 pt-16 lg:pt-24 pb-6 flex flex-col items-center justify-center text-center gap-6">
         <div class="hero-late eyebrow" style="--d: 0.05s">
-          a human mind, cloned into your AI
+          personalized answer formats
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-[52px] xl:text-[60px] font-semibold tracking-[-0.035em] leading-[1.06] text-balance">
           <span class="hero-word" style="--d: 0.1s">Your</span>
