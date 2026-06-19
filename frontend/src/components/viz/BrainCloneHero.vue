@@ -178,7 +178,7 @@ function drawBridge(active: number) {
     ctx.beginPath(); ctx.moveTo(A.X, A.Y); ctx.lineTo(B.X, B.Y); ctx.stroke()
     // label cascades left→right across the bridge so the six intents stay legible
     const M = proj(-0.14 + k * 0.055, y, arc + 0.02)
-    label(M.X, M.Y - 9, INTENTS[k], isOn ? '255,80,84' : '205,205,218', isOn ? 0.62 : 0.13, isOn ? 11.5 : 10)
+    label(M.X, M.Y - 9, INTENTS[k], isOn ? '255,80,84' : '210,210,224', isOn ? 0.9 : 0.3, isOn ? 12 : 10.5)
   }
   // particles flowing human → clone
   ctx.globalCompositeOperation = 'lighter'

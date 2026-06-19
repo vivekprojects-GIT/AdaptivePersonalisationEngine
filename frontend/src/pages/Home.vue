@@ -451,12 +451,8 @@ const integrations = [
       id="home"
       class="relative overflow-hidden scroll-mt-16"
     >
-      <!-- core-idea backdrop: drifting answer-format glyphs, one "chosen" (or a hero video when set) — + a centre scrim for legibility -->
-      <HeroBackdrop />
-      <div class="absolute inset-0 z-[1] pointer-events-none hero-scrim-center" aria-hidden="true" />
-      <!-- Centered copy over the brain-clone stage: the 3D scene reads on the sides,
-           the headline sits clean in the middle. -->
-      <div class="relative z-10 max-w-3xl mx-auto px-5 lg:px-8 min-h-[82vh] flex flex-col items-center justify-center text-center gap-6 py-24">
+      <!-- Copy block on a clean dark background; the 3D brain scene sits below it. -->
+      <div class="relative z-10 max-w-3xl mx-auto px-5 lg:px-8 pt-16 lg:pt-24 pb-6 flex flex-col items-center justify-center text-center gap-6">
         <div class="hero-late eyebrow" style="--d: 0.05s">
           a human mind, cloned into your AI
           <span v-if="heroStats && heroStats.total_turns > 0" class="eyebrow-chip"><CountUp :end="heroStats.total_turns" /> learned</span>
@@ -494,6 +490,12 @@ const integrations = [
           <span class="text-muted-foreground/40">·</span>
           <span>governed visuals</span>
         </div>
+      </div>
+
+      <!-- 3D brain-clone scene — a human mind cloned into its AI, sitting fully below the copy -->
+      <div class="relative w-full h-[42vh] min-h-[320px] lg:h-[46vh] overflow-hidden">
+        <HeroBackdrop />
+        <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none z-[1]" aria-hidden="true" />
       </div>
 
       <!-- Ramp-style live ticker — real numbers straight from the engine -->
